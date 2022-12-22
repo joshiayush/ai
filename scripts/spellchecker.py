@@ -15,6 +15,8 @@ import textblob
 import markdown
 import argparse
 
+from nltk.corpus import stopwords
+
 _GLOB_EVERY_FILE_AND_DIR_REGEX = '**'
 
 
@@ -54,6 +56,23 @@ def ConvertMarkdownToText(html: str) -> str:
   return ''.join(
       bs4.BeautifulSoup(markdown.markdown(html),
                         'html.parser').find_all(text=True))
+
+
+def CleanStopWords(word_list: list[str]) -> list[str]:
+  stop_words = None
+  try:
+    stop_words = stopwords.words('english')
+  except LookupError:
+    import nltk  # pylint: disable=import-outside-toplevel
+    nltk.download('stopwords')
+  finally:
+    stop_words = stopwords.words('english')
+
+  new_word_list = []
+  for word in word_list:
+    if word not in stop_words:
+      new_word_list = [*new_word_list, word]
+  return new_word_list
 
 
 class SpellCheck:  # pylint: disable=missing-class-docstring
