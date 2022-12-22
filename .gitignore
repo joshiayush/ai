@@ -1,0 +1,13 @@
+# cache
+__pycache__
+
+# virtual environment
+lib/**
+lib64
+include
+bin
+pyvenv.cfg
+share/
+
+# visual studio code
+.vscode
