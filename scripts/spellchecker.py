@@ -15,6 +15,7 @@ import textblob
 import markdown
 import argparse
 
+from nltk import tokenize
 from nltk.corpus import stopwords
 
 _GLOB_EVERY_FILE_AND_DIR_REGEX = '**'
@@ -81,15 +82,7 @@ class SpellCheck:  # pylint: disable=missing-class-docstring
     self.data = data
 
   def _list_words(self) -> list[str]:
-    words = []
-    lines = self.data.split('\n')
-    for line in lines:
-      words = [
-          *words,
-          *line.split(' '),
-          '\n'  # We also include the line-feed as a word.
-      ]
-    return words
+    return tokenize.word_tokenize(self.data, 'english')
 
   def correct(self) -> str:
     corrected_words = []
