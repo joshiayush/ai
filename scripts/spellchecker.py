@@ -8,12 +8,14 @@ import os
 import bs4
 import sys
 import json
+import string
 import codecs
 import pathlib
 import difflib
 import textblob
 import markdown
 import argparse
+import langdetect
 
 from nltk import tokenize
 from nltk.corpus import stopwords
@@ -59,44 +61,68 @@ def ConvertMarkdownToText(html: str) -> str:
                         'html.parser').find_all(text=True))
 
 
-def CleanStopWords(word_list: list[str]) -> list[str]:
-  stop_words = None
-  try:
-    stop_words = stopwords.words('english')
-  except LookupError:
-    import nltk  # pylint: disable=import-outside-toplevel
-    nltk.download('stopwords')
-  finally:
-    stop_words = stopwords.words('english')
-
-  new_word_list = []
-  for word in word_list:
-    if word not in stop_words:
-      new_word_list = [*new_word_list, word]
-  return new_word_list
-
-
 class SpellCheck:  # pylint: disable=missing-class-docstring
 
   def __init__(self, data: str) -> None:
     self.data = data
 
   def _list_words(self) -> list[str]:
-    return tokenize.word_tokenize(self.data, 'english')
+    words = []
+    lines = self.data.split('\n')
+    for line in lines:
+      try:
+        words = [*words, *tokenize.word_tokenize(line, 'english'), '\n']
+      except LookupError:
+        import nltk  # pylint: disable=import-outside-toplevel
+        nltk.download('punkt')
+        words = [*words, *tokenize.word_tokenize(line, 'english'), '\n']
+    return words
+
+  def _group_words_by_sentence(
+      self, word_list: list[str]) -> list[tuple[str, list[str]]]:
+    sentence = []
+    sentence_list = []
+    for word in word_list:
+      sentence = [*sentence, word]
+      if word == '\n' and len(sentence) > 1:
+        sentence_list = [
+            *sentence_list, (langdetect.detect(' '.join(sentence)), sentence)
+        ]
+        sentence = []
+    return sentence_list
+
+  def _check_if_stop_word(self, word: str) -> bool:
+    try:
+      if word in stopwords.words('english'):
+        return True
+    except LookupError:
+      import nltk  # pylint: disable=import-outside-toplevel
+      nltk.download('stopwords')
+
+    if word in stopwords.words('english'):
+      return True
+    return False
 
   def correct(self) -> str:
-    corrected_words = []
+    sentence_list = self._group_words_by_sentence(self._list_words())
+    for sentence in sentence_list:
+      if sentence[0] != 'en':
+        continue
+      for i in range(len(sentence[1])):
+        if self._check_if_stop_word(sentence[1][i]) is True or sentence[1][
+            i] in string.punctuation or sentence[1][
+                i] in string.digits or sentence[1][i] in string.whitespace:
+          continue
 
-    words = self._list_words()
-    for word in words:
-      corrected_words = [
-          *corrected_words,
-          # Only if the confidence byte is less than 0.5 we use
-          # TextBlob.correct().
-          str(textblob.TextBlob(word).correct())
-          if textblob.Word(word).spellcheck()[0][1] < 0.5 else word
-      ]
-    return ' '.join(corrected_words)
+        # Only if the confidence byte is less than 0.5 we use
+        # TextBlob.correct().
+        if textblob.Word(sentence[1][i]).spellcheck()[0][1] < 0.5:
+          sentence[1][i] = str(textblob.TextBlob(sentence[1][i]).correct())
+
+    sentence_list_without_lang = []
+    for sentence in sentence_list:
+      sentence_list_without_lang = [*sentence_list_without_lang, *sentence[1]]
+    return ' '.join(sentence_list_without_lang)
 
 
 def GenerateDiff(acutal: list[str], expected: list[str]) -> None:
