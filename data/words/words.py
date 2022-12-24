@@ -1,5 +1,4 @@
 #!/usr/bin/python3
-
 """A command-line utility program to manage the word database.
 
 We group the word database by the initial letters in separate files. We may
@@ -11,6 +10,7 @@ We also sort the words lexicographically to maintain the order.
 
 from __future__ import annotations
 
+import io
 import os
 import sys
 import string
@@ -26,24 +26,30 @@ def SortWordsLexicographically(file: str) -> None:
   if file is None:
     raise ValueError('Expected str or Path like object, received None')
 
+  def WriteWordsToFile(file: io.TextIOWrapper, words: list[str]) -> None:
+    file.seek(0)
+    file.truncate()
+    file.writelines(words)
+
   is_dir = os.path.isdir(file)
   if is_dir is False:
     with open(file, mode='a+', encoding='utf-8') as f:
+      # Note the file is always opened using 'a+' mode opening it agian means
+      # the file pointer is at the end-of-file so we must reset it.
       f.seek(0)
       words = f.readlines()
       words.sort()
-      f.seek(0)
-      f.truncate()
-      f.writelines(words)
+      WriteWordsToFile(file, words)
+    return
 
   for file_ in pathlib.Path(file).glob('*'):
     with open(file_, mode='a+', encoding='utf-8') as f:
+      # Note the file is always opened using 'a+' mode opening it agian means
+      # the file pointer is at the end-of-file so we must reset it.
       f.seek(0)
       words = f.readlines()
       words.sort()
-      f.seek(0)
-      f.truncate()
-      f.writelines(words)
+      WriteWordsToFile(file, words)
 
 
 def GroupWordsByLetters(file: str, dest: str) -> list[pathlib.Path]:
