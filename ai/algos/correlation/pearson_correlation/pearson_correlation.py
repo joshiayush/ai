@@ -154,12 +154,12 @@ def cov(m: np.array,
     fact = 0.0
 
   x -= avg[:, None]
-  x_T = None  # pylint: disable=invalid-name
+  xtrans = None
   if w is None:
-    x_T = x.T  # pylint: disable=invalid-name
+    xtrans = x.T
   else:
-    x_T = (x * w).T  # pylint: disable=invalid-name
-  c = np.dot(x, x_T.conj())
+    xtrans = (x * w).T
+  c = np.dot(x, xtrans.conj())
   c *= np.true_divide(1, fact)
   return c.squeeze()
 
