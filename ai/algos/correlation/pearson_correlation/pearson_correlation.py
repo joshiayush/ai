@@ -164,6 +164,50 @@ def cov(m: np.array,
   return c.squeeze()
 
 
-if __name__ == '__main__':
-  arr = np.array([[0, 2], [1, 1], [2, 0]]).T
-  print(cov(arr))
+def corrcoef(x: np.array,
+             y: np.array = None,
+             rowvar: bool = True,
+             *,
+             dtype: np.dtype = None) -> np.ndarray:
+  """Return Pearson product-moment correlation coefficient.
+
+  The relationship between the correlation coefficient matrix, `R`, and the
+  covariance matrix, `C`, is
+
+  .. math:: R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} C_{jj} } }
+
+  The values of `R` are between -1 and 1, inclusive.
+
+  Args:
+    m:        A 1-D or 2-D array containing multiple variables and observations.
+              Each row of `m` represents a variable, and each column a single
+              observation of all those variables. Also see `rowvar` below.
+    y:        An additional set of variables and observations. `y` has the same
+              form as that of `m`.
+    rowvar:   If `rowvar` is True (default), then each row represents a
+              variable, with observations in the columns. Otherwise,
+              relationship is transposed: each column represents a variable,
+              while the rows contains observations.
+    dtype:    Data type of the result. By default the return data type will
+              have at least `numpy.float64` precision.
+
+  Returns:
+    The correlation coefficient matrix of the variables.
+  """
+  c = cov(x, y, rowvar, dtype=dtype)
+  try:
+    d = np.diag(c)
+  except ValueError:
+    # Scalar covariance; NaN if incorrect value (NaN, Inf, 0), 1 otherwise.
+    return c / c
+  stddev = np.sqrt(d.real)
+  c /= stddev[:, None]
+  c /= stddev[None, :]
+
+  # Clip real and imaginary parts to [-1, 1]. This does not guarantee
+  # abs([i,j]) <= 1 for complex arrays, but is the best we can do without
+  # excessive work.
+  np.clip(c.real, -1, 1, out=c.real)
+  if np.iscomplexobj(c):
+    np.clip(c.imag, -1, 1, out=c.imag)
+  return c
