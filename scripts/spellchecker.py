@@ -45,10 +45,9 @@ def ReadIPythonNotebook(file_path: pathlib.Path) -> str:
   for cell in source['cells']:
     for src in cell['source']:
       markdown += src
-
-      # Append a newline character at the end of each individual line because
-      # each individual markdown cell of the IPython Notebook does not
-      # necessarily ends with a line-feed.
+      # Append a newline character at the end of each individual line
+      # because each individual markdown cell of the IPython Notebook
+      # does not necessarily ends with a line-feed.
       if not src.endswith('\n'):
         markdown += '\n'
     markdown += '\n'
@@ -113,7 +112,6 @@ class SpellCheck:  # pylint: disable=missing-class-docstring
             i] in string.punctuation or sentence[1][
                 i] in string.digits or sentence[1][i] in string.whitespace:
           continue
-
         # Only if the confidence byte is less than 0.5 we use
         # TextBlob.correct().
         if textblob.Word(sentence[1][i]).spellcheck()[0][1] < 0.5:

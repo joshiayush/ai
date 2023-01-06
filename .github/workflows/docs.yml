@@ -1,0 +1,22 @@
+name: Docs
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Adding executable permissions to generatedocs script
+      run: |
+        chmod +x ./scripts/generatedocs.py
+
+    - name: Converting IPython Notebooks to Markdowns
+      run: |
+        ./scripts/generatedocs.py
+
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+        branch: master
+        file_pattern: 'docs/**/*.*'
