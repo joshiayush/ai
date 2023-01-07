@@ -216,3 +216,21 @@ where:
 * $N$ is the number of examples in $D$.
 
 Although MSE is commonly-used in machine learning, it is neither the only practical loss function nor the best loss function for all circumstances.
+
+### Check your understanding
+
+__Mean Squared Error__
+
+Consider the following two plots:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/MCEDescendingIntoMLLeft.png' />
+
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/MCEDescendingIntoMLRight.png' />
+</div>
+
+__Q1. Which of the two data sets shown in the preceding plots has the higher Mean Squared Error (MSE)?__
+
+> __The dataset on the right.__ <br>
+> The eight examples on the line incur a total loss of 0. However, although only two points lay off the line, both of those points are twice as far off the line as the outlier points in the left figure. Squared loss amplifies those differences, so an offset of two incurs a loss four times as great as an offset of one.
+> $$\mathrm{MSE}=\dfrac{0^2+0^2+0^2+2^2+0^2+0^2+0^2+2^2+0^2+0^2}{10}=0.8$$
