@@ -44,13 +44,13 @@ print(my_dataframe)
 
 ### Output
 
-   temperature  activity
+```   temperature  activity
 0            0         3
 1           10         7
 2           20         9
 3           30        14
 4           40        15
-
+```
 
 ## Adding a new column to a DataFrame
 
@@ -66,13 +66,13 @@ print(my_dataframe)
 
 ### Output
 
-   temperature  activity  adjusted
+```   temperature  activity  adjusted
 0            0         3         5
 1           10         7         9
 2           20         9        11
 3           30        14        16
 4           40        15        17
-
+```
 
 ## Specifying a subset of a DataFrame
 
@@ -94,7 +94,7 @@ print(my_dataframe['temperature'])
 
 ### Output
 
-Rows #0, #1, and #2:
+```Rows #0, #1, and #2:
    temperature  activity  adjusted
 0            0         3         5
 1           10         7         9
@@ -117,7 +117,7 @@ Column 'temperature':
 3    30
 4    40
 Name: temperature, dtype: int64
-
+```
 
 ## Task 1: Create a DataFrame
 
@@ -158,7 +158,7 @@ print(df)
 
 ### Output
 
-   Eleanor  Chidi  Tahani  Jason
+```   Eleanor  Chidi  Tahani  Jason
 0       28     99      79     80
 1       90     96      17     20
 2        1     69      70     13
@@ -169,7 +169,7 @@ Second row of the Eleanor column: 90
 0       28     99      79     80    159
 1       90     96      17     20     37
 2        1     69      70     13     83
-
+```
 
 ## Copying a DataFrame
 
@@ -212,7 +212,7 @@ print('  copy_of_my_dataframe does not get updated: %d' %
 
 ### Output
 
-Experiment with a reference:
+```Experiment with a reference:
   Starting value of df: 30
   Starting value of reference_to_df: 30
 
@@ -226,3 +226,4 @@ Experiment with a true copy:
 
   Updated df: 99
   copy_of_my_dataframe does not get updated: 96
+```

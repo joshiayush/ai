@@ -23,8 +23,8 @@ print(one_dimensional_array)
 
 ### Output
 
-[1.2 2.4 3.5 4.7 6.1 7.2 8.3 9.5]
-
+```[1.2 2.4 3.5 4.7 6.1 7.2 8.3 9.5]
+```
 
 You can also use `np.array` to create a two-dimensional array. To create a two-dimensional array specify an extra layer of square brackets. For example, the following call creates a `3x2` array:
 
@@ -35,10 +35,10 @@ print(two_dimensional_array)
 
 ### Output
 
-[[ 6  5]
+```[[ 6  5]
  [11  7]
  [ 4  8]]
-
+```
 
 To populate an array with all zeroes, call `np.zeros`. To populate an array with all ones, call `np.ones`.
 
@@ -53,8 +53,8 @@ print(sequence_of_integers)
 
 ### Output
 
-[ 5  6  7  8  9 10 11]
-
+```[ 5  6  7  8  9 10 11]
+```
 
 Notice that `np.arange` generates a sequence that includes the lower bound (5) but not the upper bound (12).
 
@@ -70,8 +70,8 @@ print(random_integers_between_50_and_100)
 
 ### Output
 
-[50 52 90 58 57 66]
-
+```[50 52 90 58 57 66]
+```
 
 Note that the highest generated integer `np.random.randint` is one less than the `high` argument.
 
@@ -84,8 +84,8 @@ print(random_floats_between_0_and_1)
 
 ### Output
 
-[0.58412468 0.42188739 0.03088132 0.42848895 0.66435921 0.56969786]
-
+```[0.58412468 0.42188739 0.03088132 0.42848895 0.66435921 0.56969786]
+```
 
 ## Mathematical Operations on NumPy Operands
 
@@ -98,8 +98,8 @@ print(random_floats_between_2_and_3)
 
 ### Output
 
-[2.58412468 2.42188739 2.03088132 2.42848895 2.66435921 2.56969786]
-
+```[2.58412468 2.42188739 2.03088132 2.42848895 2.66435921 2.56969786]
+```
 
 The following operation also relies on broadcasting to multiply each cell in an array by 3.0:
 
@@ -110,8 +110,8 @@ print(random_integers_between_150_and_300)
 
 ### Output
 
-[150. 156. 270. 174. 171. 198.]
-
+```[150. 156. 270. 174. 171. 198.]
+```
 
 ## Task 1: Create a Linear Dataset
 
@@ -140,9 +140,9 @@ print(label)
 
 ### Output
 
-[ 6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
+```[ 6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
 [22 25 28 31 34 37 40 43 46 49 52 55 58 61 64]
-
+```
 
 ## Task 2: Add Some Noise to the Dataset
 
@@ -161,5 +161,6 @@ print(label)
 
 ### Output
 
-[-1  1 -1 -2 -2  0  0 -1  0 -1 -2 -2 -2  0 -2]
+```[-1  1 -1 -2 -2  0  0 -1  0 -1 -2 -2 -2  0 -2]
 [21 26 27 29 32 37 40 42 46 48 50 53 56 61 62]
+```
