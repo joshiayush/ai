@@ -97,3 +97,25 @@ A __classification__ model predicts discrete values. For example, classification
 
 * Is a given email message spam or not spam?
 * Is this an image of a dog, a cat, or a hamster?
+
+### Check your understanding
+
+__Supervised Learning__
+
+__Q1. Suppose you want to develop a supervised machine learning model to predict whether a given email is "spam" or "not spam." What are the true statements that you can think about for being a useful label?__
+
+> * __Emails not marked as "spam" or "not spam" are unlabeled examples.__ <br>
+>    Because our label consists of the values "spam" and "not spam", any email not yet marked as spam or not spam is an unlabeled example.
+>
+> * __The labels applied to some examples might be unreliable.__ <br>
+>    Definitely. It's important to check how reliable your data is. The labels for this dataset probably come from email users who mark particular email messages as spam. Since most users do not mark every suspicious email message as spam, we may have trouble knowing whether an email is spam. Furthermore, spammers could intentionally poison our model by providing faulty labels.
+
+__Features and Labels__
+
+__Q1. Suppose an online shoe store wants to create a supervised ML model that will provide personalized shoe recommendations to users. That is, the model will recommend certain pairs of shoes to Marty and different pairs of shoes to Janet. The system will use past user behavior data to generate training data. What are the true statements that you can think of for being a useful label?__
+
+> * __"Shoe size" is a useful feature.__ <br>
+> "Shoe size" is a quantifiable signal that likely has a strong impact on whether the user will like the recommended shoes. For example, if Marty wears size 9, the model shouldn't recommend size 7 shoes.
+>
+> * __"The user clicked on the shoe's description" is a useful label.__ <br>
+> Users probably only want to read more about those shoes that they like. Clicks by users is, therefore, an observable, quantifiable metric that could serve as a good training label. Since our training data derives from past user behavior, our labels need to derive from objective behaviors like clicks that strongly correlate with user preferences.
