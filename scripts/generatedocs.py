@@ -59,7 +59,9 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
         markdown += '### Output\n'
         for output in cell['outputs']:
           markdown += '\n'
+          markdown += """```"""
           markdown += ''.join(output['text'])
+          markdown += """```"""
     markdown += '\n' * 2
   return ReplaceLatexCodeToIcon(markdown.strip())
 
