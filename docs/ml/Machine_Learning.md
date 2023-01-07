@@ -119,3 +119,56 @@ __Q1. Suppose an online shoe store wants to create a supervised ML model that wi
 >
 > * __"The user clicked on the shoe's description" is a useful label.__ <br>
 > Users probably only want to read more about those shoes that they like. Clicks by users is, therefore, an observable, quantifiable metric that could serve as a good training label. Since our training data derives from past user behavior, our labels need to derive from objective behaviors like clicks that strongly correlate with user preferences.
+
+
+# Descending into ML
+
+Linear regression is a method for finding the straight line or hyperplane that best fits a set of points.
+
+## Linear Regression
+
+It has long been known that crickets (an insect species) chirp more frequently on hotter days than on cooler days. For decades, professional and amateur scientists have cataloged data on chirps-per-minute and temperature. As a birthday gift, your Aunt Ruth gives you her cricket database and asks you to learn a model to predict this relationship. Using this data, you want to explore this relationship.
+
+First, examine your data by plotting it:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/CricketPoints.svg' />
+
+  <strong>Figure 1. Chirps per Minute vs. Temperature in Celsius.</strong>
+</div>
+
+As expected, the plot shows the temperature rising with the number of chirps. Is this relationship between chirps and temperature linear? Yes, you could draw a single straight line like the following to approximate this relationship:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/CricketLine.svg' />
+
+  <strong>Figure 2. A linear relationship.</strong>
+</div>
+
+True, the line doesn't pass through every dot, but the line does clearly show the relationship between chirps and temperature. Using the equation for a line, you could write down this relationship as follows:
+
+$$y=mx+b$$
+
+where:
+
+*  $y$ is the temperature in Celsius — the value we're trying to predict.
+* $m$ is the slope of the line.
+* $x$ is the number of chirps per minute — the value of our input feature.
+* $b$ is the y-intercept.
+
+By convention in machine learning, you'll write the equation for a model slightly differently:
+
+$$y^\prime=b+w_{1}x_{1}$$
+
+where:
+
+* $y^\prime$ is a predicted [label](https://developers.google.com/machine-learning/crash-course/framing/ml-terminology#labels) (a desired output).
+* $b$ is the bias (the y-intercept), sometimes referred to as $w_{0}$.
+* $w_{1}$ is the [weight](https://developers.google.com/machine-learning/glossary#weight) of feature 1. Weight is the same concept as the "slope" _$m$_ in the traditional equation of a line.
+* $x_{1}$ is a [feature](https://developers.google.com/machine-learning/crash-course/framing/ml-terminology#features) (a known input).
+
+To __infer__ (predict) the temprature $y^\prime$ for new chirps-per-minute value $x_{1}$, just substitute the $x_{1}$ value into this model.
+
+Although this model uses only one feature, a more sophisticated model might rely on multiple features, each having a separate weight ($w_{1}$, $w_{2}$, etc.). For example, a model that relies on three features might look as follows:
+
+$$y^\prime=b+w_{1}x_{1}+w_{2}x_{2}+w_{3}x_{3}$$
