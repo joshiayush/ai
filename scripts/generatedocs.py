@@ -14,6 +14,11 @@ _BASE_AI_DIR = 'ai'
 _BASE_DOCS_DIR = 'docs'
 _GLOB_EVERY_FILE_AND_DIR_REGEX = '**'
 
+# There are a few latex icon that GitHub couldn't generate with the
+# normal latex code therefore, we need to manually replace all of
+# them with their corresponding icons.
+_LATEX_CODE_TO_ICON = {'\\Rightarrow': '⇒'}
+
 
 def GetFileByExtensionUnderGivenDirectory(
     file_ext: str,
@@ -25,6 +30,12 @@ def GetFileByExtensionUnderGivenDirectory(
   for file in pathlib.Path(dir).glob(  # pylint: disable=redefined-outer-name
       f'{_GLOB_EVERY_FILE_AND_DIR_REGEX}/*.{file_ext}'):
     yield file
+
+
+def ReplaceLatexCodeToIcon(markdown: str) -> str:
+  for latex_code, latex_icon in _LATEX_CODE_TO_ICON.items():
+    markdown = markdown.replace(latex_code, latex_icon)
+  return markdown
 
 
 def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
@@ -50,7 +61,7 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
           markdown += '\n'
           markdown += ''.join(output['text'])
     markdown += '\n' * 2
-  return markdown.strip()
+  return ReplaceLatexCodeToIcon(markdown.strip())
 
 
 def GenerateDocs(base_docs_dir: str | pathlib.Path,
