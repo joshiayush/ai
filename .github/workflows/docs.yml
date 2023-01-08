@@ -8,13 +8,13 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    - name: Adding executable permissions to generatedocs script
+    - name: Adding executable permissions to manage.py
       run: |
-        chmod +x ./scripts/generatedocs.py
+        chmod +x ./tools/manage.py
 
     - name: Converting IPython Notebooks to Markdowns
       run: |
-        ./scripts/generatedocs.py
+        ./tools/manage.py --generate-docs
 
     - uses: stefanzweifel/git-auto-commit-action@v4
       with:
