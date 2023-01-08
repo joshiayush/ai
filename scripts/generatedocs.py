@@ -19,6 +19,17 @@ _GLOB_EVERY_FILE_AND_DIR_REGEX = '**'
 # them with their corresponding icons.
 _LATEX_CODE_TO_ICON = {'\\Rightarrow': '⇒'}
 
+_LATEX_BLOCK = '$'
+_LATEX_CBLOCK = _LATEX_BLOCK * 2
+
+# The "Sundown" parser is unable to parse a few latex syntax like
+# "$\begin{...}...\end{...}$", but if we replace the dollar "$" with
+# the "math" block the "Sundown" parser may work for some syntax.
+#
+# So we must replace the above syntax with
+# ```math\begin{cases}...\end{cases}```
+_LATEX_LINEAR_EQUATION_BLOCKS = ['cases', 'pmatrix', 'bmatrix']
+
 
 def GetFileByExtensionUnderGivenDirectory(
     file_ext: str,
@@ -35,6 +46,29 @@ def GetFileByExtensionUnderGivenDirectory(
 def ReplaceLatexCodeToIcon(markdown: str) -> str:
   for latex_code, latex_icon in _LATEX_CODE_TO_ICON.items():
     markdown = markdown.replace(latex_code, latex_icon)
+  return markdown
+
+
+def ReplaceLatexBlockWithMath(markdown: str) -> str:
+
+  def ReplaceBeginningBlock(latex_block: str, block_name: str,
+                            markdown: str) -> str:
+    old_block_syntax = f'{latex_block}\n\\begin{{{block_name}}}'
+    new_block_syntax = f"""```math\n\\begin{{{block_name}}}"""
+    return markdown.replace(old_block_syntax, new_block_syntax)
+
+  def ReplaceEndBlock(latex_block: str, block_name: str, markdown: str) -> str:
+    old_block_syntax = f'\\end{{{block_name}}}\n{latex_block}'
+    new_block_syntax = f"""\\end{{{block_name}}}\n```"""
+    return markdown.replace(old_block_syntax, new_block_syntax)
+
+  # Replace the beginning and end blocks with the beginning and end
+  # "math" blocks for both left-aligned and center-aligned latex blocks.
+  for block_name in _LATEX_LINEAR_EQUATION_BLOCKS:
+    for latex_block in [_LATEX_BLOCK, _LATEX_CBLOCK]:
+      markdown = ReplaceBeginningBlock(latex_block, block_name, markdown)
+      markdown = ReplaceEndBlock(latex_block, block_name, markdown)
+
   return markdown
 
 
@@ -60,10 +94,12 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
         for output in cell['outputs']:
           markdown += '\n'
           markdown += """```"""
-          markdown += ''.join(output['text'])
+          markdown += '\n'
+          markdown += ''.join(output['text']).strip()
+          markdown += '\n'
           markdown += """```"""
     markdown += '\n' * 2
-  return ReplaceLatexCodeToIcon(markdown.strip())
+  return ReplaceLatexBlockWithMath(ReplaceLatexCodeToIcon(markdown.strip()))
 
 
 def GenerateDocs(base_docs_dir: str | pathlib.Path,
