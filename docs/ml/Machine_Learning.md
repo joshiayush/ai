@@ -6,8 +6,6 @@ Machine learning is a field of inquiry devoted to understanding and building met
 
 _**इति निर्दोषयन्त्राणां ज्ञानप्राप्तेः आरम्भः**_
 
-__ये प्रारम्भ है अबोध मशीनो का ज्ञान अर्जित करने का।__
-
 ## Additional information
 
 * _Rules of Machine Learning,_ [Rule #1: Don't be afraid to launch a product without machine learning](https://developers.google.com/machine-learning/rules-of-ml/#rule_1_dont_be_afraid_to_launch_a_product_without_machine_learning)
