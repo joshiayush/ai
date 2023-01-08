@@ -44,7 +44,8 @@ print(my_dataframe)
 
 ### Output
 
-```   temperature  activity
+```
+temperature  activity
 0            0         3
 1           10         7
 2           20         9
@@ -66,7 +67,8 @@ print(my_dataframe)
 
 ### Output
 
-```   temperature  activity  adjusted
+```
+temperature  activity  adjusted
 0            0         3         5
 1           10         7         9
 2           20         9        11
@@ -94,7 +96,8 @@ print(my_dataframe['temperature'])
 
 ### Output
 
-```Rows #0, #1, and #2:
+```
+Rows #0, #1, and #2:
    temperature  activity  adjusted
 0            0         3         5
 1           10         7         9
@@ -158,7 +161,8 @@ print(df)
 
 ### Output
 
-```   Eleanor  Chidi  Tahani  Jason
+```
+Eleanor  Chidi  Tahani  Jason
 0       28     99      79     80
 1       90     96      17     20
 2        1     69      70     13
@@ -212,7 +216,8 @@ print('  copy_of_my_dataframe does not get updated: %d' %
 
 ### Output
 
-```Experiment with a reference:
+```
+Experiment with a reference:
   Starting value of df: 30
   Starting value of reference_to_df: 30
 
