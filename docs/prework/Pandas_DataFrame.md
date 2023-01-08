@@ -44,6 +44,7 @@ print(my_dataframe)
 
 ### Output
 
+
 ```
 temperature  activity
 0            0         3
@@ -66,6 +67,7 @@ print(my_dataframe)
 ```
 
 ### Output
+
 
 ```
 temperature  activity  adjusted
@@ -95,6 +97,7 @@ print(my_dataframe['temperature'])
 ```
 
 ### Output
+
 
 ```
 Rows #0, #1, and #2:
@@ -161,6 +164,7 @@ print(df)
 
 ### Output
 
+
 ```
 Eleanor  Chidi  Tahani  Jason
 0       28     99      79     80
@@ -215,6 +219,7 @@ print('  copy_of_my_dataframe does not get updated: %d' %
 ```
 
 ### Output
+
 
 ```
 Experiment with a reference:

@@ -23,6 +23,7 @@ print(one_dimensional_array)
 
 ### Output
 
+
 ```
 [1.2 2.4 3.5 4.7 6.1 7.2 8.3 9.5]
 ```
@@ -35,6 +36,7 @@ print(two_dimensional_array)
 ```
 
 ### Output
+
 
 ```
 [[ 6  5]
@@ -55,6 +57,7 @@ print(sequence_of_integers)
 
 ### Output
 
+
 ```
 [ 5  6  7  8  9 10 11]
 ```
@@ -73,6 +76,7 @@ print(random_integers_between_50_and_100)
 
 ### Output
 
+
 ```
 [50 52 90 58 57 66]
 ```
@@ -87,6 +91,7 @@ print(random_floats_between_0_and_1)
 ```
 
 ### Output
+
 
 ```
 [0.58412468 0.42188739 0.03088132 0.42848895 0.66435921 0.56969786]
@@ -103,6 +108,7 @@ print(random_floats_between_2_and_3)
 
 ### Output
 
+
 ```
 [2.58412468 2.42188739 2.03088132 2.42848895 2.66435921 2.56969786]
 ```
@@ -115,6 +121,7 @@ print(random_integers_between_150_and_300)
 ```
 
 ### Output
+
 
 ```
 [150. 156. 270. 174. 171. 198.]
@@ -147,6 +154,7 @@ print(label)
 
 ### Output
 
+
 ```
 [ 6  7  8  9 10 11 12 13 14 15 16 17 18 19 20]
 [22 25 28 31 34 37 40 43 46 49 52 55 58 61 64]
@@ -168,6 +176,7 @@ print(label)
 ```
 
 ### Output
+
 
 ```
 [-1  1 -1 -2 -2  0  0 -1  0 -1 -2 -2 -2  0 -2]
