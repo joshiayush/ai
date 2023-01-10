@@ -54,3 +54,11 @@ $
 This defines a function $sqr$ from the integers to the integers that returns the square of its input.
 
 As a common application of the arrow notation, suppose $f \colon X \times X \to Y; \;(x,t) \mapsto f(x,t)$ is a function in two variables, and we want to refer to a [partially applied function](https://en.wikipedia.org/wiki/Partial_application) $X \to Y$ produced by fixing the second argument to the value $t_{0}$ without introducing a new function name. The map in question could be denoted $x \mapsto f(x,t_{0})$ using the arrow notation. The expression $x \mapsto f(x,t_{0})$ (read: "the map taking $x$ to $f(x, t_{0})$") represents this new function with just one argument, whereas the expression $f(x_{0}, t_{0})$ refers to the value of the function $f$ at the point $(x_{0}, t_{0})$.
+
+### __Index Notation__
+
+Index notation is often used instead of functional notation. That is, instead of writing $f(x)$, one writes $f_{x}$.
+
+This is typically the case for functions whose domain is the set of the [natural numbers](https://en.wikipedia.org/wiki/Natural_number). Such a function is called a [sequence](https://en.wikipedia.org/wiki/Sequence_(mathematics)), and, in this case the element $f_{n}$ is called the $nth$ element of the sequence.
+
+The index notation is also often used for distinguishing some variables called [parameters](https://en.wikipedia.org/wiki/Parameter) from the "true variables". In fact, parameters are specific variables that are considered as being fixed during the study of a problem. For example, the map $x \mapsto f(x,t)$ would be denoted $f_{t}$ using index notation, if we define the collection of maps $f_{t}$ by the formula $f_{t}(x)=f(x, t)$ for all $x, t \in X$.
