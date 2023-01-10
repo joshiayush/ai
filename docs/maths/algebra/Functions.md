@@ -62,3 +62,9 @@ Index notation is often used instead of functional notation. That is, instead of
 This is typically the case for functions whose domain is the set of the [natural numbers](https://en.wikipedia.org/wiki/Natural_number). Such a function is called a [sequence](https://en.wikipedia.org/wiki/Sequence_(mathematics)), and, in this case the element $f_{n}$ is called the $nth$ element of the sequence.
 
 The index notation is also often used for distinguishing some variables called [parameters](https://en.wikipedia.org/wiki/Parameter) from the "true variables". In fact, parameters are specific variables that are considered as being fixed during the study of a problem. For example, the map $x \mapsto f(x,t)$ would be denoted $f_{t}$ using index notation, if we define the collection of maps $f_{t}$ by the formula $f_{t}(x)=f(x, t)$ for all $x, t \in X$.
+
+### __Dot Notation__
+
+In the notation $x \mapsto f(x)$, the symbol $x$ does not represent any value, it is simply a [placeholder](https://en.wikipedia.org/wiki/Placeholder_name) meaning that, if $x$ is replaced by any value on the left of the arrow, it should be replaced by the same value on the right of the arrow. Therefore, $x$ may be replaced by any symbol, often an [interpunct](https://en.wikipedia.org/wiki/Interpunct) "$⋅$". This may be useful for distinguishing the function $f(⋅)$ from its value $f(x)$ at $x$.
+
+For example, $a(.)^2$ may stand for the function $x \mapsto ax^2$, and $\int_a^\mathrm{(.)} f(u) \: \mathrm{d}u$ may stand for a function defined by an integral with variable upper bound: $x \mapsto \int_a^x f(u) \: \mathrm{d}u$.
