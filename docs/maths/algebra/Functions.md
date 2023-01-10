@@ -40,10 +40,12 @@ Arrow notation defines the rule of a function inline, without requiring a name t
 
 The domain and codomain can also be explicitly stated, for example:
 
-$\begin{aligned}
+```math
+\begin{aligned}
 \operatorname{sqr} \colon \mathbb{Z} & \to \mathbb{Z} \\
 x & \mapsto x^{2}.
-\end{aligned}$
+\end{aligned}
+```
 
 This defines a function $sqr$ from the integers to the integers that returns the square of its input.
 
