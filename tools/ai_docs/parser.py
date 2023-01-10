@@ -39,7 +39,7 @@ _LATEX_CBLOCK = _LATEX_BLOCK * 2
 #
 # So we must replace the above syntax with
 # ```math\begin{cases}...\end{cases}```
-_LATEX_LINEAR_EQUATION_BLOCKS = ['cases', 'pmatrix', 'bmatrix']
+_LATEX_LINEAR_EQUATION_BLOCKS = ['cases', 'pmatrix', 'bmatrix', 'aligned']
 
 
 def _ReplaceLatexCodeToIcon(markdown: str) -> str:
