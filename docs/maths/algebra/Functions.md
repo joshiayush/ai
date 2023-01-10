@@ -24,17 +24,13 @@ There are various standard ways for denoting functions. The most commonly used n
 
 In functional notation, the function is immediately given a name, such as $f$, and its definition is given by what $f$ does to the explicit argument $x$, using a formula in terms of $x$. For example, the function which takes a real number as input and outputs that number plus $1$ is denoted by
 
-$
-f(x) = x+1
-$
+$f(x) = x+1$
 
 If a function is defined in this notation, its domain and codomain are implicitly taken to both be $\mathbb{R}$, the set of real numbers. If the formula cannot be evaluated at all real numbers, then the domain is implicitly taken to be the maximal subset of $\mathbb{R}$ on which the formula can be evaluated; see [Domain of a function](https://en.wikipedia.org/wiki/Domain_of_a_function).
 
 A more complicated example is the function
 
-$
-f(x)= \mathrm{sin}(x+1)^2
-$
+$f(x)= \mathrm{sin}(x+1)^2$
 
 In this example, the function $f$ takes a real number as input, squares it, then adds $1$ to the result, then takes the $sine$ of the result, and returns the final result as the output.
 
@@ -44,12 +40,10 @@ Arrow notation defines the rule of a function inline, without requiring a name t
 
 The domain and codomain can also be explicitly stated, for example:
 
-$
-\begin{aligned}
+$\begin{aligned}
 \operatorname{sqr} \colon \mathbb{Z} & \to \mathbb{Z} \\
 x & \mapsto x^{2}.
-\end{aligned}
-$
+\end{aligned}$
 
 This defines a function $sqr$ from the integers to the integers that returns the square of its input.
 
