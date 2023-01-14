@@ -76,3 +76,7 @@ In the special case that $X$ and $Y$ are both subsets of $\mathbb{R}$, the funct
 For a function $f: X \to Y$, the set $Y$ is called the [codomain](https://en.wikipedia.org/wiki/Codomain), and the set of values attained by the function (which is a subset of $Y$) is called its [range](https://en.wikipedia.org/wiki/Range_of_a_function) or [image](https://en.wikipedia.org/wiki/Image_(mathematics)).
 
 Any function can be restricted to a subset of its domain. The [restriction](https://en.wikipedia.org/wiki/Restriction_(mathematics)) of $f: X \to Y$ to $A$, where $A \subseteq X$, is written as $f \vert_{A}: A \to Y$.
+
+### Natural Domain
+
+If a [real function](https://en.wikipedia.org/wiki/Real_function) $f$ is given by a formula, it may be not defined for some values of the variable. In this case, it is a [partial function](https://en.wikipedia.org/wiki/Partial_function), and the set of real numbers on which the formula can be evaluated to a real number is called the __natural domain__ or __domain of definition__ of $f$. In many contexts, a partial function is called simply a _function_, and its natural domain is called simply its _domain_.
