@@ -64,3 +64,15 @@ The index notation is also often used for distinguishing some variables called [
 In the notation $x \mapsto f(x)$, the symbol $x$ does not represent any value, it is simply a [placeholder](https://en.wikipedia.org/wiki/Placeholder_name) meaning that, if $x$ is replaced by any value on the left of the arrow, it should be replaced by the same value on the right of the arrow. Therefore, $x$ may be replaced by any symbol, often an [interpunct](https://en.wikipedia.org/wiki/Interpunct) "$⋅$". This may be useful for distinguishing the function $f(⋅)$ from its value $f(x)$ at $x$.
 
 For example, $a(.)^2$ may stand for the function $x \mapsto ax^2$, and $\int_a^\mathrm{(.)} f(u) \: \mathrm{d}u$ may stand for a function defined by an integral with variable upper bound: $x \mapsto \int_a^x f(u) \: \mathrm{d}u$.
+
+## Domain of a function
+
+In [mathematics](https://en.wikipedia.org/wiki/Mathematics), the __domain__ of a [function](https://en.wikipedia.org/wiki/Function_(mathematics)) is the [set](https://en.wikipedia.org/wiki/Set_(mathematics)) of inputs accepted by the function. It is sometimes denoted by $\operatorname{dom}(f)$ or $\operatorname{dom} f$, where $f$ is the function.
+
+More precisely, given a function $f: X \to Y$, the domain of $f$ is $X$. Note that in modern mathematical language, the domain if part of the definition of a function rather than a property of it.
+
+In the special case that $X$ and $Y$ are both subsets of $\mathbb{R}$, the function $f$ can be graphed in the [Cartesian coordinate system](https://en.wikipedia.org/wiki/Cartesian_coordinate_system). In this case, the domain is represented on the $x- \mathrm{axis}$ of the graph, as the projection of the graph on the function onto the $x- \mathrm{axis}$.
+
+For a function $f: X \to Y$, the set $Y$ is called the [codomain](https://en.wikipedia.org/wiki/Codomain), and the set of values attained by the function (which is a subset of $Y$) is called its [range](https://en.wikipedia.org/wiki/Range_of_a_function) or [image](https://en.wikipedia.org/wiki/Image_(mathematics)).
+
+Any function can be restricted to a subset of its domain. The [restriction](https://en.wikipedia.org/wiki/Restriction_(mathematics)) of $f: X \to Y$ to $A$, where $A \subseteq X$, is written as $f \vert_{A}: A \to Y$.
