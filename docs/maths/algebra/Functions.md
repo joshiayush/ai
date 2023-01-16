@@ -94,3 +94,15 @@ If a [real function](https://en.wikipedia.org/wiki/Real_function) $f$ is given b
   , has as its natural domain the set $\mathbb{R}$ of real numbers.
 * The [square root](https://en.wikipedia.org/wiki/Square_root) function $f(x) = \sqrt{x}$, has as its natural domain the set of non-negative real numbers, which can be denoted by $\mathbb{R}_{\geq 0}$, the interval $[0, \infty)$, or $\{x \in \mathbb{R} : x \geq 0\}$.
 * The [tangent function](https://en.wikipedia.org/wiki/Tangent_function), denoted $\mathrm{tan}$, has as its natural domain the set of all real numbers which are not of the form $\dfrac{\pi}{2} + k \pi$ for some [integer](https://en.wikipedia.org/wiki/Integer) $k$, which can be written as $\mathbb{R} \setminus \{\dfrac{\pi}{2} + k \pi : k \in \mathbb{Z}\}$.
+
+## Range of a function
+
+In [mathematics](https://en.wikipedia.org/wiki/Mathematics), the __range of a function__ may refer to either of two closely related concepts:
+* The [codomain](https://en.wikipedia.org/wiki/Codomain) of the function.
+* The [image](https://en.wikipedia.org/wiki/Image_(mathematics)) of the function.
+
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/64/Codomain2.SVG/525px-Codomain2.SVG.png" />
+</div>
+
+Given two [sets](https://en.wikipedia.org/wiki/Set_(mathematics)) $X$ and $Y$, a [binary relation](https://en.wikipedia.org/wiki/Binary_relation) $f$ between $X$ and $Y$ is a (total) function (from $X$ to $Y$) if for every $x$ in $X$ there is exactly on $y$ in $Y$ such that $f$ relates $x$ to $y$. The set $X$ and $Y$ are called domain and codomain of $f$, respectively. The image of $f$ is then the [subset](https://en.wikipedia.org/wiki/Subset) of $Y$ consisting of only those [elements](https://en.wikipedia.org/wiki/Element_(mathematics)) $y$ of $Y$ such that there is atleast on $x$ in $X$ with $f(x)=y$.
