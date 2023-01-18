@@ -85,13 +85,13 @@ If a [real function](https://en.wikipedia.org/wiki/Real_function) $f$ is given b
 
 * The function $f$ defined by $f(x) = \dfrac{1}{x}$ cannot be evaluated at $0$. Therefore, the natural domain of $f$ is the set of natural numbers excluding $0$, which can be denoted by $\mathbb{R} \setminus \{0\}$ or $\{x \in \mathbb{R} : x \neq 0\}$.
 * The [piecewise](https://en.wikipedia.org/wiki/Piecewise) function $f$ defined by
-  ```math
-  f(x)=
-  \begin{cases}
-  \dfrac{1}{x} & \quad x \neq 0 , \\
-  0 & \quad x = 0
-  \end{cases}
-  ```
+```math
+f(x)=
+\begin{cases}
+\dfrac{1}{x} & \quad x \neq 0 , \\
+0 & \quad x = 0
+\end{cases}
+```
   , has as its natural domain the set $\mathbb{R}$ of real numbers.
 * The [square root](https://en.wikipedia.org/wiki/Square_root) function $f(x) = \sqrt{x}$, has as its natural domain the set of non-negative real numbers, which can be denoted by $\mathbb{R}_{\geq 0}$, the interval $[0, \infty)$, or $\{x \in \mathbb{R} : x \geq 0\}$.
 * The [tangent function](https://en.wikipedia.org/wiki/Tangent_function), denoted $\mathrm{tan}$, has as its natural domain the set of all real numbers which are not of the form $\dfrac{\pi}{2} + k \pi$ for some [integer](https://en.wikipedia.org/wiki/Integer) $k$, which can be written as $\mathbb{R} \setminus \{\dfrac{\pi}{2} + k \pi : k \in \mathbb{Z}\}$.
