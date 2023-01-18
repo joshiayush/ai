@@ -11,13 +11,13 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Parses the IPython Notebooks and makes them compliant to GitHub's
 markdown renderer.
 """
 
 from __future__ import annotations
 
+import re
 import os
 import json
 import codecs
@@ -32,14 +32,6 @@ _LATEX_CODE_TO_ICON = {'\\Rightarrow': '⇒'}
 _LATEX_BLOCK = '$'
 # Center-aligned Latex math block.
 _LATEX_CBLOCK = _LATEX_BLOCK * 2
-
-# The "Sundown" parser is unable to parse a few latex syntax like
-# "$\begin{...}...\end{...}$", but if we replace the dollar "$" with
-# the "math" block the "Sundown" parser may work for some syntax.
-#
-# So we must replace the above syntax with
-# ```math\begin{cases}...\end{cases}```
-_LATEX_LINEAR_EQUATION_BLOCKS = ['cases', 'pmatrix', 'bmatrix', 'aligned']
 
 
 def _ReplaceLatexCodeToIcon(markdown: str) -> str:
@@ -71,54 +63,42 @@ def _ReplaceLatexBlockWithMath(markdown: str) -> str:
   rendered properly.
 
   Args:
-    markdown: The markdown generated from the IPython Notebooks.
+      markdown (str): The markdown generated from the IPython Notebooks.
 
   Returns:
-    Markdown with replaced Latex blocks.
-  """
+      str: Markdown with replaced Latex blocks.
+    """
 
-  def ReplaceBeginningBlock(latex_block: str, block_name: str,
-                            markdown: str) -> str:
-    """Replace the Latex beginning blocks with GitHub's beginning math
-    blocks.
+  # @TODO: Merge function AddMathCodeFormatting and _ReplaceLatexBlockWithMath
+  def AddMathCodeFormatting(markdown):
+    """Find all occurrences of the pattern $$...$$ or $...$ in the input string
+    where "..." is one or more characters and replace them with the string
+    "```math...```" if it contains a newline.
 
     Args:
-      latex_block: `_LATEX_BLOCK` or `_LATEX_CBLOCK`.
-      block_name:  Block name from the `_LATEX_LINEAR_EQUATION_BLOCKS`
-                   list.
-      markdown:    The markdown generated from the IPython Notebooks.
+        markdown (str): The markdown generated from the IPython Notebooks.
 
     Returns:
-      Markdown with replaced beginning Latex math blocks.
+        str: Markdown with replaced blocks.
     """
-    old_block_syntax = f'{latex_block}\n\\begin{{{block_name}}}'
-    new_block_syntax = f"""```math\n\\begin{{{block_name}}}"""
-    return markdown.replace(old_block_syntax, new_block_syntax)
 
-  def ReplaceEndBlock(latex_block: str, block_name: str, markdown: str) -> str:
-    """Replace the Latex end blocks with GitHub's beginning math blocks.
+    def repl(match):  # pylint: disable=invalid-name
+      """Check whether the match contains a newline character or not,
+      and if it does, it replaces it with the math code format, otherwise
+      it returns the original match.
+      """
+      if '\n' in match.group(1):
+        return '```math' + match.group(1) + '```'
+      else:
+        return match.group(0)
 
-    Args:
-      latex_block: `_LATEX_BLOCK` or `_LATEX_CBLOCK`.
-      block_name:  Block name from the `_LATEX_LINEAR_EQUATION_BLOCKS`
-                   list.
-      markdown:    The markdown generated from the IPython Notebooks.
+    markdown = re.sub(r'\$\$((?:(?!\$\$).)*)\$\$',
+                      repl,
+                      markdown,
+                      flags=re.DOTALL)
+    return re.sub(r'\$((?:(?!\$).)*)\$', repl, markdown, flags=re.DOTALL)
 
-    Returns:
-      Markdown with replaced end Latex math blocks.
-    """
-    old_block_syntax = f'\\end{{{block_name}}}\n{latex_block}'
-    new_block_syntax = f"""\\end{{{block_name}}}\n```"""
-    return markdown.replace(old_block_syntax, new_block_syntax)
-
-  # Replace the beginning and end blocks with the beginning and end
-  # "math" blocks for both left-aligned and center-aligned latex blocks.
-  for block_name in _LATEX_LINEAR_EQUATION_BLOCKS:
-    for latex_block in [_LATEX_BLOCK, _LATEX_CBLOCK]:
-      markdown = ReplaceBeginningBlock(latex_block, block_name, markdown)
-      markdown = ReplaceEndBlock(latex_block, block_name, markdown)
-
-  return markdown
+  return AddMathCodeFormatting(markdown)
 
 
 def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
