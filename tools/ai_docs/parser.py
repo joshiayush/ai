@@ -63,11 +63,11 @@ def _ReplaceLatexBlockWithMath(markdown: str) -> str:
   rendered properly.
 
   Args:
-      markdown (str): The markdown generated from the IPython Notebooks.
+    markdown (str): The markdown generated from the IPython Notebooks.
 
   Returns:
-      str: Markdown with replaced Latex blocks.
-    """
+    str: Markdown with replaced Latex blocks.
+  """
 
   # @TODO: Merge function AddMathCodeFormatting and _ReplaceLatexBlockWithMath
   def AddMathCodeFormatting(markdown):
@@ -76,16 +76,23 @@ def _ReplaceLatexBlockWithMath(markdown: str) -> str:
     "```math...```" if it contains a newline.
 
     Args:
-        markdown (str): The markdown generated from the IPython Notebooks.
+      markdown (str): The markdown generated from the IPython Notebooks.
 
     Returns:
-        str: Markdown with replaced blocks.
+      str: Markdown with replaced blocks.
     """
 
     def repl(match):  # pylint: disable=invalid-name
       """Check whether the match contains a newline character or not,
       and if it does, it replaces it with the math code format, otherwise
       it returns the original match.
+
+      Args:
+        match: The matched math block, which is a re.Match object.
+
+      Returns:
+        The math block surrounded by ```math and ``` or the original
+        match if it is not a multi-line block.
       """
       if '\n' in match.group(1):
         return '```math' + match.group(1) + '```'
