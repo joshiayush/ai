@@ -84,13 +84,14 @@ If a [real function](https://en.wikipedia.org/wiki/Real_function) $f$ is given b
 ### __Examples__
 
 * The function $f$ defined by $f(x) = \dfrac{1}{x}$ cannot be evaluated at $0$. Therefore, the natural domain of $f$ is the set of natural numbers excluding $0$, which can be denoted by $\mathbb{R} \setminus \{0\}$ or $\{x \in \mathbb{R} : x \neq 0\}$.
-* The [piecewise](https://en.wikipedia.org/wiki/Piecewise) function $f$ defined by $f(x)=$
-```math
-\begin{cases}
-\dfrac{1}{x} & \quad x \neq 0 , \\
-0 & \quad x = 0
-\end{cases}
-```
+* The [piecewise](https://en.wikipedia.org/wiki/Piecewise) function $f$ defined by
+  ```math
+  f(x)=
+  \begin{cases}
+  \dfrac{1}{x} & \quad x \neq 0 , \\
+  0 & \quad x = 0
+  \end{cases}
+  ```
   , has as its natural domain the set $\mathbb{R}$ of real numbers.
 * The [square root](https://en.wikipedia.org/wiki/Square_root) function $f(x) = \sqrt{x}$, has as its natural domain the set of non-negative real numbers, which can be denoted by $\mathbb{R}_{\geq 0}$, the interval $[0, \infty)$, or $\{x \in \mathbb{R} : x \geq 0\}$.
 * The [tangent function](https://en.wikipedia.org/wiki/Tangent_function), denoted $\mathrm{tan}$, has as its natural domain the set of all real numbers which are not of the form $\dfrac{\pi}{2} + k \pi$ for some [integer](https://en.wikipedia.org/wiki/Integer) $k$, which can be written as $\mathbb{R} \setminus \{\dfrac{\pi}{2} + k \pi : k \in \mathbb{Z}\}$.
@@ -106,3 +107,11 @@ In [mathematics](https://en.wikipedia.org/wiki/Mathematics), the __range of a fu
 </div>
 
 Given two [sets](https://en.wikipedia.org/wiki/Set_(mathematics)) $X$ and $Y$, a [binary relation](https://en.wikipedia.org/wiki/Binary_relation) $f$ between $X$ and $Y$ is a (total) function (from $X$ to $Y$) if for every $x$ in $X$ there is exactly on $y$ in $Y$ such that $f$ relates $x$ to $y$. The set $X$ and $Y$ are called domain and codomain of $f$, respectively. The image of $f$ is then the [subset](https://en.wikipedia.org/wiki/Subset) of $Y$ consisting of only those [elements](https://en.wikipedia.org/wiki/Element_(mathematics)) $y$ of $Y$ such that there is atleast on $x$ in $X$ with $f(x)=y$.
+
+### __Elaboration and example__
+
+Given a function $f : X \to Y$ with [domain](https://en.wikipedia.org/wiki/Domain_of_a_function) $X$, the range of $f$, sometimes denoted $\mathrm{ran}(f)$ or $\mathrm{Range}(f)$, may refer to the codomain or the target set $Y$, or to $f(X)$, the image of the domain of $f$ under $f$. The range of a function is always a set of codomain of the function.
+
+As an example of two different usages, consider the function $f(x)=x^2$ as it is used in [real analysis](https://en.wikipedia.org/wiki/Real_analysis). In this case, its codomain is the set of real numbers $\mathbb{R}$, but its image is the set of non-negative real numbers $\mathbb{R}^+$, since $x^2$ is never negative if $x$ is real. For this function, if we use "range", to mean _codomain_, it refers to $\mathbb{R}$; if we use "range" to mean _image_, it refers to $\mathbb{R}^+$.
+
+In many cases, the image and the codomain can coincide. For example, consider the function $f(x)=2x$, which inputs a real number and outputs its double. For this function, the codomain and the image are the same (both being the set of real numbers), so the word range is unambiguous.
