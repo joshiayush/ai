@@ -232,3 +232,41 @@ __Q1. Which of the two data sets shown in the preceding plots has the higher Mea
 > __The dataset on the right.__ <br>
 > The eight examples on the line incur a total loss of 0. However, although only two points lay off the line, both of those points are twice as far off the line as the outlier points in the left figure. Squared loss amplifies those differences, so an offset of two incurs a loss four times as great as an offset of one.
 > $$\mathrm{MSE}=\dfrac{0^2+0^2+0^2+2^2+0^2+0^2+0^2+2^2+0^2+0^2}{10}=0.8$$
+
+# Reducing Loss
+
+To train a model, we need a good way to reduce the model’s loss. An iterative approach is one widely used method for reducing loss, and is as easy and efficient as walking down a hill.
+
+## An iterative approach
+
+Iterative learning might remind you of the "[Hot and Cold](http://www.howcast.com/videos/258352-how-to-play-hot-and-cold/)" kid's game for finding a hidden object like a thimble. In this game, the "hidden object" is the best possible model. You'll start with a wild guess ("The value of $w_{1}$ is $0$.") and wait for the system to tell you what the loss is. Then, you'll try another guess ("The value of $w_{1}$ is $0.5$.") and see what the loss is. Aah, you're getting warmer. Actually, if you play this game right, you'll usually be getting warmer. The real trick to the game is trying to find the best possible model as efficiently as possible.
+
+The following figure suggests the iterative trial-and-error process that machine learning algorithms use to train a model:
+
+<div align='center'>
+  <img src="https://developers.google.com/static/machine-learning/crash-course/images/GradientDescentDiagram.svg" />
+
+  <strong>Figure 1. An iterative approach to training a model.</strong>
+</div>
+
+Iterative strategies are prevalent in machine learning, primarily because they scale so well to large data sets.
+
+The "model" takes one or more features as input and returns one prediction ($y′$) as output. To simplify, consider a model that takes one feature and returns one prediction:
+
+$$y′=b+w_{1}x_{1}$$
+
+What initial values should we set for $b$ and $w_{1}$? For linear regression problems, it turns out that the starting values aren't important. We could pick random values, but we'll just take the following trivial values instead:
+
+* $b=0$
+* $w_{1}=0$
+
+Suppose that the first feature value is 10. Plugging that feature value into the prediction function yields:
+
+$$y′=0+0⋅10=0$$
+
+The "Compute Loss" part of the diagram is the [loss function](https://developers.google.com/machine-learning/crash-course/descending-into-ml/training-and-loss) that the model will use. Suppose we use the squared loss function. The loss function takes in two input values:
+
+* $y′$: The model's prediction for features $x$
+* $y$: The correct label corresponding to features $x$
+
+At last, we've reached the "Compute parameter updates" part of the diagram. It is here that the machine learning system examines the value of the loss function and generates new values for $b$ and $w_{1}$. For now, just assume that this mysterious box devises new values and then the machine learning system re-evaluates all those features against all those labels, yielding a new value for the loss function, which yields new parameter values. And the learning continues iterating until the algorithm discovers the model parameters with the lowest possible loss. Usually, you iterate until overall loss stops changing or at least changes extremely slowly. When that happens, we say that the model has [__converged__](https://developers.google.com/machine-learning/glossary#convergence).
