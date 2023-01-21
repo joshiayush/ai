@@ -332,3 +332,59 @@ $$\dfrac{\partial f}{\partial x}(0,1)=e^2 \approx 7.4$$
 So when you start at $(0,1)$, hold $y$ constant, and move $x$ a little, $f$ changes by about $7.4$ times the amount that you changed $x$.
 
 In machine learning, partial derivatives are mostly used in conjunction with the gradient of a function.
+
+### Gradients
+
+The __gradient__ of a function, denoted as follows, is the vector of partial derivatives with respect to all of the independent variables:
+
+$$∇f$$
+
+For instance, if:
+
+$$f(x,y)=e^{2y}\mathrm{sin}(x)$$
+
+then:
+
+$$∇f(x,y)= \left( \dfrac{\partial f}{\partial x}(x,y), \dfrac{\partial f}{\partial y}(x,y) \right)=(e^{2y}\mathrm{cos}(x), 2e^{2y}\mathrm{sin}(x))$$
+
+Note the following:
+
+* $∇f$ - Points in the direction of greatest increase of the function.
+* $−∇f$ - Points in the direction of greatest decrease of the function.
+
+The number of dimensions in a vector is equal to the number of variables in the formula for $f$; in other words, the vector falls within the domain space of the function. For instance, the graph of the following function $f(x,y)$:
+
+$$f(x,y)=4+(x−2)^2+2y^2$$
+
+when viewed in three dimensions with $z=f(x,y)$ looks like a valley with a minimum at $(2,0,4)$:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/ThreeDimensionalPlot.svg' />
+</div>
+
+The gradient of $f(x,y)$ is a two-dimensional vector that tells you in which $(x,y)$ direction to move for the maximum increase in height. Thus, the negative of the gradient moves you in the direction of maximum decrease in height. In other words, the negative of the gradient vector points into the valley.
+
+In machine learning, gradients are used in gradient descent. We often have a loss function of many variables that we are trying to minimize, and we try to do this by following the negative of the gradient of the function.
+
+Okay, so comming back to our gradient descent. We've found that a gradient is a vector that has both of the following characterstics:
+
+* A direction
+* A magnitude
+
+The gradient always points in the direction of steepest increase in the loss function. The gradient descent algorithm takes a step in the direction of the negative gradient in order to reduce loss as quickly as possible.
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/GradientDescentNegativeGradient.svg' />
+
+  <strong>Figure 4. Gradient descent relies on negative gradients.</strong>
+</div>
+
+To determine the next point along the loss function curve, the gradient descent algorithm adds some fraction of the gradient's magnitude to the starting point as shown in the following figure:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/GradientDescentGradientStep.svg' />
+
+  <strong>Figure 5. A gradient step moves us to the next point on the loss curve.</strong>
+</div>
+
+The gradient descent then repeats this process, edging ever closer to the minimum.
