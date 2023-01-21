@@ -422,3 +422,22 @@ The ideal learning rate in one-dimension is $\dfrac{1}{f(x)″}$ (the inverse of
 The ideal learning rate for $2$ or more dimensions is the inverse of the [Hessian](https://wikipedia.org/wiki/Hessian_matrix) (matrix of second partial derivatives).
 
 The story for general convex functions is more complex.
+
+## Stochastic Gradient Descent
+
+__Stochastic Gradient Descent (SGD)__ is an optimization algorithm used to find the minimum of a function. It is a type of gradient descent algorithm that is often used in machine learning and deep learning. It is called "stochastic" because it uses random samples of the data to estimate the gradient of the objective function, rather than using the entire dataset.
+
+Here's how it works:
+
+* The algorithm starts with an initial guess of the parameters.
+* It then selects a random sample of the data and calculates the gradient of the objective function with respect to the parameters using that sample.
+* The parameters are then updated in the direction opposite to the gradient.
+* This process is repeated until the parameters converge to a minimum of the objective function.
+
+One of the main advantage of stochastic gradient descent is that it is computationally efficient. Because it uses a random sample of the data at each step, it can be much faster than batch gradient descent, which uses the entire dataset to calculate the gradient. Additionally, because it uses random samples, it can "escape" from local minima and converge to a global minimum.
+
+An example of an application of __SGD__ is Linear Regression, where the objective function is the mean squared error and the parameters are the weights of the model. Another example is Logistic Regression, where the objective function is the cross-entropy loss and the parameters are the weights of the model.
+
+It should be noted that the optimization speed of __SGD__ can be affected by the choice of the learning rate and the shuffling of the data during each iteration. Also it is not guaranteed to find the global minimum because of the randomness but it can be useful in practice.
+
+In summary, __Stochastic Gradient Descent__ is an optimization algorithm that is efficient and can help to find the global minimum of a function. It has been widely used in machine learning and deep learning tasks.
