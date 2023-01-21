@@ -441,3 +441,11 @@ An example of an application of __SGD__ is Linear Regression, where the objectiv
 It should be noted that the optimization speed of __SGD__ can be affected by the choice of the learning rate and the shuffling of the data during each iteration. Also it is not guaranteed to find the global minimum because of the randomness but it can be useful in practice.
 
 In summary, __Stochastic Gradient Descent__ is an optimization algorithm that is efficient and can help to find the global minimum of a function. It has been widely used in machine learning and deep learning tasks.
+
+### __Check Your Understanding__
+
+__Q1. When performing gradient descent on a large data set, which of the following batch sizes will likely be more efficient?__
+
+> __A small batch or even a batch of one example (SGD).__
+>
+> Amazingly enough, performing gradient descent on a small batch or even a batch of one example is usually more efficient than the full batch. After all, finding the gradient of one example is far cheaper than finding the gradient of millions of examples. To ensure a good representative sample, the algorithm scoops up another random small batch (or batch of one) on every iteration.
