@@ -388,3 +388,37 @@ To determine the next point along the loss function curve, the gradient descent 
 </div>
 
 The gradient descent then repeats this process, edging ever closer to the minimum.
+
+## Learning Rate
+
+As noted, the gradient vector has both a direction and a magnitude. Gradient descent algorithms multiply the gradient by a scalar known as the __learning rate__ (also sometimes called __step size__) to determine the next point. For example, if the gradient magnitude is $2.5$ and the learning rate is $0.01$, then the gradient descent algorithm will pick the next point $0.025$ away from the previous point.
+
+__Hyperparameters__ are the knobs that programmers tweak in machine learning algorithms. Most machine learning programmers spend a fair amount of time tuning the learning rate. If you pick a learning rate that is too small, learning will take too long:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg' />
+
+  <strong>Figure 6. Learning rate is too small.</strong>
+</div>
+
+Conversely, if you specify a learning rate that is too large, the next point will perpetually bounce haphazardly across the bottom of the well like a quantum mechanics experiment gone horribly wrong:
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooLarge.svg' />
+
+  <strong>Figure 7. Learning rate is too large.</strong>
+</div>
+
+There's a [Goldilocks](https://wikipedia.org/wiki/Goldilocks_principle) learning rate for every regression problem. The Goldilocks value is related to how flat the loss function is. If you know the gradient of the loss function is small then you can safely try a larger learning rate, which compensates for the small gradient and results in a larger step size.
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/LearningRateJustRight.svg' />
+
+  <strong>Figure 8. Learning rate is just right.</strong>
+</div>
+
+The ideal learning rate in one-dimension is $\dfrac{1}{f(x)″}$ (the inverse of the second derivative of $f(x)$ at $x$).
+
+The ideal learning rate for $2$ or more dimensions is the inverse of the [Hessian](https://wikipedia.org/wiki/Hessian_matrix) (matrix of second partial derivatives).
+
+The story for general convex functions is more complex.
