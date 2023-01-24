@@ -134,6 +134,10 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
       # its code block type.
       markdown += '\n'.join(
           ["""```python""", ''.join(cell['source']), """```"""])
+      # FIXME: Before joining the output keep in mind that not only 'text'
+      # types are available in 'outputs' but also errors, and warnings may
+      # be present in the 'outputs' causing 'KeyError' in case of the
+      # absesnce of 'text' key.
       if cell['outputs']:
         markdown += '\n' * 2
         markdown += '### Output\n'
