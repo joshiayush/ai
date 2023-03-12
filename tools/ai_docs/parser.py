@@ -155,6 +155,9 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
                  ipynb_file_path: str | pathlib.Path, markdown: str) -> None:
   """Generates markdown documents compliant to GitHub's markdown renderer.
 
+  Splits the given markdown at each level one heading representing a topic and
+  saves its content inside of a separate markdown file.
+
   Args:
     base_docs_dir:   Base `docs` directory to store the generated markdown
                      files in.
@@ -167,15 +170,44 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
   ipynb_docs_dir, ipynb_docs_file = os.path.split(ipynb_file_path)
   ipynb_docs_dir = pathlib.Path(base_docs_dir) / os.fspath(
       ipynb_docs_dir)[len(os.fspath(base_docs_dir)) - 1:]
-  ipynb_docs_file, _ = os.path.splitext(ipynb_docs_file)
-  ipynb_docs_file += '.md'
 
   if not os.path.exists(os.fspath(ipynb_docs_dir)):
     os.makedirs(ipynb_docs_dir)
   if not os.access(os.fspath(ipynb_docs_dir), os.W_OK):
     raise PermissionError(f'Cannot write directory {ipynb_docs_dir}')
 
-  with open(os.fspath(pathlib.Path(ipynb_docs_dir) / ipynb_docs_file),
-            mode='w',
-            encoding='utf-8') as docs:
-    docs.write(markdown)
+  def _FindLevelOneHeadings(markdown: str) -> list[str]:
+    pattern = r'(?<!`)(?<!#)# .*(?<!`)'
+    code_block_pattern = r'```[\s\S]*?```'
+    code_inline_pattern = r'`[^`\n]+?`'
+
+    code_pattern = f'({code_block_pattern})|({code_inline_pattern})'
+    markdown = re.sub(code_pattern, '', markdown)
+
+    level_one_headings = []
+    for match in re.finditer(pattern, markdown):
+      level_one_headings.append(match.group(0))
+
+    return level_one_headings
+
+  # Find all level 1 headings that are not a part of code blocks.
+  topics = _FindLevelOneHeadings(markdown)
+
+  for i in range(len(topics)):
+    current_topic_idx = i
+    next_topic_idx = current_topic_idx + 1
+    if next_topic_idx >= len(topics):
+      topic_content = markdown[markdown.find(topics[current_topic_idx]) +
+                               len(topics[current_topic_idx]):]
+    else:
+      topic_content = markdown[markdown.find(topics[current_topic_idx]) +
+                               len(topics[current_topic_idx]):markdown.
+                               find(topics[next_topic_idx])]
+    markdown_ = f'{topics[i]}{topic_content}'
+
+    ipynb_docs_file = '-'.join(topics[i].split(' ')[1:])
+    ipynb_docs_file += '.md'
+    with open(os.fspath(pathlib.Path(ipynb_docs_dir) / ipynb_docs_file),
+              mode='w',
+              encoding='utf-8') as docs:
+      docs.write(markdown_)
