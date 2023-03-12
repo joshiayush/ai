@@ -17,6 +17,7 @@ To contribute to the Artificial Intelligence Guide, please read the
   - [Linear Regression with a Real Dataset](/docs/ml/Linear-Regression-with-a-Real-Dataset.md)
   - [Introduction to TensorFlow](/docs/ml/Introduction-to-TensorFlow.md)
   - [Generalization](/docs/ml/Generalization.md)
+  - [Validation Set](/docs/ml/Validation-Set.md)
   - [Introduction to ML](/docs/ml/Introduction-to-ML.md)
 - Prework
   - [Introduction to Machine Learning Problem Framing](/docs/prework/Introduction-to-Machine-Learning-Problem-Framing.md)
