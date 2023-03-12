@@ -74,3 +74,4 @@ In practice, we sometimes violate these assumptions. For example:
 * Consider a data set that contains retail sales information for a year. User's purchases change seasonally, which would violate stationarity.
 
 When we know that any of the preceding three basic assumptions are violated, we must pay careful attention to metrics.
+

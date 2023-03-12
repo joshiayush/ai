@@ -11,6 +11,7 @@ To contribute to the Artificial Intelligence Guide, please read the
 - Algos
   - [Pearson correlation coefficient](/docs/algos/correlation/pearson_correlation/Pearson-correlation-coefficient.md)
 - Ml
+  - [Training and Test Sets](/docs/ml/Training-and-Test-Sets.md)
   - [Descending into ML](/docs/ml/Descending-into-ML.md)
   - [Reducing Loss](/docs/ml/Reducing-Loss.md)
   - [Linear Regression with a Real Dataset](/docs/ml/Linear-Regression-with-a-Real-Dataset.md)
