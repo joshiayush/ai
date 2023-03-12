@@ -16,7 +16,8 @@
 Notebooks.
 """
 
-from .parser import (ReadIPythonNotebookToMarkdown, GenerateDocs)
+from .parser import (ReadIPythonNotebookToMarkdown, GenerateDocs,
+                     GenerateTableOfContents)
 
 __readme__ = """# Artificial Intelligence Guide
 

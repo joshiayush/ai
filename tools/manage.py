@@ -47,6 +47,23 @@ def GenerateAIDocs() -> int:
   return error_code
 
 
+def GenerateAIReadme() -> int:
+  """Generates the AI readme file with an updated table of contents
+  based on the contents of the `docs` directory.
+
+  Returns:
+    int: An error code. 0 indicates success, while non-zero values
+         indicate failure.
+  """
+  error_code = 0
+  base_docs_dir = pathlib.Path(os.getcwd()) / _BASE_DOCS_DIR
+  toc = ai_docs.GenerateTableOfContents(base_docs_dir)
+  ai_docs.__readme__ += f'\n\n## Table of contents\n\n{toc}'
+  with open('README.md', mode='w', encoding='utf-8') as f:
+    f.write(ai_docs.__readme__)
+  return error_code
+
+
 def Main(namespace: argparse.Namespace) -> int:
   """Takes actions according to the commands that are given over the
   command-line.
@@ -56,6 +73,8 @@ def Main(namespace: argparse.Namespace) -> int:
   """
   if namespace.generate_docs:
     return GenerateAIDocs()
+  if namespace.generate_readme:
+    return GenerateAIReadme()
 
 
 if __name__ == '__main__':
@@ -68,4 +87,8 @@ if __name__ == '__main__':
       action='store_true',
       help='Triggers the action of generating documents from IPython Notebooks.'
   )
+  parser.add_argument(
+      '--generate-readme',
+      action='store_true',
+      help='Triggers the action of generating README from the generated docs.')
   sys.exit(Main(parser.parse_args()))
