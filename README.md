@@ -16,6 +16,7 @@ To contribute to the Artificial Intelligence Guide, please read the
 - Algos
   - [Pearson correlation coefficient](/docs/algos/correlation/pearson_correlation/Pearson-correlation-coefficient.md)
 - Ml
+  - [Representation](/docs/ml/Representation.md)
   - [Generalization](/docs/ml/Generalization.md)
   - [Introduction to TensorFlow](/docs/ml/Introduction-to-TensorFlow.md)
   - [Reducing Loss](/docs/ml/Reducing-Loss.md)
