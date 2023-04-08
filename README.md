@@ -23,6 +23,7 @@ To contribute to the Artificial Intelligence Guide, please read the
   - [Linear Regression with a Real Dataset](/docs/ml/Linear-Regression-with-a-Real-Dataset.md)
   - [Introduction to ML](/docs/ml/Introduction-to-ML.md)
   - [Training and Test Sets](/docs/ml/Training-and-Test-Sets.md)
+  - [Feature Crosses](/docs/ml/Feature-Crosses.md)
   - [Validation Set](/docs/ml/Validation-Set.md)
   - [Descending into ML](/docs/ml/Descending-into-ML.md)
 - Maths
