@@ -1,4 +1,4 @@
-# pylint: disable=missing-module-docstring
+# pylint: disable=missing-module-docstring, protected-access, redefined-outer-name
 
 # Copyright 2018 The AI Authors. All Rights Reserved.
 #
@@ -21,54 +21,47 @@ import tempfile
 from ai_docs import parser
 
 
-def test_replace_latex_block_with_math_empty_string():
+def test_replace_latex_block_with_math_when_no_latex_is_present():
   markdown = ''
   expected_output = ''
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
-
-def test_replace_latex_block_with_math_no_latex_block():
-  markdown = 'This is a plain text with no latex block.'
+  markdown = 'No latex block'
   expected_output = markdown
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
 
-def test_replace_latex_block_with_math_inline_latex_block():
-  markdown = 'This is a text with an inline latex block $x+y=z$.'
+def test_replace_latex_block_with_math_when_latex_is_present():
+  markdown = 'Inline latex block here $x+y=z$'
   expected_output = markdown
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
+
+  markdown = '\n'.join(['Multi-line latex block here', '$$', 'x+y=z', '$$'])
+  expected_output = '\n'.join(
+      ['Multi-line latex block here', '```math', 'x+y=z', '```'])
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
 
-def test_replace_latex_block_with_math_multiline_latex_block():
-  markdown = """This is a text with a multiline latex block:
-  $$
-  x+y=z
-  $$"""
-  expected_output = """This is a text with a multiline latex block:
-  ```math
-  x+y=z
-  ```"""
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
+def test_replace_latex_block_with_math_when_multiple_latex_is_present():
+  markdown = '\n'.join([
+      'Inline latex block here $x-y=z$.', 'Multi-line latex block here', '$$',
+      'x+y=z', '$$'
+  ])
+  expected_output = '\n'.join([
+      'Inline latex block here $x-y=z$.', 'Multi-line latex block here',
+      '```math', 'x+y=z', '```'
+  ])
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
-
-def test_replace_latex_block_with_math_multiple_latex_block():
-  markdown = """This is a text with multiple latex block:
-  $$
-  x+y=z
-  $$
-  And inline block $x-y=z$."""
-  expected_output = """This is a text with multiple latex block:
-  ```math
-  x+y=z
-  ```
-  And inline block $x-y=z$."""
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
-
-
-def test_replace_latex_block_with_math_multiple_syntax():
-  markdown = 'This is a text with multiple syntax: $$x+y=z$$ and $x-y=z$'
-  expected_output = markdown
-  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output  # pylint: disable=protected-access
+  markdown = '\n'.join([
+      'Inline latex block here $x-y=z$', 'Multi-line latex block here',
+      '$$x+y=z$$'
+  ])
+  expected_output = '\n'.join([
+      'Inline latex block here $x-y=z$', 'Multi-line latex block here',
+      '$$x+y=z$$'
+  ])
+  assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
 
 @pytest.fixture
@@ -79,7 +72,7 @@ def ipynb_file_path():
     yield pathlib.Path(f.name)
 
 
-def test_generate_docs(ipynb_file_path):  # pylint: disable=redefined-outer-name
+def test_generate_docs(ipynb_file_path):
   base_docs_dir = tempfile.TemporaryDirectory()  # pylint: disable=consider-using-with
   markdown = '# Topic 1\nContent 1\n# Topic 2\nContent 2\n'
   parser.GenerateDocs(base_docs_dir.name, ipynb_file_path, markdown)
@@ -98,25 +91,14 @@ def test_generate_docs(ipynb_file_path):  # pylint: disable=redefined-outer-name
   base_docs_dir.cleanup()
 
 
-def test_generate_docs_with_code_blocks(ipynb_file_path):  # pylint: disable=redefined-outer-name
+def test_generate_docs_with_code_blocks(ipynb_file_path):
   base_docs_dir = tempfile.TemporaryDirectory()  # pylint: disable=consider-using-with
-  markdown = """# Topic 1
-
-Some content here.
-
-```
-# This should not be considered a heading
-```
-
-# Topic 2
-
-More content here.
-
-```python
-import re
-# Imports re module
-```
-"""
+  markdown = '\n'.join([
+      '# Topic 1', '', 'Some content here.', '', '```',
+      '# This should not be considered a heading', '```', '', '# Topic 2', '',
+      'More content here.', '', '```python', 'import re', '# Imports re module',
+      '```'
+  ])
 
   parser.GenerateDocs(base_docs_dir.name, ipynb_file_path, markdown)
 

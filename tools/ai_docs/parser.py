@@ -11,7 +11,6 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-
 """Parses the IPython Notebooks and makes them compliant to GitHub's
 markdown renderer.
 """
@@ -214,6 +213,8 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
       docs.write(markdown_)
 
 
+# @TODO: "GenerateTableOfContents()" is deprecated, this function will be
+# removed in the future commits. Refer to the "ai_html" module instead.
 def GenerateTableOfContents(base_docs_dir: str | pathlib.Path) -> None:
   """Generates a table of contents for a base readme file based on the contents
   of the `docs` directory. The table of contents will include links to all
