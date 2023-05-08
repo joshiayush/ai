@@ -211,39 +211,3 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
               mode='w',
               encoding='utf-8') as docs:
       docs.write(markdown_)
-
-
-# @TODO: "GenerateTableOfContents()" is deprecated, this function will be
-# removed in the future commits. Refer to the "ai_html" module instead.
-def GenerateTableOfContents(base_docs_dir: str | pathlib.Path) -> None:
-  """Generates a table of contents for a base readme file based on the contents
-  of the `docs` directory. The table of contents will include links to all
-  markdown files in the `docs` directory, as well as any subdirectories, and
-  will organize them by directory.
-
-  Args:
-    base_docs_dir (str | pathlib.Path): The base directory of the `docs`
-                                        directory.
-
-  Returns:
-    str: A string representation of the table of contents.
-  """
-  toc = ''
-  for dirpath, dirnames, filenames in os.walk(base_docs_dir):
-    # Ignore hidden directories
-    dirnames[:] = [d for d in dirnames if not d.startswith('.')]
-
-    marked_ctype = False
-    # Generate links for all files in the current directory
-    for filename in filenames:
-      if filename.endswith('.md'):
-        filepath = os.path.join(dirpath, filename)
-        link = os.path.relpath(filepath, base_docs_dir).replace('\\', '/')
-        if marked_ctype is False:
-          toc += f'- {link.split("/")[0][0].upper() + link.split("/")[0][1:]}\n'
-          marked_ctype = True
-        link = '/' + os.path.join('docs', link)
-        filename = ' '.join(filename[:-3].split('-'))
-        toc += f'  - [{filename}]({link})\n'
-
-  return toc

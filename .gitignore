@@ -11,3 +11,6 @@ share/
 
 # visual studio code
 .vscode
+
+# drawio
+.$*.bkp
