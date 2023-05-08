@@ -22,6 +22,12 @@ import tempfile
 from ai_docs import parser
 
 
+def test_replace_latex_code_with_icon():
+  markdown = ''.join(['\\Rightarrow'])
+  expected_output = ''.join(['⇒'])
+  assert parser._ReplaceLatexCodeToIcon(markdown) == expected_output
+
+
 def test_replace_latex_block_with_math_when_no_latex_is_present():
   markdown = ''
   expected_output = ''
