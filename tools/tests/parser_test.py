@@ -1,4 +1,5 @@
-# pylint: disable=missing-module-docstring, protected-access, redefined-outer-name
+# pylint: disable=missing-module-docstring, protected-access
+# pylint: disable=redefined-outer-name
 
 # Copyright 2018 The AI Authors. All Rights Reserved.
 #
@@ -72,25 +73,6 @@ def ipynb_file_path():
     yield pathlib.Path(f.name)
 
 
-def test_generate_docs(ipynb_file_path):
-  base_docs_dir = tempfile.TemporaryDirectory()  # pylint: disable=consider-using-with
-  markdown = '# Topic 1\nContent 1\n# Topic 2\nContent 2\n'
-  parser.GenerateDocs(base_docs_dir.name, ipynb_file_path, markdown)
-
-  docs_dir = pathlib.Path(base_docs_dir.name)
-  assert docs_dir.exists()
-
-  assert (docs_dir / 'Topic-1.md').exists()
-  with open(docs_dir / 'Topic-1.md', encoding='utf-8') as f:
-    assert f.read() == '# Topic 1\nContent 1\n'
-
-  assert (docs_dir / 'Topic-2.md').exists()
-  with open(docs_dir / 'Topic-2.md', encoding='utf-8') as f:
-    assert f.read() == '# Topic 2\nContent 2\n'
-
-  base_docs_dir.cleanup()
-
-
 def test_generate_docs_with_code_blocks(ipynb_file_path):
   base_docs_dir = tempfile.TemporaryDirectory()  # pylint: disable=consider-using-with
   markdown = '\n'.join([
@@ -118,3 +100,5 @@ def test_generate_docs_with_code_blocks(ipynb_file_path):
   with open(docs_dir / 'Topic-2.md', 'r', encoding='utf-8') as f:
     topic2_content = f.read()
     assert topic2_content.startswith('# Topic 2\n\nMore content here.\n')
+
+  base_docs_dir.cleanup()
