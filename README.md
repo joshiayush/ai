@@ -16,3 +16,9 @@ To contribute to the Artificial Intelligence Guide, please read the
 <div align='center'>
   <img src='docs/__design__/media/Fundamentals.jpg' />
 </div>
+
+# Data Scientist
+
+<div align='center'>
+  <img src='docs/__design__/media/Data_Science.jpg' />
+</div>
