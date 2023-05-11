@@ -28,3 +28,10 @@ To contribute to the Artificial Intelligence Guide, please read the
 <div align='center'>
   <img src='docs/__design__/media/Machine_Learning.jpg' />
 </div>
+
+# Deep Learning
+
+<div align='center'>
+  <img src='docs/__design__/media/Deep_Learning.jpg' />
+</div>
+
