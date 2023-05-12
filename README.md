@@ -46,3 +46,7 @@ To contribute to the Artificial Intelligence Guide, please read the
 <div align='center'>
   <img src='docs/__design__/media/Big_Data_Engineer.jpg' />
 </div>
+
+# Wrap Up
+
+All the resources are aligned according to the roadmap inside of the [resource](ai/resource/) section of the root [ai](ai/) directory.
