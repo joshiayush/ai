@@ -33,7 +33,7 @@ If model complexity is a function of weights, a feature weight with a high absol
 
 We can quantify complexity using the $L_{2}$ __regularization__ formula, which defines the regularization term as the sum of the squares of all the feature weights:
 
-$$\mathrm{L_{2}\ regularization\ term} = \lvert \lvert w \rvert \rvert _{2}^2 = w_{1}^2 + w_{2}^2 + ... + w_{n}^2$$
+$$\mathrm{L_{2}\ regularization\ term} = \mathrm{\lvert \lvert w \rvert \rvert}^2_{2} = w_{1}^2 + w_{2}^2 + ... + w_{n}^2$$
 
 In this formula, weights close to zero have little effect on model complexity, while outlier weights can have a huge impact.
 
