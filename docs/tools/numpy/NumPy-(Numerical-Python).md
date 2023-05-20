@@ -227,3 +227,55 @@ np.empty(3)
 ```
 array([1., 1., 1.])
 ```
+
+## NumPy standard data types
+
+NumPy arrays contain values of a single type, so it is important to have detailed knowledge of those types and their limitations. Because NumPy is built in C, the types will be familiar to users to C.
+
+The standard NumPy data types are listed in the following table. Note that when constructing an array, you can specify them using a string:
+
+```python
+np.zeros(10, dtype='int16')
+```
+
+### Output
+
+
+```
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int16)
+```
+
+Or using the associated NumPy object:
+
+```python
+np.zeros(10, dtype=np.int16)
+```
+
+### Output
+
+
+```
+array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int16)
+```
+
+|  Data Type | Description                                                                   |
+| ---------: | :---------------------------------------------------------------------------- |
+|     bool\_ | Boolean (True or False) stored as byte                                        |
+|      int\_ | Default integer type (same as C long; normally either int64 or int32)         |
+|       intc | Identical to C int (normally int32 or int64)                                  |
+|       intp | Integer used for indexing (same as C ssize_t; normally either int32 or int64) |
+|       int8 | Byte (-128 to 127)                                                            |
+|      int16 | Integer (-32768 to 32767)                                                     |
+|      int32 | Integer (-2147483648 to 2147483648)                                           |
+|      int64 | Integer (-9223372036854775808 to 9223372036854775807)                         |
+|      uint8 | Unsigned integer (0 to 255)                                                   |
+|     uint16 | Unsigned integer (0 to 65535)                                                 |
+|     uint32 | Unsigned integer (0 to 4294967295)                                            |
+|     uint64 | Unsigned integer (0 to 18446744073709551615)                                  |
+|    float\_ | Shorthand for float64                                                         |
+|    float16 | Half-precision float; sign bit, 5 bits exponent, 10 bits mantisa              |
+|    float32 | Single-precision float; sign bit, 8 bits exponent, 23 bits mantisa            |
+|    float64 | Double-precision float; sign bit, 11 bits exponent, 52 bits mantisa           |
+|  complex\_ | Shorthand for complex128                                                      |
+|  complex64 | Complex number, represented by two 32-bit floats                              |
+| complex128 | Complex number, represented by two 64-bit floats                              |
