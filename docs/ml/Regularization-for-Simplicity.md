@@ -51,3 +51,45 @@ w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2 + w_{5}^2 + w_{6}^2 \\
 ```
 
 But $w_{3}$, with a squared value of 25, contributes nearly all the complexity. The sum of the squares of all five other weights adds just 1.915 to the $L_{2}$ regularization term.
+
+## Lambda
+
+Model developers tune the overall impact of the regularization term by multiplying its value by a scalar known as __lambda__ (also called the __regularization rate__). That is, model devvelopers aim to do the following:
+
+$$\mathrm{minimize(Loss(Data \vert Model) + \lambda \ complexity(Model))}$$
+
+Performing $L_{2}$ regularization has the following effect on the model:
+
+  * Encourages weight values toward 0 (but not exactly 0).
+  * Encourages the mean of the weights toward 0, with a normal (bell-shaped or Gaussian) distribution.
+
+Increasing the lambda value strengthens the regularization effect. For example, the histogram of weights for a high value of lambda might look as shown in Figure 2.
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/HighLambda.svg' />
+
+  <strong>Figure 2. Histogram of weights.</strong>
+</div>
+
+Lowering the value of lambda tends to yield a flatter histogram, as shown in Figure 3.
+
+<div align='center'>
+  <img src='https://developers.google.com/static/machine-learning/crash-course/images/LowLambda.svg' />
+
+  <strong>Figure 3. Histogram of weights produced by a lower lambda value.</strong>
+</div>
+
+When choosing a lambda value, the goal is to strike the right balance between simplicity and training-data fit:
+
+* If your lambda value is too high, your model will be simple, but you run the risk of underfitting your data. Your model won't learn enough about the training data to make useful predictions.
+* If your lambda value is too low, your model will be more complex, and you run the risk of overfitting your data. Your model will learn too much about the particularities of the training data, and won't be able to generalize to new data.
+
+The ideal value of lambda produces a model that generalizes well to new, previously unseen data. Unfortunately, that ideal value of lambda is data-dependent, so you'll need to do some tuning.
+
+### L2 regularization and Learning rate
+
+There's a close connection between learning rate and lambda. Strong L2 regularization values tend to drive feature weights closer to 0. Lower learning rates (with early stopping) often produce the same effect because the steps away from 0 aren't as large. Consequently, tweaking learning rate and lambda simultaneously may have confounding effects.
+
+__Early stopping__ means ending training before the model fully reaches convergence. In practice, we often end up with some amount of implicit early stopping when training in an [online](https://developers.google.com/machine-learning/crash-course/production-ml-systems) (continuous) fashion. That is, some new trends just haven't had enough data yet to converge.
+
+As noted, the effects from changes to regularization parameters can be confounded with the effects from changes in learning rate or number of iterations. One useful practice (when training across a fixed batch of data) is to give yourself a high enough number of iterations that early stopping doesn't play into things.
