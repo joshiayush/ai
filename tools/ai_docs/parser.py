@@ -143,8 +143,14 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
         markdown += '\n' * 2
         markdown += '### Output\n'
         for output in cell['outputs']:
-          markdown += '\n'.join(
-              ['\n', """```""", ''.join(output['text']).strip(), """```"""])
+          if output['output_type'] == 'stream':
+            markdown += '\n'.join(
+                ['\n', """```""", ''.join(output['text']).strip(), """```"""])
+          elif output['output_type'] == 'execute_result':
+            markdown += '\n'.join([
+                '\n', """```""", ''.join(output['data']['text/plain']).strip(),
+                """```"""
+            ])
     markdown += '\n' * 2
 
   # Return the replaced version of old Latex style markdown with the GitHub
