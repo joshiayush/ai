@@ -502,3 +502,104 @@ x1
 ```
 array([3, 0, 3, 3, 7, 9])
 ```
+
+### Array Slicing: Accessing Subarrays
+
+The NumPy slicing syntax follows that of the standard Python list; to access a slice of an array `x`, use this:
+
+    x[start:stop:step]
+
+If any of these are unspecified, they default to the values `start=0`, `stop=size of dimension`, `step=1`.
+
+#### One-dimensional subarrays
+
+```python
+x = np.arange(10)
+x
+```
+
+###### Output
+
+
+```
+array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+```
+
+```python
+x[:5]  # first five elements
+```
+
+###### Output
+
+
+```
+array([0, 1, 2, 3, 4])
+```
+
+```python
+x[5:]  # elements after index 5
+```
+
+###### Output
+
+
+```
+array([5, 6, 7, 8, 9])
+```
+
+```python
+x[4:7]  # middle subarray
+```
+
+###### Output
+
+
+```
+array([4, 5, 6])
+```
+
+```python
+x[::2]  # every other element
+```
+
+###### Output
+
+
+```
+array([0, 2, 4, 6, 8])
+```
+
+```python
+x[1::2]  # every other element, starting at index 1
+```
+
+###### Output
+
+
+```
+array([1, 3, 5, 7, 9])
+```
+
+A potentially confusing case is when the `step` value is negative. In this case, the defaults for `start` and `stop` are swapped. This becomes a convenient way to reverse an array:
+
+```python
+x[::-1]  # all elements, reversed
+```
+
+###### Output
+
+
+```
+array([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+```
+
+```python
+x[5::-2]  # reverse every other from 5
+```
+
+###### Output
+
+
+```
+array([5, 3, 1])
+```
