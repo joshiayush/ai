@@ -9,7 +9,7 @@ import numpy as np
 np.__version__
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -36,7 +36,7 @@ import numpy as np
 np.array([1, 2, 3, 4, 5])
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -49,7 +49,7 @@ Remember that unlike Python lists, NumPy is constrained to arrays that all conta
 np.array([3.14, 5, 2, 1])
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -62,7 +62,7 @@ If we want to explicitly set the data type of the resulting array, we can use th
 np.array([3, 5, 2, 1], dtype='float32')
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -75,7 +75,7 @@ Finally, unlike Python lists, NumPy arrays can explicitly be multidimensional; h
 np.array([range(i, i + 3) for i in [2, 4, 6]])
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -95,7 +95,7 @@ Especially for larger arrays, it is more efficient to create arrays from scratch
 np.zeros(10, dtype=int)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -107,7 +107,7 @@ array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 np.ones((3, 5), dtype=float)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -121,7 +121,7 @@ array([[1., 1., 1., 1., 1.],
 np.full((3, 5), 3.14, dtype=float)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -137,7 +137,7 @@ array([[3.14, 3.14, 3.14, 3.14, 3.14],
 np.arange(0, 20, 2)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -149,7 +149,7 @@ array([ 0,  2,  4,  6,  8, 10, 12, 14, 16, 18])
 np.linspace(0, 1, 5)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -162,7 +162,7 @@ array([0.  , 0.25, 0.5 , 0.75, 1.  ])
 np.random.random((3, 3))
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -177,7 +177,7 @@ array([[0.65279032, 0.63505887, 0.99529957],
 np.random.normal(0, 1, (3, 3))
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -191,7 +191,7 @@ array([[ 1.0657892 , -0.69993739,  0.14407911],
 np.random.randint(0, 10, (3, 3))
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -205,7 +205,7 @@ array([[7, 2, 9],
 np.eye(3)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -221,7 +221,7 @@ array([[1., 0., 0.],
 np.empty(3)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -238,7 +238,7 @@ The standard NumPy data types are listed in the following table. Note that when 
 np.zeros(10, dtype='int16')
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -251,7 +251,7 @@ Or using the associated NumPy object:
 np.zeros(10, dtype=np.int16)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -303,7 +303,7 @@ print('x3 shape:', x3.shape)
 print('x3 size:', x3.size)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -318,7 +318,7 @@ Another useful attribute is the `dtype`, the data type of the array:
 print('x3 dtype:', x3.dtype)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -332,7 +332,7 @@ print('itemsize:', x3.itemsize, 'bytes')
 print('nbytes:', x3.nbytes, 'bytes')
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -355,7 +355,7 @@ print('Generalization check result for x2:', np_array_generalization_check(x2))
 print('Generalization check result for x3:', np_array_generalization_check(x3))
 ```
 
-### Output
+###### Output
 
 
 ```

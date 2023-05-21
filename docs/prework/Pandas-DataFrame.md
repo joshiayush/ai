@@ -42,7 +42,7 @@ my_dataframe = pd.DataFrame(data=my_data, columns=my_column_names)
 print(my_dataframe)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -66,7 +66,7 @@ my_dataframe["adjusted"] = my_dataframe["activity"] + 2
 print(my_dataframe)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -96,7 +96,7 @@ print("Column 'temperature':")
 print(my_dataframe['temperature'])
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -162,7 +162,7 @@ df['Janet'] = df['Tahani'] + df['Jason']
 print(df)
 ```
 
-### Output
+###### Output
 
 
 ```
@@ -218,7 +218,7 @@ print('  copy_of_my_dataframe does not get updated: %d' %
         copy_of_my_dataframe['Eleanor'][1])
 ```
 
-### Output
+###### Output
 
 
 ```
