@@ -603,3 +603,60 @@ x[5::-2]  # reverse every other from 5
 ```
 array([5, 3, 1])
 ```
+
+#### Multidimensional subarrays
+
+Multidimensional slices work in the same way, with multiple slices separated by commas. For example:
+
+```python
+x2
+```
+
+###### Output
+
+
+```
+array([[12,  5,  2,  4],
+       [ 7,  6,  8,  8],
+       [ 1,  6,  7,  7]])
+```
+
+```python
+x2[:2, :3]  # two rows, three columns
+```
+
+###### Output
+
+
+```
+array([[12,  5,  2],
+       [ 7,  6,  8]])
+```
+
+```python
+x2[:3, ::2]  # all rows, every other column
+```
+
+###### Output
+
+
+```
+array([[12,  2],
+       [ 7,  8],
+       [ 1,  7]])
+```
+
+Finally, subarray dimensions can even be reversed together:
+
+```python
+x2[::-1, ::-1]
+```
+
+###### Output
+
+
+```
+array([[ 7,  7,  6,  1],
+       [ 8,  8,  6,  7],
+       [ 4,  2,  5, 12]])
+```
