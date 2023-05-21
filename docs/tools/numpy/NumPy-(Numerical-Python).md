@@ -363,3 +363,142 @@ Generalization check result for x1: True
 Generalization check result for x2: True
 Generalization check result for x3: True
 ```
+
+### Array Indexing: Accessing Single Elements
+
+In one-dimensional array, you can access the ith value (counting from zero) by specifying the desired index in square brackets, just as with Python lists:
+
+```python
+x1
+```
+
+###### Output
+
+
+```
+array([5, 0, 3, 3, 7, 9])
+```
+
+```python
+x1[0]
+```
+
+###### Output
+
+
+```
+5
+```
+
+```python
+x1[4]
+```
+
+###### Output
+
+
+```
+7
+```
+
+To index from the end of the array, you can use negative indices:
+
+```python
+x1[-1]
+```
+
+###### Output
+
+
+```
+9
+```
+
+```python
+x1[-2]
+```
+
+###### Output
+
+
+```
+7
+```
+
+In multidimensional array, you access items using a comma-separated tuple of indices:
+
+```python
+x2
+```
+
+###### Output
+
+
+```
+array([[3, 5, 2, 4],
+       [7, 6, 8, 8],
+       [1, 6, 7, 7]])
+```
+
+```python
+x2[0, 0]
+```
+
+###### Output
+
+
+```
+3
+```
+
+```python
+x2[2, 0]
+```
+
+###### Output
+
+
+```
+1
+```
+
+```python
+x2[2, -1]
+```
+
+###### Output
+
+
+```
+7
+```
+
+You can also modify values using any of the above index notation:
+
+```python
+x2[0, 0] = 12
+x2
+```
+
+###### Output
+
+
+```
+array([[12,  5,  2,  4],
+       [ 7,  6,  8,  8],
+       [ 1,  6,  7,  7]])
+```
+
+Keep in mind that, unlike Python lists, NumPy arrays have a fixed type. This means, for example, that if you attempt to insert a floating-point value to an integer array, the value will be silently truncated. Don't be caught unaware by this behaviour!
+
+```python
+x1[0] = 3.14159  # this will be truncated
+x1
+```
+
+###### Output
+
+
+```
+array([3, 0, 3, 3, 7, 9])
+```
