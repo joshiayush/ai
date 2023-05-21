@@ -166,9 +166,9 @@ np.random.random((3, 3))
 
 
 ```
-array([[0.40276416, 0.4247601 , 0.66838607],
-       [0.54128026, 0.75879512, 0.09090431],
-       [0.93579692, 0.66825775, 0.35487241]])
+array([[0.65279032, 0.63505887, 0.99529957],
+       [0.58185033, 0.41436859, 0.4746975 ],
+       [0.6235101 , 0.33800761, 0.67475232]])
 ```
 
 ```python
@@ -181,9 +181,9 @@ np.random.normal(0, 1, (3, 3))
 
 
 ```
-array([[ 0.55069101, -0.75163452, -0.17419984],
-       [ 0.93847916,  1.13059429,  1.45485808],
-       [ 0.54093265, -0.74499343,  0.18688181]])
+array([[ 1.0657892 , -0.69993739,  0.14407911],
+       [ 0.3985421 ,  0.02686925,  1.05583713],
+       [-0.07318342, -0.66572066, -0.04411241]])
 ```
 
 ```python
@@ -195,9 +195,9 @@ np.random.randint(0, 10, (3, 3))
 
 
 ```
-array([[3, 9, 8],
-       [7, 9, 6],
-       [7, 0, 1]])
+array([[7, 2, 9],
+       [2, 3, 3],
+       [2, 3, 4]])
 ```
 
 ```python
@@ -279,3 +279,87 @@ array([0, 0, 0, 0, 0, 0, 0, 0, 0, 0], dtype=int16)
 |  complex\_ | Shorthand for complex128                                                      |
 |  complex64 | Complex number, represented by two 32-bit floats                              |
 | complex128 | Complex number, represented by two 64-bit floats                              |
+
+## The Basics of NumPy Arrays
+
+### NumPy Array Attributes
+
+We'll start by defining three random arrays: a one-dimensional, two-dimensional, three-dimensional array. We’ll use NumPy’s random number generator, which we will _seed_ with a set value in order to ensure that the same random arrays are generated each time this code is run:
+
+```python
+import numpy as np
+np.random.seed(0)
+
+x1 = np.random.randint(10, size=6)
+x2 = np.random.randint(10, size=(3, 4))
+x3 = np.random.randint(10, size=(3, 4, 5))
+```
+
+Each array has attributes `ndim` (the number of dimensions), `shape` (the size of each dimension), and `size` (the total size of the array):
+
+```python
+print('x3 ndim:', x3.ndim)
+print('x3 shape:', x3.shape)
+print('x3 size:', x3.size)
+```
+
+### Output
+
+
+```
+x3 ndim: 3
+x3 shape: (3, 4, 5)
+x3 size: 60
+```
+
+Another useful attribute is the `dtype`, the data type of the array:
+
+```python
+print('x3 dtype:', x3.dtype)
+```
+
+### Output
+
+
+```
+x3 dtype: int64
+```
+
+Other attributes include `itemsize`, which lists the size (in bytes) of each array element, and `nbytes`, which lists the total size (in bytes) of the array:
+
+```python
+print('itemsize:', x3.itemsize, 'bytes')
+print('nbytes:', x3.nbytes, 'bytes')
+```
+
+### Output
+
+
+```
+itemsize: 8 bytes
+nbytes: 480 bytes
+```
+
+In general, we expect that `nbytes` is equal to `itemsize` times `size`.
+
+```python
+def np_array_generalization_check(np_array: np.ndarray) -> bool:
+  if np_array.nbytes == np_array.itemsize * np_array.size:
+    return True
+  return False
+```
+
+```python
+print('Generalization check result for x1:', np_array_generalization_check(x1))
+print('Generalization check result for x2:', np_array_generalization_check(x2))
+print('Generalization check result for x3:', np_array_generalization_check(x3))
+```
+
+### Output
+
+
+```
+Generalization check result for x1: True
+Generalization check result for x2: True
+Generalization check result for x3: True
+```
