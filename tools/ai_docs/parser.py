@@ -141,7 +141,7 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
       # absesnce of 'text' key.
       if cell['outputs']:
         markdown += '\n' * 2
-        markdown += '### Output\n'
+        markdown += '###### Output\n'
         for output in cell['outputs']:
           if output['output_type'] == 'stream':
             markdown += '\n'.join(
