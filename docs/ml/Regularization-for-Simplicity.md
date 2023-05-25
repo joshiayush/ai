@@ -93,3 +93,4 @@ There's a close connection between learning rate and lambda. Strong L2 regulariz
 __Early stopping__ means ending training before the model fully reaches convergence. In practice, we often end up with some amount of implicit early stopping when training in an [online](https://developers.google.com/machine-learning/crash-course/production-ml-systems) (continuous) fashion. That is, some new trends just haven't had enough data yet to converge.
 
 As noted, the effects from changes to regularization parameters can be confounded with the effects from changes in learning rate or number of iterations. One useful practice (when training across a fixed batch of data) is to give yourself a high enough number of iterations that early stopping doesn't play into things.
+
