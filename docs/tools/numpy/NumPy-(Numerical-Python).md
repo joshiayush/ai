@@ -166,9 +166,9 @@ np.random.random((3, 3))
 
 
 ```
-array([[0.65279032, 0.63505887, 0.99529957],
-       [0.58185033, 0.41436859, 0.4746975 ],
-       [0.6235101 , 0.33800761, 0.67475232]])
+array([[0.45883859, 0.49731419, 0.01036346],
+       [0.49168264, 0.52888095, 0.24196789],
+       [0.96157424, 0.42637881, 0.46439118]])
 ```
 
 ```python
@@ -181,9 +181,9 @@ np.random.normal(0, 1, (3, 3))
 
 
 ```
-array([[ 1.0657892 , -0.69993739,  0.14407911],
-       [ 0.3985421 ,  0.02686925,  1.05583713],
-       [-0.07318342, -0.66572066, -0.04411241]])
+array([[ 0.04110868,  0.43337406,  0.72234263],
+       [ 0.09680756,  0.95954761, -0.05026307],
+       [ 0.458105  , -0.29366462,  0.29122436]])
 ```
 
 ```python
@@ -195,9 +195,9 @@ np.random.randint(0, 10, (3, 3))
 
 
 ```
-array([[7, 2, 9],
-       [2, 3, 3],
-       [2, 3, 4]])
+array([[2, 9, 6],
+       [2, 8, 1],
+       [3, 9, 3]])
 ```
 
 ```python
@@ -660,3 +660,407 @@ array([[ 7,  7,  6,  1],
        [ 8,  8,  6,  7],
        [ 4,  2,  5, 12]])
 ```
+
+#### Accessing array rows and columns
+
+One commonly needed routine is accessing single rows or columns of an array. You can do this by combining indexing and slicing using an empty slice marked by a single colon (:):
+
+```python
+x2[:, 0]  # first column of x2
+```
+
+###### Output
+
+
+```
+array([12,  7,  1])
+```
+
+```python
+x2[0, :]  # first row of x2
+```
+
+###### Output
+
+
+```
+array([12,  5,  2,  4])
+```
+
+In case of row access, the empty slice can be omitted for a more compact syntax:
+
+```python
+x2[0]
+```
+
+###### Output
+
+
+```
+array([12,  5,  2,  4])
+```
+
+#### Subarrays as no-copy views
+
+NumPy return _views_ rather than _copies_ of the array data. This is one area in which NumPy array slicing differs from Python list slicing: in lists, slices will be copies. Consider our two-dimensional array from before:
+
+```python
+x2
+```
+
+###### Output
+
+
+```
+array([[12,  5,  2,  4],
+       [ 7,  6,  8,  8],
+       [ 1,  6,  7,  7]])
+```
+
+Let's extract a 2x2 subarray from this:
+
+```python
+x2_sub = x2[:2, :2]
+x2_sub
+```
+
+###### Output
+
+
+```
+array([[12,  5],
+       [ 7,  6]])
+```
+
+Now if we modify this subarray, we'll see that the original array is changed! Observe:
+
+```python
+x2_sub[0, 0] = 99
+x2_sub
+```
+
+###### Output
+
+
+```
+array([[99,  5],
+       [ 7,  6]])
+```
+
+```python
+x2
+```
+
+###### Output
+
+
+```
+array([[99,  5,  2,  4],
+       [ 7,  6,  8,  8],
+       [ 1,  6,  7,  7]])
+```
+
+This default behaviour is actually quite useful: it means that when we work with large datasets, we can access and process pieces of these datasets without the need to copy the underlying data buffer.
+
+#### Creating copies of arrays
+
+Despite the nice feature of array views, it is sometimes useful to instead explicitly copy the data within an array or a subarray. This can be most easily done with the `copy()` method:
+
+```python
+x2_sub_copy = x2[:2, :2].copy()
+x2_sub_copy
+```
+
+###### Output
+
+
+```
+array([[99,  5],
+       [ 7,  6]])
+```
+
+If we now modify this subarray, the original array is not touched:
+
+```python
+x2_sub_copy[0, 0] = 42
+x2_sub_copy
+```
+
+###### Output
+
+
+```
+array([[42,  5],
+       [ 7,  6]])
+```
+
+```python
+x2
+```
+
+###### Output
+
+
+```
+array([[99,  5,  2,  4],
+       [ 7,  6,  8,  8],
+       [ 1,  6,  7,  7]])
+```
+
+### Reshaping of Arrays
+
+Another useful type of operation is reshaping of arrays. The most flexible way of doing this is with the `reshape()` method. For example, if you want to put the numbers 1 through 9 in a 3x3 grid, you can do the following:
+
+```python
+grid = np.arange(1, 10).reshape((3, 3))
+grid
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3],
+       [4, 5, 6],
+       [7, 8, 9]])
+```
+
+Note that for this to work, the size of the initial array must match the size of the reshaped array. Where possible, the `reshape` method will use a no-copy view of the initial array, but with non-contiguous memory buffers this is not always the case.
+
+Another common reshaping pattern is the conversion of a one-dimensional array into a two-dimensional row or column matrix. You can do this with the `reshape` method, or more easily by making use of the `newaxis` keyword within a slice operation:
+
+```python
+x = np.array([1, 2, 3])
+
+# row vector via reshape
+x.reshape((1, 3))
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3]])
+```
+
+```python
+# row vector via newaxis
+x[np.newaxis, :]
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3]])
+```
+
+```python
+# column vector via reshape
+x.reshape((3, 1))
+```
+
+###### Output
+
+
+```
+array([[1],
+       [2],
+       [3]])
+```
+
+```python
+# column vector via newaxis
+x[:, np.newaxis]
+```
+
+###### Output
+
+
+```
+array([[1],
+       [2],
+       [3]])
+```
+
+### Array Concatenation and Splitting
+
+#### Concatenation of arrays
+
+Concatenation, or joining of two arrays in NumPy, is primarily accomplished through the routines `np.concatenate`, `np.vstack`, and `np.hstack`. `np.concatenate` takes a tuple or list of arrays as its first argument, as we can see here:
+
+```python
+x = np.array([1, 2, 3,])
+y = np.array([3, 2, 1])
+np.concatenate([x, y])
+```
+
+###### Output
+
+
+```
+array([1, 2, 3, 3, 2, 1])
+```
+
+You can also concatenate more than two arrays at once:
+
+```python
+z = [99, 99, 99]
+np.concatenate([x, y, z])
+```
+
+###### Output
+
+
+```
+array([ 1,  2,  3,  3,  2,  1, 99, 99, 99])
+```
+
+`np.concatenate` can also be used for two-dimensional arrays:
+
+```python
+grid = np.array([[1, 2, 3],
+                 [4, 5, 6]])
+```
+
+```python
+# concatenate along the first axis
+np.concatenate([grid, grid])
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3],
+       [4, 5, 6],
+       [1, 2, 3],
+       [4, 5, 6]])
+```
+
+```python
+# concatenate along the second axis (zero-indexed)
+np.concatenate([grid, grid], axis=1)
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3, 1, 2, 3],
+       [4, 5, 6, 4, 5, 6]])
+```
+
+For working with arrays of mixed dimensions, it can be clearer to use the `np.vstack` (vertical stack) and `np.hstack` (horizontal stack) functions:
+
+```python
+x = np.array([1, 2, 3])
+grid = np.array([[9, 8, 7],
+                 [6, 5, 4]])
+
+# vertically stack the arrays
+np.vstack([x, grid])
+```
+
+###### Output
+
+
+```
+array([[1, 2, 3],
+       [9, 8, 7],
+       [6, 5, 4]])
+```
+
+```python
+y = np.array([[99],
+              [99]])
+
+# horizontally stack the arrays
+np.hstack([grid, y])
+```
+
+###### Output
+
+
+```
+array([[ 9,  8,  7, 99],
+       [ 6,  5,  4, 99]])
+```
+
+Similarly, `np.dstack` will stack arrays along the third axis.
+
+#### Splitting of arrays
+
+The opposite of concatenation is splitting, which is implemented by the functions `np.split`, `np.hsplit`, and `np.vsplit`. For each of these, we can pass a list of indices giving the split points:
+
+```python
+x = [1, 2, 3, 99, 99, 3, 2, 1]
+x1, x2, x3 = np.split(x, [3, 5])
+x1, x2, x3
+```
+
+###### Output
+
+
+```
+(array([1, 2, 3]), array([99, 99]), array([3, 2, 1]))
+```
+
+The second argument of `np.split` is `indices_or_sections`. If `indices_or_sections` is an integer, N, the array will be divided into N equal arrays along `axis`.  If such a split is not possible, an error is raised. If `indices_or_sections` is a 1-D array of sorted integers, the entries indicate where along `axis` the array is split.  For example, ``[2, 3]`` would, for ``axis=0``, result in
+
+  - `ary[:2]`
+  - `ary[2:3]`
+  - `ary[3:]`
+
+Notice that _N_ split points lead to _N + 1_ subarrays. The related functions `np.hsplit` and `np.vsplit` are similar:
+
+```python
+grid = np.arange(16).reshape((4, 4))
+grid
+```
+
+###### Output
+
+
+```
+array([[ 0,  1,  2,  3],
+       [ 4,  5,  6,  7],
+       [ 8,  9, 10, 11],
+       [12, 13, 14, 15]])
+```
+
+```python
+upper, lower = np.vsplit(grid, [2])
+upper, lower
+```
+
+###### Output
+
+
+```
+(array([[0, 1, 2, 3],
+        [4, 5, 6, 7]]),
+ array([[ 8,  9, 10, 11],
+        [12, 13, 14, 15]]))
+```
+
+```python
+left, right = np.hsplit(grid, [2])
+left, right
+```
+
+###### Output
+
+
+```
+(array([[ 0,  1],
+        [ 4,  5],
+        [ 8,  9],
+        [12, 13]]),
+ array([[ 2,  3],
+        [ 6,  7],
+        [10, 11],
+        [14, 15]]))
+```
+
+Similarly, `np.dsplit` will split arrays along the third axis.
