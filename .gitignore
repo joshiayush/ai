@@ -16,3 +16,6 @@ ai_dev/
 # drawio
 .$*.bkp
 .$*.dtmp
+
+# IPython
+.ipynb_*
