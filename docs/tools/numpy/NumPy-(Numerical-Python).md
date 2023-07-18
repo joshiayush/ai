@@ -166,9 +166,9 @@ np.random.random((3, 3))
 
 
 ```
-array([[0.45883859, 0.49731419, 0.01036346],
-       [0.49168264, 0.52888095, 0.24196789],
-       [0.96157424, 0.42637881, 0.46439118]])
+array([[0.62432256, 0.401882  , 0.28524826],
+       [0.84660473, 0.54784544, 0.50116331],
+       [0.06313018, 0.71396488, 0.60298525]])
 ```
 
 ```python
@@ -181,9 +181,9 @@ np.random.normal(0, 1, (3, 3))
 
 
 ```
-array([[ 0.04110868,  0.43337406,  0.72234263],
-       [ 0.09680756,  0.95954761, -0.05026307],
-       [ 0.458105  , -0.29366462,  0.29122436]])
+array([[ 1.46142422, -0.57102576, -0.85261663],
+       [ 0.78455376,  1.52797398,  0.80883395],
+       [-0.80088332,  0.06565212, -0.6156856 ]])
 ```
 
 ```python
@@ -195,9 +195,9 @@ np.random.randint(0, 10, (3, 3))
 
 
 ```
-array([[2, 9, 6],
-       [2, 8, 1],
-       [3, 9, 3]])
+array([[6, 3, 3],
+       [3, 9, 9],
+       [7, 0, 1]])
 ```
 
 ```python
@@ -1064,3 +1064,86 @@ left, right
 ```
 
 Similarly, `np.dsplit` will split arrays along the third axis.
+
+## Computation on NumPy Arrays: Universal Functions
+
+Computation on NumPy arrays can be very fast or it can be very slow. The key to making it fast is to use vectorized operations, generally implemented through NumPy's _universal functions_ (ufuncs).
+
+### Introducing UFuncs
+
+For many types of operations, NumPy provides a convenient interface into just this kind of statically typed, compiled routine. This is known as _vectorized_ operation.
+
+```python
+values = np.random.randint(1, 100, size=500000)
+print(1.0 / values)
+```
+
+###### Output
+
+
+```
+[0.02083333 0.25       0.01298701 ... 0.04761905 0.02439024 0.01639344]
+```
+
+Looking at the execution time for our big array, we see that it completes orders of magnitude faster than the ordinary Python loop:
+
+```python
+%timeit (1.0 / values)
+```
+
+###### Output
+
+
+```
+10.5 ms ± 2.22 ms per loop (mean ± std. dev. of 7 runs, 100 loops each)
+```
+
+If we measure the time with an ordinary loop, we will find a huge time difference:
+
+```python
+def compute_reciprocals(values):
+    output = np.empty(len(values))
+    for i in range(len(values)):
+        output[i] = 1.0 / values[i]
+    return output
+```
+
+```python
+%timeit (compute_reciprocals(values))
+```
+
+###### Output
+
+
+```
+264 ms ± 50.2 ms per loop (mean ± std. dev. of 7 runs, 1 loop each)
+```
+
+Before we see an operation between a scalar and an array, but we can also see _ufuncs_ between multiple arrays:
+
+```python
+np.arange(5) / np.arange(1, 6)
+```
+
+###### Output
+
+
+```
+array([0.        , 0.5       , 0.66666667, 0.75      , 0.8       ])
+```
+
+And _ufunc_ operations are not limited to one dimensional arrays - they can act on multi-dimensional arrays as well:
+
+```python
+x = np.arange(9).reshape((3, 3))
+2 ** x
+```
+
+###### Output
+
+
+```
+array([[  1,   2,   4],
+       [  8,  16,  32],
+       [ 64, 128, 256]])
+```
