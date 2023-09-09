@@ -11,14 +11,14 @@ import pandas as pd
 import tensorflow as tf
 from matplotlib import pyplot as plt
 
-# The following lines adjust the granularity of reporting. 
+# The following lines adjust the granularity of reporting.
 pd.options.display.max_rows = 10
 pd.options.display.float_format = "{:.1f}".format
 ```
 
 ## The dataset
 
-Datasets are often stored on disk or at a URL in [.csv format](https://wikipedia.org/wiki/Comma-separated_values). 
+Datasets are often stored on disk or at a URL in [.csv format](https://wikipedia.org/wiki/Comma-separated_values).
 
 A well-formed .csv file contains column names in the first row, followed by many rows of data.  A comma divides each value in each row. For example, here are the first five rows of the .csv file holding the California Housing Dataset:
 
@@ -55,9 +55,9 @@ Although scaling a label is usually *not* essential, scaling features in a multi
 
 A large part of most machine learning projects is getting to know your data. The pandas API provides a `describe` function that outputs the following statistics about every column in the DataFrame:
 
-* `count`, which is the number of rows in that column. Ideally, `count` contains the same value for every column. 
+* `count`, which is the number of rows in that column. Ideally, `count` contains the same value for every column.
 
-* `mean` and `std`, which contain the mean and standard deviation of the values in each column. 
+* `mean` and `std`, which contain the mean and standard deviation of the values in each column.
 
 * `min` and `max`, which contain the lowest and highest values in each column.
 
@@ -81,7 +81,7 @@ Do you see any anomalies (strange values) in the data?
 The following code defines two functions:
 
   * `build_model(my_learning_rate)`, which builds a randomly-initialized model.
-  * `train_model(model, feature, label, epochs)`, which trains the model from the examples (feature and label) you pass. 
+  * `train_model(model, feature, label, epochs)`, which trains the model from the examples (feature and label) you pass.
 
 Since you don't need to understand model building code right now, you may optionally explore this code.
 
@@ -94,24 +94,24 @@ def build_model(my_learning_rate):
   # Describe the topography of the model.
   # The topography of a simple linear regression model
   # is a single node in a single layer.
-  model.add(tf.keras.layers.Dense(units=1, 
+  model.add(tf.keras.layers.Dense(units=1,
                                   input_shape=(1,)))
 
   # Compile the model topography into code that TensorFlow can efficiently
-  # execute. Configure training to minimize the model's mean squared error. 
+  # execute. Configure training to minimize the model's mean squared error.
   model.compile(optimizer=tf.keras.optimizers.RMSprop(
                               learning_rate=my_learning_rate),
                 loss="mean_squared_error",
                 metrics=[tf.keras.metrics.RootMeanSquaredError()])
 
-  return model        
+  return model
 
 
 def train_model(model, df, feature, label, epochs, batch_size):
   """Train the model by feeding it data."""
 
   # Feed the model the feature and the label.
-  # The model will train for the specified number of epochs. 
+  # The model will train for the specified number of epochs.
   history = model.fit(x=df[feature],
                       y=df[label],
                       batch_size=batch_size,
@@ -123,12 +123,12 @@ def train_model(model, df, feature, label, epochs, batch_size):
 
   # The list of epochs is stored separately from the rest of history.
   epochs = history.epoch
-  
+
   # Isolate the error for each epoch.
   hist = pd.DataFrame(history.history)
 
   # To track the progression of training, we're going to take a snapshot
-  # of the model's root mean squared error at each epoch. 
+  # of the model's root mean squared error at each epoch.
   rmse = hist["root_mean_squared_error"]
 
   return trained_weight, trained_bias, epochs, rmse
@@ -180,7 +180,7 @@ def plot_the_loss_curve(epochs, rmse):
 
 ## Call the model functions
 
-An important part of machine learning is determining which [features](https://developers.google.com/machine-learning/glossary/#feature) correlate with the [label](https://developers.google.com/machine-learning/glossary/#label). For example, real-life home-value prediction models typically rely on hundreds of features and synthetic features. However, this model relies on only one feature. For now, you'll arbitrarily use `total_rooms` as that feature. 
+An important part of machine learning is determining which [features](https://developers.google.com/machine-learning/glossary/#feature) correlate with the [label](https://developers.google.com/machine-learning/glossary/#label). For example, real-life home-value prediction models typically rely on hundreds of features and synthetic features. However, this model relies on only one feature. For now, you'll arbitrarily use `total_rooms` as that feature.
 
 
 ```python
@@ -192,15 +192,15 @@ batch_size = 30
 # Specify the feature and the label.
 feature = "total_rooms"  # the total number of rooms on a specific city block.
 label="median_house_value" # the median value of a house on a specific city block.
-# That is, you're going to create a model that predicts house value based 
-# solely on total_rooms.  
+# That is, you're going to create a model that predicts house value based
+# solely on total_rooms.
 
 # Discard any pre-existing version of the model.
 model = None
 
 # Invoke the functions.
 model = build_model(learning_rate)
-weight, bias, epochs, rmse = train_model(model, training_df, 
+weight, bias, epochs, rmse = train_model(model, training_df,
                                          feature, label,
                                          epochs, batch_size)
 
@@ -250,7 +250,7 @@ Look at the preceding table. How close is the predicted value to the label value
 
 ## Task 3: Try a different feature
 
-The `total_rooms` feature had only a little predictive power. Would a different feature have greater predictive power?  Try using `population` as the feature instead of `total_rooms`. 
+The `total_rooms` feature had only a little predictive power. Would a different feature have greater predictive power?  Try using `population` as the feature instead of `total_rooms`.
 
 Note: When you change features, you might also need to change the hyperparameters.
 
@@ -265,7 +265,7 @@ batch_size = 3
 
 # Don't change anything below.
 model = build_model(learning_rate)
-weight, bias, epochs, rmse = train_model(model, training_df, 
+weight, bias, epochs, rmse = train_model(model, training_df,
                                          feature, label,
                                          epochs, batch_size)
 
@@ -283,12 +283,12 @@ Did `population` produce better predictions than `total_rooms`?
 
 You have determined that `total_rooms` and `population` were not useful features.  That is, neither the total number of rooms in a neighborhood nor the neighborhood's population successfully predicted the median house price of that neighborhood. Perhaps though, the *ratio* of `total_rooms` to `population` might have some predictive power. That is, perhaps block density relates to median house value.
 
-To explore this hypothesis, do the following: 
+To explore this hypothesis, do the following:
 
 1. Create a [synthetic feature](https://developers.google.com/machine-learning/glossary/#synthetic_feature) that's a ratio of `total_rooms` to `population`.
 2. Tune the three hyperparameters.
-3. Determine whether this synthetic feature produces 
-   a lower loss value than any of the single features you 
+3. Determine whether this synthetic feature produces
+   a lower loss value than any of the single features you
    tried earlier.
 
 ```python
@@ -321,7 +321,7 @@ So far, we've relied on trial-and-error to identify possible features for the mo
 A **correlation matrix** indicates how each attribute's raw values relate to the other attributes' raw values. Correlation values have the following meanings:
 
   * `1.0`: perfect positive correlation; that is, when one attribute rises, the other attribute rises.
-  * `-1.0`: perfect negative correlation; that is, when one attribute rises, the other attribute falls. 
+  * `-1.0`: perfect negative correlation; that is, when one attribute rises, the other attribute falls.
   * `0.0`: no correlation; the two columns [are not linearly related](https://en.wikipedia.org/wiki/Correlation_and_dependence#/media/File:Correlation_examples2.svg).
 
 In general, the higher the absolute value of a correlation value, the greater its predictive power. For example, a correlation value of -0.8 implies far more predictive power than a correlation of -0.2.
@@ -350,7 +350,7 @@ batch_size = 3
 
 # Don't change anything below.
 model = build_model(learning_rate)
-weight, bias, epochs, rmse = train_model(model, training_df, 
+weight, bias, epochs, rmse = train_model(model, training_df,
                                          feature, label,
                                          epochs, batch_size)
 

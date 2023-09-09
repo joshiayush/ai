@@ -28,41 +28,41 @@ from matplotlib import pyplot as plt
 The following code defines two functions:
 
   * `build_model(my_learning_rate)`, which builds an empty model.
-  * `train_model(model, feature, label, epochs)`, which trains the model from the examples (feature and label) you pass. 
+  * `train_model(model, feature, label, epochs)`, which trains the model from the examples (feature and label) you pass.
 
 Since you don't need to understand model building code right now, you may optionally explore this code.
 
 ```python
 def build_model(learning_rate):
   """Create and compile a simple linear regression model."""
-  # Most simple tf.keras models are sequential. 
+  # Most simple tf.keras models are sequential.
   # A sequential model contains one or more layers.
   model = tf.keras.models.Sequential()
 
   # Describe the topography of the model.
   # The topography of a simple linear regression model
-  # is a single node in a single layer. 
-  model.add(tf.keras.layers.Dense(units=1, 
+  # is a single node in a single layer.
+  model.add(tf.keras.layers.Dense(units=1,
                                   input_shape=(1,)))
 
-  # Compile the model topography into code that 
-  # TensorFlow can efficiently execute. Configure 
-  # training to minimize the model's mean squared error. 
+  # Compile the model topography into code that
+  # TensorFlow can efficiently execute. Configure
+  # training to minimize the model's mean squared error.
   model.compile(optimizer=tf.keras.optimizers.RMSprop(
                                     learning_rate=learning_rate),
                 loss='mean_squared_error',
                 metrics=[tf.keras.metrics.RootMeanSquaredError()])
 
-  return model           
+  return model
 
 
 def train_model(model, feature, label, epochs, batch_size):
   """Train the model by feeding it data."""
 
-  # Feed the feature values and the label values to the 
-  # model. The model will train for the specified number 
+  # Feed the feature values and the label values to the
+  # model. The model will train for the specified number
   # of epochs, gradually learning how the feature values
-  # relate to the label values. 
+  # relate to the label values.
   history = model.fit(x=feature,
                       y=label,
                       batch_size=batch_size,
@@ -72,15 +72,15 @@ def train_model(model, feature, label, epochs, batch_size):
   trained_weight = model.get_weights()[0]
   trained_bias = model.get_weights()[1]
 
-  # The list of epochs is stored separately from the 
+  # The list of epochs is stored separately from the
   # rest of history.
   epochs = history.epoch
-  
+
   # Gather the history (a snapshot) of each epoch.
   hist = pd.DataFrame(history.history)
 
-  # Specifically gather the model's root mean 
-  # squared error at each epoch. 
+  # Specifically gather the model's root mean
+  # squared error at each epoch.
   rmse = hist['root_mean_squared_error']
 
   return trained_weight, trained_bias, epochs, rmse
@@ -153,7 +153,7 @@ epochs=10
 batch_size=12
 
 model = build_model(learning_rate)
-trained_weight, trained_bias, epochs, rmse = train_model(model, feature, 
+trained_weight, trained_bias, epochs, rmse = train_model(model, feature,
                                                          label, epochs,
                                                          batch_size)
 plot_the_model(trained_weight, trained_bias, feature, label)
@@ -179,10 +179,10 @@ Examine the loss curve. Does the model converge?
 ```python
 learning_rate=0.01
 epochs=450
-batch_size=12 
+batch_size=12
 
 model = build_model(learning_rate)
-trained_weight, trained_bias, epochs, rmse = train_model(model, feature, 
+trained_weight, trained_bias, epochs, rmse = train_model(model, feature,
                                                          label, epochs,
                                                          batch_size)
 plot_the_model(trained_weight, trained_bias, feature, label)
@@ -194,23 +194,23 @@ plot_the_loss_curve(epochs, rmse)
 In Task 2, you increased the number of epochs to get the model to converge. Sometimes, you can get the model to converge more quickly by increasing the learning rate. However, setting the learning rate too high often makes it impossible for a model to converge. In Task 3, we've intentionally set the learning rate too high. Run the following code cell and see what happens.
 
 ```python
-learning_rate=100 
+learning_rate=100
 epochs=500
-batch_size = batch_size 
+batch_size = batch_size
 
 model = build_model(learning_rate)
-trained_weight, trained_bias, epochs, rmse = train_model(model, feature, 
+trained_weight, trained_bias, epochs, rmse = train_model(model, feature,
                                                          label, epochs,
                                                          batch_size)
 plot_the_model(trained_weight, trained_bias, feature, label)
 plot_the_loss_curve(epochs, rmse)
 ```
 
-The resulting model is terrible; the red line doesn't align with the blue dots. Furthermore, the loss curve oscillates like a [roller coaster](https://www.wikipedia.org/wiki/Roller_coaster).  An oscillating loss curve strongly suggests that the learning rate is too high. 
+The resulting model is terrible; the red line doesn't align with the blue dots. Furthermore, the loss curve oscillates like a [roller coaster](https://www.wikipedia.org/wiki/Roller_coaster).  An oscillating loss curve strongly suggests that the learning rate is too high.
 
 ## Task 4: Find the ideal combination of epochs and learning rate
 
-Assign values to the following two hyperparameters to make training converge as efficiently as possible: 
+Assign values to the following two hyperparameters to make training converge as efficiently as possible:
 
 *  `learning_rate`
 *  `epochs`
@@ -221,7 +221,7 @@ epochs=70
 batch_size = batch_size
 
 model = build_model(learning_rate)
-trained_weight, trained_bias, epochs, rmse = train_model(model, feature, 
+trained_weight, trained_bias, epochs, rmse = train_model(model, feature,
                                                          label, epochs,
                                                          batch_size)
 plot_the_model(trained_weight, trained_bias, feature, label)
@@ -234,7 +234,7 @@ The system recalculates the model's loss value and adjusts the model's weights a
 
 One **epoch** spans sufficient iterations to process every example in the dataset. For example, if the batch size is 12, then each epoch lasts one iteration. However, if the batch size is 6, then each epoch consumes two iterations.  
 
-It is tempting to simply set the batch size to the number of examples in the dataset (12, in this case). However, the model might actually train faster on smaller batches. Conversely, very small batches might not contain enough information to help the model converge. 
+It is tempting to simply set the batch size to the number of examples in the dataset (12, in this case). However, the model might actually train faster on smaller batches. Conversely, very small batches might not contain enough information to help the model converge.
 
 Experiment with `batch_size` in the following code cell. What's the smallest integer you can set for `batch_size` and still have the model converge in a hundred epochs?
 
@@ -244,7 +244,7 @@ epochs=125
 batch_size=1 # Wow, a batch size of 1 works!
 
 model = build_model(learning_rate)
-trained_weight, trained_bias, epochs, rmse = train_model(model, feature, 
+trained_weight, trained_bias, epochs, rmse = train_model(model, feature,
                                                          label, epochs,
                                                          batch_size)
 plot_the_model(trained_weight, trained_bias, feature, label)
@@ -255,13 +255,13 @@ plot_the_loss_curve(epochs, rmse)
 
 Most machine learning problems require a lot of hyperparameter tuning.  Unfortunately, we can't provide concrete tuning rules for every model. Lowering the learning rate can help one model converge efficiently but make another model converge much too slowly.  You must experiment to find the best set of hyperparameters for your dataset. That said, here are a few rules of thumb:
 
- * Training loss should steadily decrease, steeply at first, and then more slowly until the slope of the curve reaches or approaches zero. 
+ * Training loss should steadily decrease, steeply at first, and then more slowly until the slope of the curve reaches or approaches zero.
  * If the training loss does not converge, train for more epochs.
  * If the training loss decreases too slowly, increase the learning rate. Note that setting the learning rate too high may also prevent training loss from converging.
  * If the training loss varies wildly (that is, the training loss jumps around), decrease the learning rate.
  * Lowering the learning rate while increasing the number of epochs or the batch size is often a good combination.
  * Setting the batch size to a *very* small batch number can also cause instability. First, try large batch size values. Then, decrease the batch size until you see degradation.
- * For real-world datasets consisting of a very large number of examples, the entire dataset might not fit into memory. In such cases, you'll need to reduce the batch size to enable a batch to fit into memory. 
+ * For real-world datasets consisting of a very large number of examples, the entire dataset might not fit into memory. In such cases, you'll need to reduce the batch size to enable a batch to fit into memory.
 
 Remember: the ideal combination of hyperparameters is data dependent, so you must always experiment and verify.
 
