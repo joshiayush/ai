@@ -215,3 +215,69 @@ $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{9}{9 + 3} = 0.75$
 $\mathrm{Precision} = \dfrac{TP}{TP + FN} = \dfrac{9}{9 + 2} = 0.82$
 
 Various metrics have been developed that rely on both precision and recall. For example, see [F1 score](https://wikipedia.org/wiki/F1_score).
+
+## ROC Curve and AUC
+
+### ROC Curve
+
+An __ROC curve (receiver operating characteristic curve)__ is a graph showing the performance of a classification model at all classification thresholds. This curve plots two parameters:
+
+* True positive rate
+* False positive rate
+
+__True Positive Rate (TPR)__ is a synonym for recall and is therefore defined as follows:
+
+$\mathrm{TPR} = \dfrac{TP}{TP + FN}$
+
+__False Positive Rate (FPR)__ is defined as follows:
+
+$\mathrm{FPR} = \dfrac{FP}{FP + TN}$
+
+An ROC curve plots TPR vs. FPR at different classification thresholds. Lowering the classification threshold classifies more items as positive, thus increasing both False Positives and True Positives. The following figure shows a typical ROC curve.
+
+<div align="center">
+
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/ROCCurve.svg" width="400" height="400" />
+
+<strong>Figure 4. TP vs. FP rate at different classification thresholds.</strong>
+
+</div>
+
+To compute the points in an ROC curve, we could evaluate a logistic regression model many times with different classification thresholds, but this would be inefficient. Fortunately, there's an efficient, sorting-based algorithm that can provide this information for us, called AUC.
+
+## AUC: Area Under the ROC Curve
+
+__AUC__ stands for "Area under the ROC Curve." That is, AUC measures the entire two-dimensional area underneath the entire ROC curve (think integral calculus) from (0,0) to (1,1).
+
+<div align="center">
+
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/AUC.svg" width="400" height="400" />
+
+<strong>Figure 5. AUC (Area under the ROC Curve).</strong>
+
+</div>
+
+AUC provides an aggregate measure of performance across all possible classification thresholds. One way of interpreting AUC is as the probability that the model ranks a random positive example more highly than a random negative example. For example, given the following examples, which are arranged from left to right in ascending order of logistic regression predictions:
+
+<div align="center">
+
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/AUCPredictionsRanked.svg" />
+
+<strong>Figure 6. Predictions ranked in ascending order of logistic regression score.</strong>
+
+</div>
+
+AUC represents the probability that a random positive (green) example is positioned to the right of a random negative (red) example.
+
+AUC ranges in value from 0 to 1. A model whose predictions are 100% wrong has an AUC of 0.0; one whose predictions are 100% correct has an AUC of 1.0.
+
+AUC is desirable for the following two reasons:
+
+* AUC is __scale-invariant__. It measures how well predictions are ranked, rather than their absolute values.
+* AUC is __classification-threshold-invariant__. It measures the quality of the model's predictions irrespective of what classification threshold is chosen.
+
+However, both these reasons come with caveats, which may limit the usefulness of AUC in certain use cases:
+
+* __Scale invariance is not always desirable__. For example, sometimes we really do need well calibrated probability outputs, and AUC won’t tell us about that.
+
+* __Classification-threshold invariance is not always desirable__. In cases where there are wide disparities in the cost of false negatives vs. false positives, it may be critical to minimize one type of classification error. For example, when doing email spam detection, you likely want to prioritize minimizing false positives (even if that results in a significant increase of false negatives). AUC isn't a useful metric for this type of optimization.
