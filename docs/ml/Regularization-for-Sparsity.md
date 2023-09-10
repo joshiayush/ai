@@ -45,3 +45,4 @@ To compare the results of $L_{1}$ and $L_{2}$ regularization on a network of wei
 ## Check Your Understanding
 
 * [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/regularization-for-sparsity/check-your-understanding)
+
