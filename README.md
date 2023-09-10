@@ -80,7 +80,7 @@ All the resources are aligned according to the roadmap inside of the [resource](
     10. [Regularization for Simplicity](https://github.com/joshiayush/ai/blob/master/docs/ml/Regularization-for-Simplicity.md)
     11. [Logistic Regression](https://github.com/joshiayush/ai/blob/master/docs/ml/Logistic-Regression.md)
     12. [Classification](https://github.com/joshiayush/ai/blob/master/docs/ml/Classification.md)
-    13. Regularization for Sparsity
+    13. [Regularization for Sparsity](https://github.com/joshiayush/ai/blob/master/docs/ml/Regularization-for-Sparsity.md)
     14. Neural Networks
     15. Training Neural Nets
     16. Multi-Class Neural Nets
