@@ -15,7 +15,7 @@
 11. [Logistic Regression](https://github.com/joshiayush/ai/blob/master/docs/ml/Logistic-Regression.md)
 12. [Classification](https://github.com/joshiayush/ai/blob/master/docs/ml/Classification.md)
 13. [Regularization for Sparsity](https://github.com/joshiayush/ai/blob/master/docs/ml/Regularization-for-Sparsity.md)
-14. Neural Networks
+14. [Neural Networks](https://github.com/joshiayush/ai/blob/master/docs/ml/Neural-Networks.md)
 15. Training Neural Nets
 16. Multi-Class Neural Nets
 17. Embeddings
