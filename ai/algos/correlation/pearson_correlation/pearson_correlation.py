@@ -1,3 +1,19 @@
+# Copyright 2023 The AI Authors. All Rights Reserved.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+# pylint: disable=too-many-function-args, invalid-name, missing-module-docstring
+# pylint: disable=missing-class-docstring
+
 """An implementation of Pearson's correlation coefficient algorithm."""
 
 import warnings
@@ -5,15 +21,17 @@ import warnings
 import numpy as np
 
 
-def cov(m: np.array,
-        y: np.array = None,
-        rowvar: bool = True,
-        bias: bool = False,
-        ddof: int = None,
-        fweights: np.array = None,
-        aweights: np.array = None,
-        *,
-        dtype: np.dtype = None) -> np.ndarray:
+def cov(
+  m: np.array,
+  y: np.array = None,
+  rowvar: bool = True,
+  bias: bool = False,
+  ddof: int = None,
+  fweights: np.array = None,
+  aweights: np.array = None,
+  *,
+  dtype: np.dtype = None
+) -> np.ndarray:
   """Estimate a covariance matrix, given data and weights.
 
   Covariance indicates the level to which two variables vary together.
@@ -148,9 +166,9 @@ def cov(m: np.array,
     fact = w_sum - ddof * sum(w * aweights) / w_sum
 
   if fact <= 0:
-    warnings.warn('Degrees of freedom <= 0 for slice',
-                  RuntimeWarning,
-                  stacklevel=3)
+    warnings.warn(
+      'Degrees of freedom <= 0 for slice', RuntimeWarning, stacklevel=3
+    )
     fact = 0.0
 
   x -= avg[:, None]
@@ -164,11 +182,13 @@ def cov(m: np.array,
   return c.squeeze()
 
 
-def corrcoef(x: np.array,
-             y: np.array = None,
-             rowvar: bool = True,
-             *,
-             dtype: np.dtype = None) -> np.ndarray:
+def corrcoef(
+  x: np.array,
+  y: np.array = None,
+  rowvar: bool = True,
+  *,
+  dtype: np.dtype = None
+) -> np.ndarray:
   """Return Pearson product-moment correlation coefficient.
 
   The relationship between the correlation coefficient matrix, `R`, and the
