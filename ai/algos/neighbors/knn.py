@@ -219,7 +219,7 @@ class KNeighborsClassifier(DistanceMetric):
          ) in KNeighborsClassifier._parameter_constraints['metric']:
       if kwargs['metric'] == metric_name:
         if metric_status != 'supported':
-          raise RuntimeError(
+          raise ValueError(
             f'distance metric {metric_name} is not supported yet'
           )
         break
@@ -289,4 +289,4 @@ class KNeighborsClassifier(DistanceMetric):
 
       # Calculate the prediction using "plurality voting"
       preds = [*preds, Counter(k_nearest_labels).most_common()[0][0]]
-    return np.ndarray(preds)
+    return np.array(preds)
