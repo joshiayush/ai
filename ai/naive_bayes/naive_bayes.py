@@ -121,7 +121,7 @@ class GaussianNaiveBayes:
 
     self._check_if_parameters_comply_to_constraints(priors=self._priors)
 
-  def fit(self, X: np.ndarray, y: np.ndarray) -> GaussianNaiveBayes:
+  def fit(self, X: np.ndarray, y: np.ndarray) -> 'GaussianNaiveBayes':
     """Fit Gaussian Naive Bayes according to X, y.
 
     Args:

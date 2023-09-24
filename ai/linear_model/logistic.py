@@ -69,7 +69,7 @@ class LogisticRegression:
     """
     return 1 / (1 + np.exp(-t))
 
-  def fit(self, X: np.ndarray, y: np.ndarray) -> LogisticRegression:
+  def fit(self, X: np.ndarray, y: np.ndarray) -> 'LogisticRegression':
     """Fit Logistic Regression according to X, y.
 
     The logistic regression model transforms the linear regression function

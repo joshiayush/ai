@@ -24,7 +24,7 @@ import argparse
 import ai_docs
 import ai_utils
 
-_BASE_AI_DIR = 'ai'
+_BASE_AI_DIR = 'notebooks'
 _BASE_DOCS_DIR = 'docs'
 
 
