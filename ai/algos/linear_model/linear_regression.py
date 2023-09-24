@@ -83,7 +83,7 @@ class LinearRegression:
     """
     self._lr = lr
     self._n_iters = n_iters
-    self._fit_on_dataset = False
+    self._is_fitted = False
 
   def fit(self, X: np.ndarray, y: np.ndarray) -> None:
     """Fit the linear model on `X` given `y`.
@@ -147,7 +147,7 @@ class LinearRegression:
       self._bias = self._bias - (self._lr * bias_d)
       self._weights = self._weights - (self._lr * weights_d)
 
-    self._fit_on_dataset = True
+    self._is_fitted = True
 
   def predict(self, X: np.ndarray) -> np.ndarray:
     """Predict for `X` using the previously calculated `weights` and `bias`.
@@ -163,7 +163,7 @@ class LinearRegression:
       ValueError: If shape of the given `X` differs from the shape of the `X`
         given to the `fit` function.
     """
-    if self._fit_on_dataset is False:
+    if self._is_fitted is False:
       raise RuntimeError(
         f'{self.__class__.__name__}: predict called before fitting data'
       )

@@ -239,7 +239,7 @@ class KNeighborsClassifier(DistanceMetric):
     self._n_neighbors = n_neighbors
     self._p = p
     self._metric = metric
-    self._fit_on_dataset = False
+    self._is_fitted = False
 
     self._check_if_parameters_comply_to_constraints(metric=self._metric)
     super().__init__(self._metric, self._p)
@@ -256,7 +256,7 @@ class KNeighborsClassifier(DistanceMetric):
     """
     self._X = X
     self._y = y
-    self._fit_on_dataset = True
+    self._is_fitted = True
     return self
 
   def predict(self, X: np.ndarray) -> np.ndarray:
@@ -271,7 +271,7 @@ class KNeighborsClassifier(DistanceMetric):
     Raises:
       RuntimeError: If predict method is called before fit.
     """
-    if self._fit_on_dataset is False:
+    if self._is_fitted is False:
       raise RuntimeError(
         f'{self.__class__.__name__}: predict called before fitting data'
       )

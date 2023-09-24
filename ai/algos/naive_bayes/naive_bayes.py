@@ -117,7 +117,7 @@ class GaussianNaiveBayes:
         not adjusted according to the data.
     """
     self._priors = priors
-    self._fit_on_dataset = False
+    self._is_fitted = False
 
     self._check_if_parameters_comply_to_constraints(priors=self._priors)
 
@@ -164,7 +164,7 @@ class GaussianNaiveBayes:
       if self._priors is None:
         self._class_priors[idx] = X_c.shape[0] / float(X.shape[0])
 
-    self._fit_on_dataset = True
+    self._is_fitted = True
     return self
 
   def predict(self, X: np.ndarray) -> np.ndarray:
@@ -177,7 +177,7 @@ class GaussianNaiveBayes:
     Returns:
       Predictions made for the given testing vector `X`.
     """
-    if self._fit_on_dataset is False:
+    if self._is_fitted is False:
       raise RuntimeError(
         f'{self.__class__.__name__}: predict called before fitting data'
       )
