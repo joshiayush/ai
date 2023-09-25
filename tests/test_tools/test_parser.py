@@ -19,7 +19,7 @@ import pytest
 import pathlib
 import tempfile
 
-from ai_docs import parser
+from tools.ai_docs import parser
 
 
 def test_replace_latex_code_with_icon():
@@ -45,29 +45,38 @@ def test_replace_latex_block_with_math_when_latex_is_present():
 
   markdown = '\n'.join(['Multi-line latex block here', '$$', 'x+y=z', '$$'])
   expected_output = '\n'.join(
-      ['Multi-line latex block here', '```math', 'x+y=z', '```'])
+    ['Multi-line latex block here', '```math', 'x+y=z', '```']
+  )
   assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
 
 def test_replace_latex_block_with_math_when_multiple_latex_is_present():
-  markdown = '\n'.join([
+  markdown = '\n'.join(
+    [
       'Inline latex block here $x-y=z$.', 'Multi-line latex block here', '$$',
       'x+y=z', '$$'
-  ])
-  expected_output = '\n'.join([
+    ]
+  )
+  expected_output = '\n'.join(
+    [
       'Inline latex block here $x-y=z$.', 'Multi-line latex block here',
       '```math', 'x+y=z', '```'
-  ])
+    ]
+  )
   assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
-  markdown = '\n'.join([
+  markdown = '\n'.join(
+    [
       'Inline latex block here $x-y=z$', 'Multi-line latex block here',
       '$$x+y=z$$'
-  ])
-  expected_output = '\n'.join([
+    ]
+  )
+  expected_output = '\n'.join(
+    [
       'Inline latex block here $x-y=z$', 'Multi-line latex block here',
       '$$x+y=z$$'
-  ])
+    ]
+  )
   assert parser._ReplaceLatexBlockWithMath(markdown) == expected_output
 
 
@@ -81,12 +90,14 @@ def ipynb_file_path():
 
 def test_generate_docs_with_code_blocks(ipynb_file_path):
   base_docs_dir = tempfile.TemporaryDirectory()  # pylint: disable=consider-using-with
-  markdown = '\n'.join([
+  markdown = '\n'.join(
+    [
       '# Topic 1', '', 'Some content here.', '', '```',
       '# This should not be considered a heading', '```', '', '# Topic 2', '',
-      'More content here.', '', '```python', 'import re', '# Imports re module',
-      '```'
-  ])
+      'More content here.', '', '```python', 'import re',
+      '# Imports re module', '```'
+    ]
+  )
 
   parser.GenerateDocs(base_docs_dir.name, ipynb_file_path, markdown)
 
@@ -96,8 +107,9 @@ def test_generate_docs_with_code_blocks(ipynb_file_path):
   assert (pathlib.Path(docs_dir) / 'Topic-1.md').exists()
   assert (pathlib.Path(docs_dir) / 'Topic-2.md').exists()
 
-  assert not (pathlib.Path(docs_dir) /
-              'This-should-not-be-considered-a-heading.md').exists()
+  assert not (
+    pathlib.Path(docs_dir) / 'This-should-not-be-considered-a-heading.md'
+  ).exists()
 
   with open(docs_dir / 'Topic-1.md', 'r', encoding='utf-8') as f:
     topic1_content = f.read()
