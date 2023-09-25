@@ -136,7 +136,7 @@ class LinearRegression:
     each iteration.
     """
     self._bias = 0
-    self._weights = np.zeros(X[1])
+    self._weights = np.zeros(X.shape[1])
 
     for _ in range(self._n_iters):
       y_pred = np.dot(X, self._weights) + self._bias
