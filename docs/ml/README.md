@@ -1,6 +1,4 @@
-<!-- TODO: Auto-generate this file when documents are generated! -->
-
-# Introduction to Machine Learning
+# Machine Learning
 
 1. [Introduction to ML](https://github.com/joshiayush/ai/blob/master/docs/ml/Introduction-to-ML.md)
 2. [Descending into ML](https://github.com/joshiayush/ai/blob/master/docs/ml/Descending-into-ML.md)

@@ -37,7 +37,7 @@ def GenerateAIDocs() -> int:
   """
   error_code = 0
   base_docs_dir = pathlib.Path(os.getcwd()) / _BASE_DOCS_DIR
-  for file in ai_utils.GetFileByExtensionUnderGivenDirectory(
+  for file in ai_utils.GetFileByExtensionUnderDirectory(
       'ipynb', os.fspath(pathlib.Path(os.getcwd()) / _BASE_AI_DIR)):
     try:
       ai_docs.GenerateDocs(base_docs_dir, file,

@@ -22,7 +22,7 @@ import pathlib
 _GLOB_EVERY_FILE_AND_DIR_REGEX = '**'
 
 
-def GetFileByExtensionUnderGivenDirectory(
+def GetFileByExtensionUnderDirectory(
     file_ext: str,
     dir: str | pathlib.Path,  # pylint: disable=redefined-builtin
     *,

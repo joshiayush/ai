@@ -14,4 +14,4 @@
 
 """Utilities for AI tools."""
 
-from .ai_fs import GetFileByExtensionUnderGivenDirectory
+from .ai_fs import GetFileByExtensionUnderDirectory

@@ -10,11 +10,11 @@ To jump onto the __Artificial Intelligence__ roadmap, please click on the
 
 ## Contents
 
-1. [Resources](https://github.com/joshiayush/ai/tree/master/docs/resource) (Resources required during learning)
-2. [Prework](https://github.com/joshiayush/ai/tree/master/docs/prework) (A bit of prework required before starting machine learning)
-3. [Tools](https://github.com/joshiayush/ai/tree/master/docs/tools) (Tools required to build machine learning models)
-4. [Machine Learning](https://github.com/joshiayush/ai/tree/master/docs/ml) (A deep dive into the concepts of machine learning)
-5. [Algorithms](https://github.com/joshiayush/ai/tree/master/docs/algos) (Implementation of common machine learning algorithms)
+1. [Resources](https://github.com/joshiayush/ai/tree/master/docs/resource#resources) (Resources required during learning)
+2. [Prework](https://github.com/joshiayush/ai/blob/master/docs/prework#prework) (A bit of prework required before starting machine learning)
+3. [Machine Learning](https://github.com/joshiayush/ai/tree/master/docs/ml#machine-learning) (A deep dive into the concepts of machine learning)
+4. [Algorithms](https://github.com/joshiayush/ai/tree/master/docs/algos#algorithms) (Implementation of common machine learning algorithms)
+5. [Roadmap](https://github.com/joshiayush/ai#roadmap) (Artificial Intelligence Engineer Roadmap)
 
 ## API Usage
 
@@ -41,3 +41,45 @@ y_pred = model.predict(X_test)
 
 print(accuracy_score(y_pred, y_test))
 ```
+
+## Roadmap
+
+<div align='center'>
+  <img src='/docs/__design__/media/Introduction.jpg' />
+</div>
+
+### Fundamentals
+
+<div align='center'>
+  <img src='/docs/__design__/media/Fundamentals.jpg' />
+</div>
+
+### Data Scientist
+
+<div align='center'>
+  <img src='/docs/__design__/media/Data_Science.jpg' />
+</div>
+
+### Machine Learning
+
+<div align='center'>
+  <img src='/docs/__design__/media/Machine_Learning.jpg' />
+</div>
+
+### Deep Learning
+
+<div align='center'>
+  <img src='/docs/__design__/media/Deep_Learning.jpg' />
+</div>
+
+### Data Engineer
+
+<div align='center'>
+  <img src='/docs/__design__/media/Data_Engineer.jpg' />
+</div>
+
+### Big Data Engineer
+
+<div align='center'>
+  <img src='/docs/__design__/media/Big_Data_Engineer.jpg' />
+</div>

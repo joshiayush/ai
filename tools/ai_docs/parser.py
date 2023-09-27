@@ -24,6 +24,7 @@ import json
 import codecs
 import pathlib
 
+
 # There are a few latex icon that GitHub couldn't generate with the
 # normal latex code therefore, we need to manually replace all of
 # them with their corresponding icons.
