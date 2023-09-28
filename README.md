@@ -5,7 +5,7 @@ These are the source files for the guide on Artificial Intelligence.
 To contribute to the Artificial Intelligence Guide, please read the
 [style guide](https://www.tensorflow.org/community/contribute/docs_style).
 
-To jump onto the __Artificial Intelligence__ roadmap, please click on the
+To jump onto the **Artificial Intelligence** roadmap, please click on the
 [Artificial Intelligence Map](https://github.com/joshiayush/ai/tree/master/docs/roadmap.md).
 
 ## Contents
@@ -45,41 +45,29 @@ print(accuracy_score(y_pred, y_test))
 ## Roadmap
 
 <div align='center'>
-  <img src='/docs/__design__/media/Introduction.jpg' />
+  <img src='docs/__design__/media/Introduction.jpg' />
 </div>
 
 ### Fundamentals
 
 <div align='center'>
-  <img src='/docs/__design__/media/Fundamentals.jpg' />
+  <img src='docs/__design__/media/Fundamentals.jpg' />
 </div>
 
 ### Data Scientist
 
 <div align='center'>
-  <img src='/docs/__design__/media/Data_Science.jpg' />
+  <img src='docs/__design__/media/Data_Science.jpg' />
 </div>
 
 ### Machine Learning
 
 <div align='center'>
-  <img src='/docs/__design__/media/Machine_Learning.jpg' />
+  <img src='docs/__design__/media/Machine_Learning.jpg' />
 </div>
 
 ### Deep Learning
 
 <div align='center'>
-  <img src='/docs/__design__/media/Deep_Learning.jpg' />
-</div>
-
-### Data Engineer
-
-<div align='center'>
-  <img src='/docs/__design__/media/Data_Engineer.jpg' />
-</div>
-
-### Big Data Engineer
-
-<div align='center'>
-  <img src='/docs/__design__/media/Big_Data_Engineer.jpg' />
+  <img src='docs/__design__/media/Deep_Learning.jpg' />
 </div>
