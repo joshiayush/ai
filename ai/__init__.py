@@ -33,7 +33,9 @@ _README = pathlib.Path(
 ).parent.parent / 'README.md'
 
 
-def _ResizeImages(width: int = None, height: int = None) -> callable:
+def _ResizeImages(
+  width: Union[int, str] = None, height: Union[int, str] = None
+) -> callable:
   def resizer(soup: BeautifulSoup) -> BeautifulSoup:
     for img in soup.find_all('img'):
       if width is not None:
@@ -70,7 +72,7 @@ def _PreprocessReadme(fpath: Union[str, pathlib.Path]) -> str:
 
   soup = BeautifulSoup(readme, 'html.parser')
   soup = _MarkdownPreprocessPipeline(
-    soup, (_ConvertImagePath2Base64, _ResizeImages(width=600))
+    soup, (_ConvertImagePath2Base64, _ResizeImages(width='90%'))
   )
   return str(soup)
 
