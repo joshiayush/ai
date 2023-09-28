@@ -1,6 +1,6 @@
 # Feature Crosses
 
-A __feature cross__ is a __synthetic feature__ formed by multiplying (crossing) two or more features. Crossing combinations of features can provide predictive abilities beyond what those features can provide individually.
+A **feature cross** is a **synthetic feature** formed by multiplying (crossing) two or more features. Crossing combinations of features can provide predictive abilities beyond what those features can provide individually.
 
 ## Encoding Nonlinearity
 
@@ -33,7 +33,7 @@ Can you draw a single straight line that neatly separates the sick trees from th
   <strong>Figure 3. A single line can't separate the two classes.</strong>
 </div>
 
-To solve the nonlinear problem shown in Figure 2, create a feature cross. A __feature cross__ is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together. (The term cross comes from [cross product](https://wikipedia.org/wiki/Cross_product).) Let's create a feature cross named $x_{3}$ by crossing $x_{1}$ and $x_{2}$:
+To solve the nonlinear problem shown in Figure 2, create a feature cross. A **feature cross** is a synthetic feature that encodes nonlinearity in the feature space by multiplying two or more input features together. (The term cross comes from [cross product](https://wikipedia.org/wiki/Cross_product).) Let's create a feature cross named $x_{3}$ by crossing $x_{1}$ and $x_{2}$:
 
 $$x_{3}=x_{1}x_{2}$$
 

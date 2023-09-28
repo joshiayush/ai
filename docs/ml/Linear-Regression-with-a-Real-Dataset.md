@@ -248,7 +248,7 @@ Look at the preceding table. How close is the predicted value to the label value
 
 > Most of the predicted values differ significantly from the label value, so the trained model probably doesn't have much predictive power. However, the first 10 examples might not be representative of the rest of the examples.  
 
-## Task 3: Try a different feature
+### Task 3: Try a different feature
 
 The `total_rooms` feature had only a little predictive power. Would a different feature have greater predictive power?  Try using `population` as the feature instead of `total_rooms`.
 
@@ -279,7 +279,7 @@ Did `population` produce better predictions than `total_rooms`?
 
 > Training is not entirely deterministic, but population typically converges at a slightly higher RMSE than total_rooms. So, population appears to be about the same or slightly worse at making predictions than total_rooms.
 
-## Task 4: Define a synthetic feature
+### Task 4: Define a synthetic feature
 
 You have determined that `total_rooms` and `population` were not useful features.  That is, neither the total number of rooms in a neighborhood nor the neighborhood's population successfully predicted the median house price of that neighborhood. Perhaps though, the *ratio* of `total_rooms` to `population` might have some predictive power. That is, perhaps block density relates to median house value.
 
@@ -314,7 +314,7 @@ predict_house_values(15, feature, label)
 
 Based on the loss values, this synthetic feature produces a better model than the individual features you tried in Task 2 and Task 3. However, the model still isn't creating great predictions.
 
-## Task 5. Find feature(s) whose raw values correlate with the label
+### Task 5. Find feature(s) whose raw values correlate with the label
 
 So far, we've relied on trial-and-error to identify possible features for the model.  Let's rely on statistics instead.
 

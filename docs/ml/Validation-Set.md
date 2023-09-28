@@ -22,7 +22,7 @@ Dividing the data set into two sets is a good idea, but not a panacea. You can g
   <strong>Figure 2. Slicing a single data set into three subsets.</strong>
 </div>
 
-Use the __validation set__ to evaluate results from the training set. Then, use the test set to double-check your evaluation after the model has "passed" the validation set. The following figure shows this new workflow:
+Use the **validation set** to evaluate results from the training set. Then, use the test set to double-check your evaluation after the model has "passed" the validation set. The following figure shows this new workflow:
 
 <div align='center'>
   <img src='https://developers.google.com/static/machine-learning/crash-course/images/WorkflowWithValidationSet.svg' />

@@ -160,7 +160,7 @@ plot_the_model(trained_weight, trained_bias, feature, label)
 plot_the_loss_curve(epochs, rmse)
 ```
 
-## Task 1: Examine the graphs
+### Task 1: Examine the graphs
 
 Examine the top graph. The blue dots identify the actual data; the red line identifies the output of the trained model. Ideally, the red line should align nicely with the blue dots.  Does it?  Probably not.
 
@@ -168,7 +168,7 @@ A certain amount of randomness plays into training a model, so you'll get somewh
 
 Examine the bottom graph, which shows the loss curve. Notice that the loss curve decreases but doesn't flatten out, which is a sign that the model hasn't trained sufficiently.
 
-## Task 2: Increase the number of epochs
+### Task 2: Increase the number of epochs
 
 Training loss should steadily decrease, steeply at first, and then more slowly. Eventually, training loss should eventually stay steady (zero slope or nearly zero slope), which indicates that training has [converged](http://developers.google.com/machine-learning/glossary/#convergence).
 
@@ -189,7 +189,7 @@ plot_the_model(trained_weight, trained_bias, feature, label)
 plot_the_loss_curve(epochs, rmse)
 ```
 
-## Task 3: Increase the learning rate
+### Task 3: Increase the learning rate
 
 In Task 2, you increased the number of epochs to get the model to converge. Sometimes, you can get the model to converge more quickly by increasing the learning rate. However, setting the learning rate too high often makes it impossible for a model to converge. In Task 3, we've intentionally set the learning rate too high. Run the following code cell and see what happens.
 
@@ -208,7 +208,7 @@ plot_the_loss_curve(epochs, rmse)
 
 The resulting model is terrible; the red line doesn't align with the blue dots. Furthermore, the loss curve oscillates like a [roller coaster](https://www.wikipedia.org/wiki/Roller_coaster).  An oscillating loss curve strongly suggests that the learning rate is too high.
 
-## Task 4: Find the ideal combination of epochs and learning rate
+### Task 4: Find the ideal combination of epochs and learning rate
 
 Assign values to the following two hyperparameters to make training converge as efficiently as possible:
 
@@ -228,7 +228,7 @@ plot_the_model(trained_weight, trained_bias, feature, label)
 plot_the_loss_curve(epochs, rmse)
 ```
 
-## Task 5: Adjust the batch size
+### Task 5: Adjust the batch size
 
 The system recalculates the model's loss value and adjusts the model's weights and bias after each **iteration**.  Each iteration is the span in which the system processes one batch. For example, if the **batch size** is 6, then the system recalculates the model's loss value and adjusts the model's weights and bias after processing every 6 examples.  
 
@@ -251,7 +251,7 @@ plot_the_model(trained_weight, trained_bias, feature, label)
 plot_the_loss_curve(epochs, rmse)
 ```
 
-## Summary of hyperparameter tuning
+## Summary of Hyperparameter Tuning
 
 Most machine learning problems require a lot of hyperparameter tuning.  Unfortunately, we can't provide concrete tuning rules for every model. Lowering the learning rate can help one model converge efficiently but make another model converge much too slowly.  You must experiment to find the best set of hyperparameters for your dataset. That said, here are a few rules of thumb:
 

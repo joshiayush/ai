@@ -50,7 +50,7 @@ Suppose we had the time and the computing resources to calculate the loss for al
 
 Convex problems have only one minimum; that is, only one place where the slope is exactly 0. That minimum is where the loss function converges.
 
-Calculating the loss function for every conceivable value of $w_{1}$ over the entire data set would be an inefficient way of finding the convergence point. Let's examine a better mechanism—very popular in machine learning—called __gradient descent__.
+Calculating the loss function for every conceivable value of $w_{1}$ over the entire data set would be an inefficient way of finding the convergence point. Let's examine a better mechanism—very popular in machine learning—called **gradient descent**.
 
 The first stage in gradient descent is to pick a starting value (a starting point) for $w_{1}$. The starting point doesn't matter much; therefore, many algorithms simply set $w_{1}$ to $0$ or pick a random value. The following figure shows that we've picked a starting point slightly greater than $0$:
 
@@ -64,11 +64,11 @@ The gradient descent algorithm then calculates the gradient of the loss curve at
 
 ### Partial derivatives
 
-A __multivariable function__ is a function with more than one argument, such as:
+A **multivariable function** is a function with more than one argument, such as:
 
 $$f(x,y)=e^{2y}\mathrm{sin}(x)$$
 
-The __partial derivate__ $f$ __with respect to__ $x$, denoted as follows:
+The **partial derivate** $f$ **with respect to** $x$, denoted as follows:
 
 $$\dfrac{∂f}{∂x}$$
 
@@ -102,7 +102,7 @@ In machine learning, partial derivatives are mostly used in conjunction with the
 
 ### Gradients
 
-The __gradient__ of a function, denoted as follows, is the vector of partial derivatives with respect to all of the independent variables:
+The **gradient** of a function, denoted as follows, is the vector of partial derivatives with respect to all of the independent variables:
 
 $$∇f$$
 
@@ -158,9 +158,9 @@ The gradient descent then repeats this process, edging ever closer to the minimu
 
 ## Learning Rate
 
-As noted, the gradient vector has both a direction and a magnitude. Gradient descent algorithms multiply the gradient by a scalar known as the __learning rate__ (also sometimes called __step size__) to determine the next point. For example, if the gradient magnitude is $2.5$ and the learning rate is $0.01$, then the gradient descent algorithm will pick the next point $0.025$ away from the previous point.
+As noted, the gradient vector has both a direction and a magnitude. Gradient descent algorithms multiply the gradient by a scalar known as the **learning rate** (also sometimes called **step size**) to determine the next point. For example, if the gradient magnitude is $2.5$ and the learning rate is $0.01$, then the gradient descent algorithm will pick the next point $0.025$ away from the previous point.
 
-__Hyperparameters__ are the knobs that programmers tweak in machine learning algorithms. Most machine learning programmers spend a fair amount of time tuning the learning rate. If you pick a learning rate that is too small, learning will take too long:
+**Hyperparameters** are the knobs that programmers tweak in machine learning algorithms. Most machine learning programmers spend a fair amount of time tuning the learning rate. If you pick a learning rate that is too small, learning will take too long:
 
 <div align='center'>
   <img src='https://developers.google.com/static/machine-learning/crash-course/images/LearningRateTooSmall.svg' />
@@ -192,7 +192,7 @@ The story for general convex functions is more complex.
 
 ## Stochastic Gradient Descent
 
-__Stochastic Gradient Descent (SGD)__ is an optimization algorithm used to find the minimum of a function. It is a type of gradient descent algorithm that is often used in machine learning and deep learning. It is called "stochastic" because it uses random samples of the data to estimate the gradient of the objective function, rather than using the entire dataset.
+**Stochastic Gradient Descent (SGD)** is an optimization algorithm used to find the minimum of a function. It is a type of gradient descent algorithm that is often used in machine learning and deep learning. It is called "stochastic" because it uses random samples of the data to estimate the gradient of the objective function, rather than using the entire dataset.
 
 Here's how it works:
 
@@ -203,17 +203,17 @@ Here's how it works:
 
 One of the main advantage of stochastic gradient descent is that it is computationally efficient. Because it uses a random sample of the data at each step, it can be much faster than batch gradient descent, which uses the entire dataset to calculate the gradient. Additionally, because it uses random samples, it can "escape" from local minima and converge to a global minimum.
 
-An example of an application of __SGD__ is Linear Regression, where the objective function is the mean squared error and the parameters are the weights of the model. Another example is Logistic Regression, where the objective function is the cross-entropy loss and the parameters are the weights of the model.
+An example of an application of **SGD** is Linear Regression, where the objective function is the mean squared error and the parameters are the weights of the model. Another example is Logistic Regression, where the objective function is the cross-entropy loss and the parameters are the weights of the model.
 
-It should be noted that the optimization speed of __SGD__ can be affected by the choice of the learning rate and the shuffling of the data during each iteration. Also it is not guaranteed to find the global minimum because of the randomness but it can be useful in practice.
+It should be noted that the optimization speed of **SGD** can be affected by the choice of the learning rate and the shuffling of the data during each iteration. Also it is not guaranteed to find the global minimum because of the randomness but it can be useful in practice.
 
-In summary, __Stochastic Gradient Descent__ is an optimization algorithm that is efficient and can help to find the global minimum of a function. It has been widely used in machine learning and deep learning tasks.
+In summary, **Stochastic Gradient Descent** is an optimization algorithm that is efficient and can help to find the global minimum of a function. It has been widely used in machine learning and deep learning tasks.
 
-### __Check Your Understanding__
+## Playground Exercise
 
-__Q1. When performing gradient descent on a large data set, which of the following batch sizes will likely be more efficient?__
+* [Playground Exercise](https://developers.google.com/machine-learning/crash-course/reducing-loss/playground-exercise)
 
-> __A small batch or even a batch of one example (SGD).__
->
-> Amazingly enough, performing gradient descent on a small batch or even a batch of one example is usually more efficient than the full batch. After all, finding the gradient of one example is far cheaper than finding the gradient of millions of examples. To ensure a good representative sample, the algorithm scoops up another random small batch (or batch of one) on every iteration.
+## Check Your Understanding
+
+* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/reducing-loss/check-your-understanding)
 

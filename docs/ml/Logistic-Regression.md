@@ -21,7 +21,7 @@ $$= 18$$
 
 In many cases, you'll map the logistic regression output into the solution to a binary classification problem, in which the goal is to correctly predict one of two possible labels (e.g., "spam" or "not spam").
 
-You might be wondering how a logistic regression model can ensure output that always falls between 0 and 1. As it happens, a __sigmoid function__, defined as follows, produces output having those same characteristics:
+You might be wondering how a logistic regression model can ensure output that always falls between 0 and 1. As it happens, a **sigmoid function**, defined as follows, produces output having those same characteristics:
 
 $$y = \dfrac{1}{1 + e^{-z}}$$
 

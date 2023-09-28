@@ -48,8 +48,7 @@ In the model represented by the following graph, we've added a "hidden layer" of
 
 <div align="center">
 
-<img src="https://developers.google.com/static/machine-learning/crash-course/images/1hidden.svg" />
-
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/1hidden.svg" height='400px' />
 <strong>Figure 4. Graph of two-layer model.</strong>
 
 </div>
@@ -60,7 +59,7 @@ In the model represented by the following graph, we've added a second hidden lay
 
 <div align="center">
 
-<img src="https://developers.google.com/static/machine-learning/crash-course/images/2hidden.svg" />
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/2hidden.svg" height="400px" />
 
 <strong>Figure 5. Graph of three-layer model.</strong>
 
@@ -86,7 +85,7 @@ Now that we've added an activation function, adding layers has more impact. Stac
 
 ### Common Activation Functions
 
-The following __sigmoid__ activation function converts the weighted sum to a value between 0 and 1.
+The following **sigmoid** activation function converts the weighted sum to a value between 0 and 1.
 
 $$F(x)=\dfrac{1}{1 + e^{-x}}$$
 
@@ -100,7 +99,7 @@ Here's a plot:
 
 </div>
 
-The following __rectified linear unit__ activation function (or __ReLU__, for short) often works a little better than a smooth function like the sigmoid, while also being significantly easier to compute.
+The following **rectified linear unit** activation function (or **ReLU**, for short) often works a little better than a smooth function like the sigmoid, while also being significantly easier to compute.
 
 $$F(x) = max(0, x)$$
 

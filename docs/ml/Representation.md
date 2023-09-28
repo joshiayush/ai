@@ -38,7 +38,7 @@ Integer and floating-point data don't need a special encoding because they can b
 
 Since models cannot multiply strings by the learned weights, we use feature engineering to convert strings to numeric values.
 
-We can accomplish this by defining a mapping from the feature values, which we'll refer to as the __vocabulary__ of possible values, to integers. Since not every street in the world will appear in our dataset, we can group all other streets into a catch-all "other" category, known as an __OOV (out-of-vocabulary) bucket__.
+We can accomplish this by defining a mapping from the feature values, which we'll refer to as the **vocabulary** of possible values, to integers. Since not every street in the world will appear in our dataset, we can group all other streets into a catch-all "other" category, known as an **OOV (out-of-vocabulary) bucket**.
 
 Using this approach, here's how we can map our street names to numbers:
 
@@ -58,7 +58,7 @@ To remove both these constraints, we can instead create a binary vector for each
 * For values that apply to the example, set corresponding vector elements to `1`.
 * Set all other elements to `0`.
 
-The length of this vector is equal to the number of elements in the vocabulary. This representation is called a __one-hot__ encoding when a single value is 1, and a __multi-hot__ encoding when multiple values are 1.
+The length of this vector is equal to the number of elements in the vocabulary. This representation is called a **one-hot** encoding when a single value is 1, and a **multi-hot** encoding when multiple values are 1.
 
 Figure 3 illustrates a one-hot encoding of a particular street: Shorebird Way. The element in the binary vector for Shorebird Way has a value of `1`, while the elements for all other streets have values of `0`.
 
@@ -156,7 +156,7 @@ Apple trees produce some mixture of great fruit and wormy messes. Yet the apples
 
 ### Scaling feature values
 
-__Scaling__ means converting floating-point feature values from their natural range (for example, 100 to 900) into a standard range (for example, 0 to 1 or -1 to +1). If a feature set consists of only a single feature, then scaling provides little to no practical benefit. If, however, a feature set consists of multiple features, then feature scaling provides the following benefits:
+**Scaling** means converting floating-point feature values from their natural range (for example, 100 to 900) into a standard range (for example, 0 to 1 or -1 to +1). If a feature set consists of only a single feature, then scaling provides little to no practical benefit. If, however, a feature set consists of multiple features, then feature scaling provides the following benefits:
 
 * Helps gradient descent converge more quickly.
 * Helps avoid the "NaN trap," in which one number in the model becomes a [NaN](https://wikipedia.org/wiki/NaN) (e.g., when a value exceeds the floating-point precision limit during training), and—due to math operations—every other number in the model also eventually becomes a NaN.
@@ -168,7 +168,7 @@ One obvious way to scale numerical data is to linearly map [min value, max value
 
 Another popular scaling tactic is to calculate the Z score of each value. The Z score relates the number of standard deviations away from the mean. In other words:
 
-$$scaledvalue=(value−mean)/stddev.$$
+$$\mathrm{scaled\ value}=(\mathrm{value}−\mathrm{mean})/ \mathrm{stddev}$$
 
 For example, given:
 
@@ -249,10 +249,10 @@ Another approach is to bin by [quantile](https://wikipedia.org/wiki/Quantile), w
 
 Until now, we've assumed that all the data used for training and testing was trustworthy. In real-life, many examples in data sets are unreliable due to one or more of the following:
 
-* __Omitted values.__ For instance, a person forgot to enter a value for a house's age.
-* __Duplicate examples.__ For example, a server mistakenly uploaded the same logs twice.
-* __Bad labels.__ For instance, a person mislabeled a picture of an oak tree as a maple.
-* __Bad feature values.__ For example, someone typed in an extra digit, or a thermometer was left out in the sun.
+* **Omitted values.** For instance, a person forgot to enter a value for a house's age.
+* **Duplicate examples.** For example, a server mistakenly uploaded the same logs twice.
+* **Bad labels.** For instance, a person mislabeled a picture of an oak tree as a maple.
+* **Bad feature values.** For example, someone typed in an extra digit, or a thermometer was left out in the sun.
 
 Once detected, you typically "fix" bad examples by removing them from the data set. To detect omitted values or duplicated examples, you can write a simple program. Detecting bad feature values or labels can be far trickier.
 

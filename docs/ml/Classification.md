@@ -4,13 +4,13 @@
 
 Logistic regression returns a probability. You can use the returned probability "as is" (for example, the probability that the user will click on this ad is 0.00023) or convert the returned probability to a binary value (for example, this email is spam).
 
-A logistic regression model that returns 0.9995 for a particular email message is predicting that it is very likely to be spam. Conversely, another email message with a prediction score of 0.0003 on that same logistic regression model is very likely not spam. However, what about an email message with a prediction score of 0.6? In order to map a logistic regression value to a binary category, you must define a __classification threshold__ (also called the __decision threshold__). A value above that threshold indicates "spam"; a value below indicates "not spam." It is tempting to assume that the classification threshold should always be 0.5, but thresholds are problem-dependent, and are therefore values that you must tune.
+A logistic regression model that returns 0.9995 for a particular email message is predicting that it is very likely to be spam. Conversely, another email message with a prediction score of 0.0003 on that same logistic regression model is very likely not spam. However, what about an email message with a prediction score of 0.6? In order to map a logistic regression value to a binary category, you must define a **classification threshold** (also called the **decision threshold**). A value above that threshold indicates "spam"; a value below indicates "not spam." It is tempting to assume that the classification threshold should always be 0.5, but thresholds are problem-dependent, and are therefore values that you must tune.
 
 ## True vs. False and Positive vs. Negative
 
 In this section, we'll define the primary building blocks of the metrics we'll use to evaluate classification models. But first, a fable:
 
-> __An Aesop's Fable: The Boy Who Cried Wolf (compressed)__
+> **An Aesop's Fable: The Boy Who Cried Wolf (compressed)**
 >
 > A shepherd boy gets bored tending the town's flock. To have some fun, he cries out, "Wolf!" even though no wolf is in sight. The villagers run to protect the flock, but then get really mad when they realize the boy was playing a joke on them.
 >
@@ -20,38 +20,38 @@ In this section, we'll define the primary building blocks of the metrics we'll u
 
 Let's make the following definitions:
 
-* "Wolf" is a __positive class__.
-* "No wolf" is a __negative class__.
+* "Wolf" is a **positive class**.
+* "No wolf" is a **negative class**.
 
 We can summarize our "wolf-prediction" model using a 2x2 [confusion matrix](https://developers.google.com/machine-learning/glossary#confusion_matrix) that depicts all four possible outcomes:
 
-* __True Positive (TP):__
+* **True Positive (TP):**
   * Reality: A wolf threatened.
   * Shepherd said: "Wolf."
   * Outcome: Shepherd is a hero.
 
-* __False Positive (FP):__
+* **False Positive (FP):**
   * Reality: No wolf threatened.
   * Shepherd said: "Wolf."
   * Outcome: Villagers are angry at shepherd for waking them up.
 
-* __True Negative (TN):__
+* **True Negative (TN):**
   * Reality: No wolf threatened.
   * Shepherd said: "No wolf."
   * Outcome: Everyone is fine.
 
-* __False Negative (FN):__
+* **False Negative (FN):**
   * Reality: A wolf threatened.
   * Shepherd said: "No wolf."
   * Outcome: The wolf ate all the sheep.
 
-A __true positive__ is an outcome where the model correctly predicts the positive class. Similarly, a __true negative__ is an outcome where the model correctly predicts the negative class.
+A **true positive** is an outcome where the model correctly predicts the positive class. Similarly, a **true negative** is an outcome where the model correctly predicts the negative class.
 
-A __false positive__ is an outcome where the model incorrectly predicts the positive class. And a __false negative__ is an outcome where the model incorrectly predicts the negative class.
+A **false positive** is an outcome where the model incorrectly predicts the positive class. And a **false negative** is an outcome where the model incorrectly predicts the negative class.
 
 ## Accuracy
 
-Accuracy is one metric for evaluating classification models. Informally, __accuracy__ is the fraction of predictions our model got right. Formally, accuracy has the following definition:
+Accuracy is one metric for evaluating classification models. Informally, **accuracy** is the fraction of predictions our model got right. Formally, accuracy has the following definition:
 
 $\mathrm{Accuracy} = \dfrac{\mathrm{Number\ of\ correct\ predictions}}{\mathrm{Total\ number\ of\ predictions}}$
 
@@ -59,29 +59,29 @@ For binary classification, accuracy can also be calculated in terms of positives
 
 $\mathrm{Accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN}$
 
-Where _TP_ = True Positives, _TN_ = True Negatives, _FP_ = False Positives, and _FN_ = False Negatives.
+Where *TP* = True Positives, *TN* = True Negatives, *FP* = False Positives, and *FN* = False Negatives.
 
 Let's try calculating accuracy for the following model that classified 100 tumors as [malignant](https://wikipedia.org/wiki/Malignancy) (the positive class) or [benign](https://wikipedia.org/wiki/Benign_tumor) (the negative class):
 
-* __True Positive (TP):__
+* **True Positive (TP):**
   * Reality: Malignant
   * ML model predicted: Malignant
-  * __Number of TP results__: 1
+  * **Number of TP results**: 1
 
-* __False Positive (FP):__
+* **False Positive (FP):**
   * Reality: Benign
   * ML model predicted: Malignant
-  * __Number of TP results__: 1
+  * **Number of TP results**: 1
 
-* __True Negative (TN):__
+* **True Negative (TN):**
   * Reality: Benign
   * ML model predicted: Benign
-  * __Number of TP results__: 90
+  * **Number of TP results**: 90
 
-* __False Negative (FN):__
+* **False Negative (FN):**
   * Reality: Malignant
   * ML model predicted: Benign
-  * __Number of TP results__: 8
+  * **Number of TP results**: 8
 
 $\mathrm{Accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN} = \dfrac{1 + 90}{1 + 90 + 1 + 8} = 0.91$
 
@@ -95,7 +95,7 @@ Of the 91 benign tumors, the model correctly identifies 90 as benign. That's goo
 
 While 91% accuracy may seem good at first glance, another tumor-classifier model that always predicts benign would achieve the exact same accuracy (91/100 correct predictions) on our examples. In other words, our model is no better than one that has zero predictive ability to distinguish malignant tumors from benign tumors.
 
-Accuracy alone doesn't tell the full story when you're working with a __class-imbalanced data set__, like this one, where there is a significant disparity between the number of positive and negative labels.
+Accuracy alone doesn't tell the full story when you're working with a **class-imbalanced data set**, like this one, where there is a significant disparity between the number of positive and negative labels.
 
 ## Precision and Recall
 
@@ -113,10 +113,10 @@ $\mathrm{Precision} = \dfrac{TP}{TP + FP}$
 
 Let's calculate precision for our ML model from the previous section that analyzes tumors:
 
-* __True Positives (TPs): 1__
-* __False Positives (FPs): 1__
-* __False Negatives (FNs): 8__
-* __True Negatives (TNs): 90__
+* **True Positives (TPs): 1**
+* **False Positives (FPs): 1**
+* **False Negatives (FNs): 8**
+* **True Negatives (TNs): 90**
 
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{1}{1 + 1} = 0.5$
 
@@ -124,7 +124,7 @@ Our model has a precision of 0.5—in other words, when it predicts a tumor is m
 
 ### Recall
 
-__Recall__ attempts to answer the following question:
+**Recall** attempts to answer the following question:
 
 ```
 What proportion of actual positives was identified correctly?
@@ -136,10 +136,10 @@ $\mathrm{Recall} = \dfrac{TP}{TP + FN}$
 
 Let's calculate recall for our tumor classifier:
 
-* __True Positives (TPs): 1__
-* __False Positives (FPs): 1__
-* __False Negatives (FNs): 8__
-* __True Negatives (TNs): 90__
+* **True Positives (TPs): 1**
+* **False Positives (FPs): 1**
+* **False Negatives (FNs): 8**
+* **True Negatives (TNs): 90**
 
 $\mathrm{Recall} = \dfrac{TP}{TP + FN} = \dfrac{1}{1 + 8} = 0.11$
 
@@ -159,16 +159,16 @@ To fully evaluate the effectiveness of a model, you must examine both precision 
 
 Let's calculate precision and recall based on the results shown in Figure 1:
 
-* __True Positives (TP): 8__
-* __False Positives (FP): 2__
-* __False Negatives (FN): 3__
-* __True Negatives (TN): 17__
+* **True Positives (TP): 8**
+* **False Positives (FP): 2**
+* **False Negatives (FN): 3**
+* **True Negatives (TN): 17**
 
-Precision measures the percentage of __emails flagged as spam__ that were correctly classified—that is, the percentage of dots to the right of the threshold line that are green in Figure 1:
+Precision measures the percentage of **emails flagged as spam** that were correctly classified—that is, the percentage of dots to the right of the threshold line that are green in Figure 1:
 
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{8}{8 + 2} = 0.8$
 
-Recall measures the percentage of __actual spam emails__ that were correctly classified—that is, the percentage of green dots that are to the right of the threshold line in Figure 1:
+Recall measures the percentage of **actual spam emails** that were correctly classified—that is, the percentage of green dots that are to the right of the threshold line in Figure 1:
 
 $\mathrm{Precision} = \dfrac{TP}{TP + FN} = \dfrac{8}{8 + 3} = 0.73$
 
@@ -184,10 +184,10 @@ Figure 2 illustrates the effect of increasing the classification threshold.
 
 The number of false positives decreases, but false negatives increase. As a result, precision increases, while recall decreases:
 
-* __True Positives (TP): 7__
-* __False Positives (FP): 1__
-* __False Negatives (FN): 4__
-* __True Negatives (TN): 18__
+* **True Positives (TP): 7**
+* **False Positives (FP): 1**
+* **False Negatives (FN): 4**
+* **True Negatives (TN): 18**
 
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{7}{7 + 1} = 0.88$
 
@@ -205,10 +205,10 @@ Conversely, Figure 3 illustrates the effect of decreasing the classification thr
 
 False positives increase, and false negatives decrease. As a result, this time, precision decreases and recall increases:
 
-* __True Positives (TP): 9__
-* __False Positives (FP): 3__
-* __False Negatives (FN): 2__
-* __True Negatives (TN): 16__
+* **True Positives (TP): 9**
+* **False Positives (FP): 3**
+* **False Negatives (FN): 2**
+* **True Negatives (TN): 16**
 
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{9}{9 + 3} = 0.75$
 
@@ -220,16 +220,16 @@ Various metrics have been developed that rely on both precision and recall. For 
 
 ### ROC Curve
 
-An __ROC curve (receiver operating characteristic curve)__ is a graph showing the performance of a classification model at all classification thresholds. This curve plots two parameters:
+An **ROC curve (receiver operating characteristic curve)** is a graph showing the performance of a classification model at all classification thresholds. This curve plots two parameters:
 
 * True positive rate
 * False positive rate
 
-__True Positive Rate (TPR)__ is a synonym for recall and is therefore defined as follows:
+**True Positive Rate (TPR)** is a synonym for recall and is therefore defined as follows:
 
 $\mathrm{TPR} = \dfrac{TP}{TP + FN}$
 
-__False Positive Rate (FPR)__ is defined as follows:
+**False Positive Rate (FPR)** is defined as follows:
 
 $\mathrm{FPR} = \dfrac{FP}{FP + TN}$
 
@@ -247,7 +247,7 @@ To compute the points in an ROC curve, we could evaluate a logistic regression m
 
 ## AUC: Area Under the ROC Curve
 
-__AUC__ stands for "Area under the ROC Curve." That is, AUC measures the entire two-dimensional area underneath the entire ROC curve (think integral calculus) from (0,0) to (1,1).
+**AUC** stands for "Area under the ROC Curve." That is, AUC measures the entire two-dimensional area underneath the entire ROC curve (think integral calculus) from (0,0) to (1,1).
 
 <div align="center">
 
@@ -273,14 +273,14 @@ AUC ranges in value from 0 to 1. A model whose predictions are 100% wrong has an
 
 AUC is desirable for the following two reasons:
 
-* AUC is __scale-invariant__. It measures how well predictions are ranked, rather than their absolute values.
-* AUC is __classification-threshold-invariant__. It measures the quality of the model's predictions irrespective of what classification threshold is chosen.
+* AUC is **scale-invariant**. It measures how well predictions are ranked, rather than their absolute values.
+* AUC is **classification-threshold-invariant**. It measures the quality of the model's predictions irrespective of what classification threshold is chosen.
 
 However, both these reasons come with caveats, which may limit the usefulness of AUC in certain use cases:
 
-* __Scale invariance is not always desirable__. For example, sometimes we really do need well calibrated probability outputs, and AUC won’t tell us about that.
+* **Scale invariance is not always desirable**. For example, sometimes we really do need well calibrated probability outputs, and AUC won’t tell us about that.
 
-* __Classification-threshold invariance is not always desirable__. In cases where there are wide disparities in the cost of false negatives vs. false positives, it may be critical to minimize one type of classification error. For example, when doing email spam detection, you likely want to prioritize minimizing false positives (even if that results in a significant increase of false negatives). AUC isn't a useful metric for this type of optimization.
+* **Classification-threshold invariance is not always desirable**. In cases where there are wide disparities in the cost of false negatives vs. false positives, it may be critical to minimize one type of classification error. For example, when doing email spam detection, you likely want to prioritize minimizing false positives (even if that results in a significant increase of false negatives). AUC isn't a useful metric for this type of optimization.
 
 ## Prediction Bias
 
@@ -290,11 +290,11 @@ Logistic regression predictions should be unbiased. That is:
 "average of predictions" should ≈ "average of observations"
 ```
 
-__Prediction bias__ is a quantity that measures how far apart those two averages are. That is:
+**Prediction bias** is a quantity that measures how far apart those two averages are. That is:
 
 $\mathrm{prediction\ bias} = \mathrm{average\ of\ predictions} - \mathrm{average\ of\ labels\ in\ data\ set}$
 
-<small>__Note:__ "Prediction bias" is a different quantity than [bias](https://developers.google.com/machine-learning/crash-course/descending-into-ml) (the b in wx + b).</small>
+<small>**Note:** "Prediction bias" is a different quantity than [bias](https://developers.google.com/machine-learning/crash-course/descending-into-ml) (the b in wx + b).</small>
 
 A significant nonzero prediction bias tells you there is a bug somewhere in your model, as it indicates that the model is wrong about how frequently positive labels occur.
 
@@ -308,14 +308,14 @@ Possible root causes of prediction bias are:
 * Biased training sample
 * Overly strong regularization
 
-You might be tempted to correct prediction bias by post-processing the learned model—that is, by adding a __calibration layer__ that adjusts your model's output to reduce the prediction bias. For example, if your model has +3% bias, you could add a calibration layer that lowers the mean prediction by 3%. However, adding a calibration layer is a bad idea for the following reasons:
+You might be tempted to correct prediction bias by post-processing the learned model—that is, by adding a **calibration layer** that adjusts your model's output to reduce the prediction bias. For example, if your model has +3% bias, you could add a calibration layer that lowers the mean prediction by 3%. However, adding a calibration layer is a bad idea for the following reasons:
 
 * You're fixing the symptom rather than the cause.
 * You've built a more brittle system that you must now keep up to date.
 
 If possible, avoid calibration layers. Projects that use calibration layers tend to become reliant on them—using calibration layers to fix all their model's sins. Ultimately, maintaining the calibration layers can become a nightmare.
 
-<small>__Note:__ A good model will usually have near-zero bias. That said, a low prediction bias does not prove that your model is good. A really terrible model could have a zero prediction bias. For example, a model that just predicts the mean value for all examples would be a bad model, despite having zero bias.</small>
+<small>**Note:** A good model will usually have near-zero bias. That said, a low prediction bias does not prove that your model is good. A really terrible model could have a zero prediction bias. For example, a model that just predicts the mean value for all examples would be a bad model, despite having zero bias.</small>
 
 ### Bucketing and Prediction Bias
 

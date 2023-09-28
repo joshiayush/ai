@@ -44,7 +44,7 @@ where:
 * $w_{1}$ is the [weight](https://developers.google.com/machine-learning/glossary#weight) of feature 1. Weight is the same concept as the "slope" _$m$_ in the traditional equation of a line.
 * $x_{1}$ is a [feature](https://developers.google.com/machine-learning/crash-course/framing/ml-terminology#features) (a known input).
 
-To __infer__ (predict) the temprature $y^\prime$ for new chirps-per-minute value $x_{1}$, just substitute the $x_{1}$ value into this model.
+To **infer** (predict) the temprature $y^\prime$ for new chirps-per-minute value $x_{1}$, just substitute the $x_{1}$ value into this model.
 
 Although this model uses only one feature, a more sophisticated model might rely on multiple features, each having a separate weight ($w_{1}$, $w_{2}$, etc.). For example, a model that relies on three features might look as follows:
 
@@ -52,9 +52,9 @@ $$y^\prime=b+w_{1}x_{1}+w_{2}x_{2}+w_{3}x_{3}$$
 
 ## Training and Loss
 
-__Training__ a model simply means learning (determining) good values for all the weights and the bias from labeled examples. In supervised learning, a machine learning algorithm builds a model by examining many examples and attempting to find a model that minimizes loss; this process is called __empirical risk minimization__.
+**Training** a model simply means learning (determining) good values for all the weights and the bias from labeled examples. In supervised learning, a machine learning algorithm builds a model by examining many examples and attempting to find a model that minimizes loss; this process is called **empirical risk minimization**.
 
-Loss is the penalty for a bad prediction. That is, __loss__ is a number indicating how bad the model's prediction was on a single example. If the model's prediction is perfect, the loss is zero; otherwise, the loss is greater. The goal of training a model is to find a set of weights and biases that have low loss, on average, across all examples. For example, Figure 3 shows a high loss model on the left and a low loss model on the right. Note the following about the figure:
+Loss is the penalty for a bad prediction. That is, **loss** is a number indicating how bad the model's prediction was on a single example. If the model's prediction is perfect, the loss is zero; otherwise, the loss is greater. The goal of training a model is to find a set of weights and biases that have low loss, on average, across all examples. For example, Figure 3 shows a high loss model on the left and a low loss model on the right. Note the following about the figure:
 
 * The arrows represent loss.
 * The blue lines represent predictions.
@@ -71,7 +71,7 @@ You might be wondering whether you could create a mathematical function — a lo
 
 ### Squared loss: a popular loss function
 
-The linear regression models we'll examine here use a loss function called __squared loss__ (also known as __L2 loss__). The __squared loss__ for a single example is as follows:
+The linear regression models we'll examine here use a loss function called **squared loss** (also known as **L2 loss**). The **squared loss** for a single example is as follows:
 
 ```
   = the square of the difference between the label and the prediction
@@ -79,7 +79,7 @@ The linear regression models we'll examine here use a loss function called __squ
   = (y - y')2
 ```
 
-__Mean square error (MSE)__ is the average squared loss per example over the whole dataset. To calculate __MSE__, sum up all the squared losses for individual examples and then divide by the number of examples:
+**Mean square error (MSE)** is the average squared loss per example over the whole dataset. To calculate **MSE**, sum up all the squared losses for individual examples and then divide by the number of examples:
 
 $$\mathrm{MSE}=\dfrac{1}{N}\sum_{(x,y) \in D} (y - \mathrm{prediction}(x))^2$$
 
@@ -94,21 +94,7 @@ where:
 
 Although MSE is commonly-used in machine learning, it is neither the only practical loss function nor the best loss function for all circumstances.
 
-### Check your understanding
+## Check Your Understanding
 
-__Mean Squared Error__
-
-Consider the following two plots:
-
-<div align='center'>
-  <img src='https://developers.google.com/static/machine-learning/crash-course/images/MCEDescendingIntoMLLeft.png' />
-
-  <img src='https://developers.google.com/static/machine-learning/crash-course/images/MCEDescendingIntoMLRight.png' />
-</div>
-
-__Q1. Which of the two data sets shown in the preceding plots has the higher Mean Squared Error (MSE)?__
-
-> __The dataset on the right.__ <br>
-> The eight examples on the line incur a total loss of 0. However, although only two points lay off the line, both of those points are twice as far off the line as the outlier points in the left figure. Squared loss amplifies those differences, so an offset of two incurs a loss four times as great as an offset of one.
-> $$\mathrm{MSE}=\dfrac{0^2+0^2+0^2+2^2+0^2+0^2+0^2+2^2+0^2+0^2}{10}=0.8$$
+* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/descending-into-ml/check-your-understanding)
 
