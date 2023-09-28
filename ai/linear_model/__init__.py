@@ -12,5 +12,16 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""The term linear model implies that the model is specified as a linear
+combination of features. Based on training data, the learning process computes
+one weight for each feature to form a model that can predict or estimate the
+target value.
+
+`ai.linear_model` module implements a variety of linear models:
+
+  * `ai.linear_model.linear.LinearRegression`
+  * `ai.linear_model.logistic.LogisticRegression`
+"""
+
 from .linear import LinearRegression
 from .logistic import LogisticRegression

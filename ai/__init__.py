@@ -22,7 +22,7 @@ import base64
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-from .correlation import corrcoef
+from .stats import corrcoef
 
 from .neighbors import KNeighborsClassifier
 from .naive_bayes import GaussianNaiveBayes

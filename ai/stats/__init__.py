@@ -12,4 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from .pearson import corrcoef
+"""Statistical routines for `numpy` arrays.
+
+`ai.stats` implements variety of statistical methods for computing stats of
+`numpy` arrays:
+
+  * `ai.stats.correlation.cov`
+  * `ai.stats.correlation.corrcoef`
+"""
+
+from .correlation import cov, corrcoef
