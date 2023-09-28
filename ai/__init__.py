@@ -16,7 +16,6 @@ from typing import Union, List
 
 import os
 import pathlib
-import re
 import base64
 
 from bs4 import BeautifulSoup
@@ -28,9 +27,10 @@ from .neighbors import KNeighborsClassifier
 from .naive_bayes import GaussianNaiveBayes
 from .linear_model import (LinearRegression, LogisticRegression)
 
-_README = pathlib.Path(
+_DOCS_DIR = pathlib.Path(
   os.fspath(os.path.normpath(__file__))
-).parent.parent / 'README.md'
+).parent.parent / 'docs'
+_ML_DOCS_DIR = _DOCS_DIR / 'ml'
 
 
 def _ResizeImages(
@@ -54,7 +54,14 @@ def _ConvertImagePath2Base64(soup: BeautifulSoup) -> BeautifulSoup:
     if urlparse(src).scheme == '':
       with open(src, 'rb') as img_f:
         base64_img = base64.b64encode(img_f.read()).decode('utf-8')
-    img['src'] = f'data:image/png;base64,{base64_img}'
+      img['src'] = f'data:image/png;base64,{base64_img}'
+  return soup
+
+
+def _WrapImgStrongWithBlock(soup: BeautifulSoup) -> BeautifulSoup:
+  for img in soup.find_all('img'):
+    if img.parent.find_all('strong'):
+      img.parent.strong.wrap(soup.new_tag('p'))
   return soup
 
 
@@ -72,9 +79,38 @@ def _PreprocessReadme(fpath: Union[str, pathlib.Path]) -> str:
 
   soup = BeautifulSoup(readme, 'html.parser')
   soup = _MarkdownPreprocessPipeline(
-    soup, (_ConvertImagePath2Base64, _ResizeImages(width='90%'))
+    soup, (
+      _ConvertImagePath2Base64, _ResizeImages(width='90%'
+                                              ), _WrapImgStrongWithBlock
+    )
   )
   return str(soup)
 
 
-__doc__ = _PreprocessReadme(_README)
+# DO NOT TOUCH! THIS KEEPS THE DOCUMENTATION IN ORDER!
+_ML_README_FILES = (
+  'Introduction-to-ML.md',
+  'Descending-into-ML.md',
+  'Reducing-Loss.md',
+  'Introduction-to-TensorFlow.md',
+  'Generalization.md',
+  'Training-and-Test-Sets.md',
+  'Validation-Set.md',
+  'Representation.md',
+  'Feature-Crosses.md',
+  'Regularization-for-Simplicity.md',
+  'Logistic-Regression.md',
+  'Classification.md',
+  'Regularization-for-Sparsity.md',
+  'Neural-Networks.md',
+)
+
+
+def _MakeDocs(docs_dir: pathlib.Path) -> str:
+  doc = ''
+  for readme in _ML_README_FILES:
+    doc += _PreprocessReadme(_ML_DOCS_DIR / readme)
+  return doc
+
+
+__doc__ = _MakeDocs(_ML_DOCS_DIR)

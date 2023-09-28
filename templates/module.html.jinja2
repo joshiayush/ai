@@ -1,0 +1,11 @@
+{% extends "default/module.html.jinja2" %}
+
+{% block title %}
+	joshiayush.ai
+{% endblock %}
+
+{% block nav_members %}{% endblock %}
+
+{% block nav_footer %}
+  <footer>ai v{{ env["VERSION"] | default("1.0") }}</footer>
+{% endblock %}
