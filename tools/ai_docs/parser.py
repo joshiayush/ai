@@ -176,8 +176,12 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
   # Take out the "head" component, because that's where we would want
   # to store our generated document file.
   ipynb_docs_dir, ipynb_docs_file = os.path.split(ipynb_file_path)
+  # TODO: Extremely fragile part - prone to system failures due to the '+6' down
+  # there which is put there based on the situation, because at the time of
+  # writing this program we care about replacing the 'notebooks' in the
+  # `ipynb_docs_dir` with 'docs' string.
   ipynb_docs_dir = pathlib.Path(base_docs_dir) / os.fspath(
-      ipynb_docs_dir)[len(os.fspath(base_docs_dir)) - 1:]
+      ipynb_docs_dir)[len(os.fspath(base_docs_dir)) + 6:]
 
   if not os.path.exists(os.fspath(ipynb_docs_dir)):
     os.makedirs(ipynb_docs_dir)
