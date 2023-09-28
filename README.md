@@ -1,9 +1,10 @@
-# Artificial Intelligence Guide
+# AI
 
-These are the source files for the guide on Artificial Intelligence.
+These are the source files for a light weight implementation of machine learning algorithms.
 
-To contribute to the Artificial Intelligence Guide, please read the
-[style guide](https://www.tensorflow.org/community/contribute/docs_style).
+The idea is to learn machine learning by implementing the algorithms from ground up, harnessing the capabilities of plain numpy. This initiative goes beyond utilizing existing tools; it is a meticulous crafting of custom implementations that dive deep into the intricate mathematics underpinning each algorithm.
+
+To contribute to AI, please read the [style guide](https://www.tensorflow.org/community/contribute/docs_style).
 
 To jump onto the **Artificial Intelligence** roadmap, please click on the
 [Artificial Intelligence Map](https://github.com/joshiayush/ai/tree/master/docs/roadmap.md).
