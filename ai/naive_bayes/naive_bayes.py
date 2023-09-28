@@ -59,6 +59,8 @@ class GaussianNaiveBayes:
 
       P(y | x_{1}, ..., x_{n}) \\propto P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)
 
+  .. math::
+
       ⇒ \\hat y = arg \\max_{y} P(y) \\cdot \\prod_{i=1}^{n} P(x_{i} | y)
 
   and we can use Maximum A Posteriori (MAP) estimation to estimate :math:`P(y)`

@@ -45,7 +45,7 @@ class DistanceMetric:
     self._metric = metric
     self._minkowski_p = minkowski_p
 
-  def _euclidean(
+  def euclidean(
     self, x1: Union[np.float32, np.ndarray], x2: Union[np.float32, np.ndarray]
   ) -> Union[np.float32, np.ndarray]:
     """Euclidean distance.
@@ -54,11 +54,10 @@ class DistanceMetric:
     real-valued vectors. Using the below formula, it measures a straight line
     between the query point and the other point being measured.
 
-      math:`
-        \\mathrm{Euclidean\\ Distance} = \\sqrt{
-                                          \\sum_{i=1}^{n}(y_{i} - x_{i})^2
-                                          }
-      `
+    .. math::
+      \\mathrm{Euclidean\\ Distance} = \\sqrt{
+                                        \\sum_{i=1}^{n}(y_{i} - x_{i})^2
+                                        }
 
     Args:
       x1: Query point vector.
@@ -69,7 +68,7 @@ class DistanceMetric:
     """
     return np.sqrt(np.sum(np.power((x1 - x2)), 2))
 
-  def _minkowski(
+  def minkowski(
     self, x1: Union[np.float32, np.ndarray], x2: Union[np.float32, np.ndarray]
   ) -> Union[np.float32, np.ndarray]:
     """Minkowski distance.
@@ -80,12 +79,11 @@ class DistanceMetric:
     this formula when p is equal to two, and Manhattan distance is denoted with
     p equal to one.
 
-      math:`
-        \\mathrm{Minkowski\\ Distance} = (
-                                          (\\sum_{i=1}^{n}|x_{i} - y_{i}|)
-                                          ^ \\dfrac{1}{p}
-                                         )
-      `
+    .. math::
+      \\mathrm{Minkowski\\ Distance} = (
+                                        (\\sum_{i=1}^{n}|x_{i} - y_{i}|)
+                                        ^ \\dfrac{1}{p}
+                                       )
 
     Args:
       x1: Query point vector.
@@ -96,7 +94,7 @@ class DistanceMetric:
     """
     return np.power(np.sum(np.absolute((x1 - x2))), 1 / self._minkowski_p)
 
-  def _manhattan(
+  def manhattan(
     self, x1: Union[np.float32, np.ndarray], x2: Union[np.float32, np.ndarray]
   ) -> Union[np.float32, np.ndarray]:
     """Manhattan distance.
@@ -106,9 +104,8 @@ class DistanceMetric:
     block distance as it is commonly visualized with a grid, illustrating how
     one might navigate from one address to another via city streets.
 
-      math:`
-        \\mathrm{Manhattan\\ Distance} = \\sum_{i=1}^{m}|x_{i} - y_{i}|
-      `
+    .. math::
+      \\mathrm{Manhattan\\ Distance} = \\sum_{i=1}^{m}|x_{i} - y_{i}|
 
     Args:
       x1: Query point vector.
@@ -119,7 +116,7 @@ class DistanceMetric:
     """
     return np.sum(np.absolute((x1 - x2)))
 
-  def _hamming(
+  def hamming(
     self, x1: Union[np.float32, np.ndarray], x2: Union[np.float32, np.ndarray]
   ) -> Union[np.float32, np.ndarray]:
     """Hamming distance.
@@ -129,9 +126,8 @@ class DistanceMetric:
     referred to as the overlap metric. This can be represented with the
     following formula:
 
-      math:`
-        \\mathrm{Hamming\\ Distance} = \\sum_{i=1}^{k}|x_{i} - y_{i}|
-      `
+    .. math::
+      \\mathrm{Hamming\\ Distance} = \\sum_{i=1}^{k}|x_{i} - y_{i}|
 
     Args:
       x1: Query point vector.
@@ -159,13 +155,13 @@ class DistanceMetric:
       return self._distance_func_cache(x1, x2)
 
     if self._metric == 'euclidean':
-      self._distance_func_cache = self._euclidean
+      self._distance_func_cache = self.euclidean
     elif self._metric == 'minkowski':
-      self._distance_func_cache = self._minkowski
+      self._distance_func_cache = self.minkowski
     elif self._metric == 'manhattan':
-      self._distance_func_cache = self._manhattan
+      self._distance_func_cache = self.manhattan
     elif self._metric == 'hamming':
-      self._distance_func_cache = self._hamming
+      self._distance_func_cache = self.hamming
     else:
       raise RuntimeError(
         (
@@ -190,11 +186,11 @@ class KNeighborsClassifier(DistanceMetric):
   give data point is used.
 
   Args:
-    n_neighbors: Number of neighbors to use. By default 3.
-    p: Power parameter for the Minkowski metric. When p = 1, this is equivalent
-      to using manhattan_distance (l1), and euclidean_distance (l2) for p = 2.
-      For arbitrary p, minkowski_distance (l_p) is used.
-    metric: Metric to use for distance computation. Default is 'euclidean'.
+    n_neighbors: Number of neighbors to use. By default `3`.
+    p: Power parameter for the Minkowski metric. When `p = 1`, this is equivalent
+      to using `manhattan_distance (l1)`, and `euclidean_distance (l2)` for
+      `p = 2`. For arbitrary `p`, `minkowski_distance (l_p)` is used.
+    metric: Metric to use for distance computation. Default is `euclidean`.
   """
   _parameter_constraints: dict = {
     'metric': [
@@ -230,11 +226,12 @@ class KNeighborsClassifier(DistanceMetric):
     """Initializes model's hyperparameters.
 
     Args:
-      n_neighbors: Number of neighbors to use. By default 3.
-      p: Power parameter for the Minkowski metric. When p = 1, this is
-        equivalent to using manhattan_distance (l1), and euclidean_distance (l2)
-        for p = 2. For arbitrary p, minkowski_distance (l_p) is used.
-      metric: Metric to use for distance computation. Default is 'euclidean'.
+      n_neighbors: Number of neighbors to use. By default `3`.
+      p: Power parameter for the Minkowski metric. When `p = 1`, this is
+        equivalent to using `manhattan_distance (l1)`, and
+        `euclidean_distance (l2)` for `p = 2`. For arbitrary `p`,
+        `minkowski_distance (l_p)` is used.
+      metric: Metric to use for distance computation. Default is `euclidean`.
     """
     self._n_neighbors = n_neighbors
     self._p = p

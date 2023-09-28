@@ -27,14 +27,14 @@ class LogisticRegression:
 
   .. math::
 
-      z = w \\cdot X + b
+    z = w \\cdot X + b
 
   Now we use the sigmoid function where the input will be z and we find the
   probability between 0 and 1. i.e predicted y.
 
   .. math::
 
-      \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
+    \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
 
   Args:
     alpha: Model's learning rate. High value might over shoot the minimum
@@ -54,8 +54,8 @@ class LogisticRegression:
     self._alpha = alpha
     self._n_iters = n_iters
 
-    self.weights_ = None
-    self.coefficients_ = None
+    self._bias = None
+    self._weights = None
 
   @staticmethod
   def _sigmoid(t: np.ndarray) -> np.ndarray:
@@ -79,14 +79,14 @@ class LogisticRegression:
 
     .. math::
 
-        z = w \\cdot X + b
+      z = w \\cdot X + b
 
     Now we use the sigmoid function where the input will be z and we find the
     probability between 0 and 1. i.e predicted y.
 
     .. math::
 
-        \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
+      \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
 
     Args:
       X: Training vectors, where `n_samples` is the number of samples and
@@ -108,8 +108,6 @@ class LogisticRegression:
       self._bias = self._bias - (self._alpha * bias_d)
       self._weights = self._weights - (self._alpha * weights_d)
 
-    self.weights_ = self._weights
-    self.coefficients_ = self._bias
     return self
 
   def predict(self, X: np.ndarray) -> np.ndarray:
@@ -126,7 +124,7 @@ class LogisticRegression:
       ValueError: If shape of the given `X` differs from the shape of the `X`
         given to the `fit` function.
     """
-    if self.weights_ is None or self.coefficients_ is None:
+    if self._weights is None or self._bias is None:
       raise RuntimeError(
         f'{self.__class__.__name__}: predict called before fitting data'
       )

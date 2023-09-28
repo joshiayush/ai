@@ -22,13 +22,13 @@ import numpy as np
 
 
 def cov(
-  m: np.array,
-  y: np.array = None,
+  m: np.ndarray,
+  y: np.ndarray = None,
   rowvar: bool = True,
   bias: bool = False,
   ddof: int = None,
-  fweights: np.array = None,
-  aweights: np.array = None,
+  fweights: np.ndarray = None,
+  aweights: np.ndarray = None,
   *,
   dtype: np.dtype = None
 ) -> np.ndarray:
@@ -40,50 +40,49 @@ def cov(
   and :math:`x_j`. The element :math:`C_{ii}` is the variance of :math:`x_i`.
 
   Args:
-    m:        A 1-D or 2-D array containing multiple variables and observations.
-              Each row of `m` represents a variable, and each column a single
-              observation of all those variables. Also see `rowvar` below.
-    y:        An additional set of variables and observations. `y` has the same
-              form as that of `m`.
-    rowvar:   If `rowvar` is True (default), then each row represents a
-              variable, with observations in the columns. Otherwise,
-              relationship is transposed: each column represents a variable,
-              while the rows contains observations.
-    bias:     Default normalization (False) is by ``(N - 1)``, where ``N`` is
-              the number of observations given (unbiased estimate). If `bias` is
-              True, then normalization is by ``N``. These values can be
-              overriden by using the keyword ``ddof``.
-    ddof:     If not ``None`` then the default value implied by `bias` is
-              overridden. Note that ``ddof=1`` will return the unbiased
-              estimate, even if both `fweights` and `aweights` are specified,
-              and ``ddof=0`` will return the simple average.
+    m: A 1-D or 2-D array containing multiple variables and observations. Each
+      row of `m` represents a variable, and each column a single observation of
+      all those variables. Also see `rowvar` below.
+    y: An additional set of variables and observations. `y` has the same form as
+      that of `m`.
+    rowvar: If `rowvar` is True (default), then each row represents a variable,
+      with observations in the columns. Otherwise, relationship is transposed:
+      each column represents a variable, while the rows contains observations.
+    bias: Default normalization (False) is by ``(N - 1)``, where ``N`` is the
+      number of observations given (unbiased estimate). If `bias` is True, then
+      normalization is by ``N``. These values can be overriden by using the
+      keyword ``ddof``.
+    ddof: If not ``None`` then the default value implied by `bias` is
+      overridden. Note that ``ddof=1`` will return the unbiased estimate, even
+      if both `fweights` and `aweights` are specified, and ``ddof=0`` will
+      return the simple average.
     fweights: 1-D array of integer frequency weight; the number of times each
-              observation vector should be repeated.
+      observation vector should be repeated.
     aweights: 1-D array of observation vector weights. These relative weights
-              are typically large for observations considered "important" and
-              smaller for observations considered less "important". If
-              ``ddof=0`` the array of weights can be used to assign
-              probabilities to observation vectors.
-    dtype:    Data type of the result. By default the return data type will
-              have at least `numpy.float64` precision.
+      are typically large for observations considered "important" and smaller
+      for observations considered less "important". If ``ddof=0`` the array of
+      weights can be used to assign probabilities to observation vectors.
+    dtype: Data type of the result. By default the return data type will have at
+      least `numpy.float64` precision.
 
-    Returns:
-      The covariance matrix of the variables.
+  Returns:
+    The covariance matrix of the variables.
 
-    Notes:
+  .. note::
+
       Assume that the observations are in the columns of the observation array
       `m` and let ``f=fweights`` and ``a=aweights`` for brevity. The steps to
       compute the weighted covariance are as follows:
 
-          >>> m = np.arange(10, dtype=np.float64)
-          >>> f = np.arange(10) * 2
-          >>> a = np.arange(10) ** 2
-          >>> ddof = 1
-          >>> w = f * a
-          >>> v1 = np.sum(w)
-          >>> v2 = np.sum(w * a)
-          >>> m -= np.sum(m * w, axis=None, keepdims=True) / v1
-          >>> cov = np.dot(m * w, m.T) * v1 / ((v1 ** 2) - (ddof * v2))
+      >>> m = np.arange(10, dtype=np.float64)
+      >>> f = np.arange(10) * 2
+      >>> a = np.arange(10) ** 2
+      >>> ddof = 1
+      >>> w = f * a
+      >>> v1 = np.sum(w)
+      >>> v2 = np.sum(w * a)
+      >>> m -= np.sum(m * w, axis=None, keepdims=True) / v1
+      >>> cov = np.dot(m * w, m.T) * v1 / ((v1 ** 2) - (ddof * v2))
 
       Note that when ``a == 1``, the normalization factor
       ``v1 / (v1**2 - ddof * v2)`` goes over to ``1 / (np.sum(f) - ddof)`` as it
@@ -183,8 +182,8 @@ def cov(
 
 
 def corrcoef(
-  x: np.array,
-  y: np.array = None,
+  x: np.ndarray,
+  y: np.ndarray = None,
   rowvar: bool = True,
   *,
   dtype: np.dtype = None
@@ -194,22 +193,23 @@ def corrcoef(
   The relationship between the correlation coefficient matrix, `R`, and the
   covariance matrix, `C`, is
 
-  .. math:: R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} C_{jj} } }
+  .. math::
+
+    R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} C_{jj} } }
 
   The values of `R` are between -1 and 1, inclusive.
 
   Args:
-    m:        A 1-D or 2-D array containing multiple variables and observations.
-              Each row of `m` represents a variable, and each column a single
-              observation of all those variables. Also see `rowvar` below.
-    y:        An additional set of variables and observations. `y` has the same
-              form as that of `m`.
-    rowvar:   If `rowvar` is True (default), then each row represents a
-              variable, with observations in the columns. Otherwise,
-              relationship is transposed: each column represents a variable,
-              while the rows contains observations.
-    dtype:    Data type of the result. By default the return data type will
-              have at least `numpy.float64` precision.
+    m: A 1-D or 2-D array containing multiple variables and observations. Each
+      row of `m` represents a variable, and each column a single observation of
+      all those variables. Also see `rowvar` below.
+    y: An additional set of variables and observations. `y` has the same form as
+      that of `m`.
+    rowvar: If `rowvar` is True (default), then each row represents a variable,
+      with observations in the columns. Otherwise, relationship is transposed:
+      each column represents a variable, while the rows contains observations.
+    dtype: Data type of the result. By default the return data type will have at
+      least `numpy.float64` precision.
 
   Returns:
     The correlation coefficient matrix of the variables.

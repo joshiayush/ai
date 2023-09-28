@@ -167,11 +167,11 @@ def GenerateDocs(base_docs_dir: str | pathlib.Path,
   saves its content inside of a separate markdown file.
 
   Args:
-    base_docs_dir:   Base `docs` directory to store the generated markdown
-                     files in.
+    base_docs_dir: Base `docs` directory to store the generated markdown files
+      in.
     ipynb_file_path: IPython Notebooks file path.
-    markdown:        The markdown to write to the corresponding markdown
-                     file of the IPython Notebook.
+    markdown: The markdown to write to the corresponding markdown file of the
+      IPython Notebook.
   """
   # Take out the "head" component, because that's where we would want
   # to store our generated document file.

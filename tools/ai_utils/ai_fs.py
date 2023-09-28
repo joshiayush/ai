@@ -34,11 +34,11 @@ def GetFileByExtensionUnderDirectory(
   files under the given `dir`.
 
   Args:
-    file_ext:  The extension the filesystem path should ends with.
-    dir:       The directory under which the files with the given extension
-               should be searched for.
+    file_ext: The extension the filesystem path should ends with.
+    dir: The directory under which the files with the given extension should be
+      searched for.
     recursive: When `True`, searches recursively under the given directory
-               for files ending with the given extension.
+      for files ending with the given extension.
 
   Yields:
     A `Path` instance representing a filesystem path.

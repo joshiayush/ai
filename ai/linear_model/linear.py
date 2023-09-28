@@ -24,18 +24,20 @@ class LinearRegression:
   to minimize the residual sum of squares between the observed targets in the
   dataset, and the targets predicted by the linear approximation.
 
-  Hypothesis function for our `LinearRegression`: math:`\\hat y = b + wX`, where
+  Hypothesis function for our `LinearRegression` :math:`\\hat y = b + wX`, where
   `b` is the model's intercept and `w` is the coefficient of `X`.
 
   The cost function or the loss function that we use is the Mean Squared Error
   (MSE) between the predicted value and the true value. The cost function `(J)`
   can be written as:
 
-    math:`J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2`
+  .. math::
+
+    J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2
 
   To achieve the best-fit regression line, the model aims to predict the target
-  value math:`\\hat Y` such that the error difference between the predicted
-  value math:`\\hat Y` and the true value math:`Y` is minimum. So, it is very
+  value :math:`\\hat Y` such that the error difference between the predicted
+  value :math:`\\hat Y` and the true value :math:`Y` is minimum. So, it is very
   important to update the `b` and `w` values, to reach the best value that
   minimizes the error between the predicted `y` value and the true `y` value.
 
@@ -49,19 +51,19 @@ class LinearRegression:
 
   On differentiating cost function `J` with respect to `b`:
 
-    math:`
+  .. math::
+
     \\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
                       \\hat y_{i} - y_{i}
                       )
-    `
 
   On differentiating cost function `J` with respect to `w`:
 
-    math:`
+  .. math::
+
     \\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
                       \\hat y_{i} - y_{i}
                       ) \\cdot x_{i}
-    `
 
   The above derivative functions are used for updating `weights` and `bias` in
   each iteration.
@@ -88,52 +90,53 @@ class LinearRegression:
   def fit(self, X: np.ndarray, y: np.ndarray) -> None:
     """Fit the linear model on `X` given `y`.
 
-    Args:
-      X: Sample vector.
-      y: Target vector.
-
-    Hypothesis function for our `LinearRegression`: math:`\\hat y = b + wX`,
-    where `b` is the model's intercept and `w` is the coefficient of `X`.
+    Hypothesis function for our `LinearRegression` :math:`\\hat y = b + wX`, where
+    `b` is the model's intercept and `w` is the coefficient of `X`.
 
     The cost function or the loss function that we use is the Mean Squared Error
-    (MSE) between the predicted value and the true value. The cost function
-    `(J)` can be written as:
+    (MSE) between the predicted value and the true value. The cost function `(J)`
+    can be written as:
 
-      math:`J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2`
+    .. math::
 
-    To achieve the best-fit regression line, the model aims to predict the
-    target value math:`\\hat Y` such that the error difference between the
-    predicted value math:`\\hat Y` and the true value math:`Y` is minimum. So,
-    it is very important to update the `b` and `w` values, to reach the best
-    value that minimizes the error between the predicted `y` value and the true
-    `y` value.
+      J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2
+
+    To achieve the best-fit regression line, the model aims to predict the target
+    value :math:`\\hat Y` such that the error difference between the predicted
+    value :math:`\\hat Y` and the true value :math:`Y` is minimum. So, it is very
+    important to update the `b` and `w` values, to reach the best value that
+    minimizes the error between the predicted `y` value and the true `y` value.
 
     A linear regression model can be trained using the optimization algorithm
-    gradient descent by iteratively modifying the model’s parameters to reduce
-    the mean squared error (MSE) of the model on a training dataset. To update
-    `b` and `w` values in order to reduce the Cost function (minimizing RMSE
-    value) and achieve the best-fit line the model uses Gradient Descent. The
-    idea is to start with random `b` and `w` values and then iteratively update
-    the values, reaching minimum cost.
+    gradient descent by iteratively modifying the model’s parameters to reduce the
+    mean squared error (MSE) of the model on a training dataset. To update `b` and
+    `w` values in order to reduce the Cost function (minimizing RMSE value) and
+    achieve the best-fit line the model uses Gradient Descent. The idea is to
+    start with random `b` and `w` values and then iteratively update the values,
+    reaching minimum cost.
 
     On differentiating cost function `J` with respect to `b`:
 
-      math:`
+    .. math::
+
       \\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
                         \\hat y_{i} - y_{i}
                         )
-      `
 
     On differentiating cost function `J` with respect to `w`:
 
-      math:`
+    .. math::
+
       \\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
                         \\hat y_{i} - y_{i}
                         ) \\cdot x_{i}
-      `
 
     The above derivative functions are used for updating `weights` and `bias` in
     each iteration.
+
+    Args:
+      X: Sample vector.
+      y: Target vector.
     """
     self._bias = 0
     self._weights = np.zeros(X.shape[1])
