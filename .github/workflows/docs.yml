@@ -1,13 +1,15 @@
-name: Commit generated documentation
+name: github-pages
 
 on: [push, pull_request]
+
+permissions:
+  contents: read
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Adding executable permissions to manage.py
         run: |
           chmod +x ./tools/manage.py
@@ -29,3 +31,31 @@ jobs:
             Signed-off-by: github-actions[bot]
 
           branch: master
+
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - run: pip install -r requirements.txt
+      - run: pdoc ai/ --docformat google --search --math -o ./docs
+
+      - uses: actions/upload-pages-artifact@v2
+        with:
+          path: docs/
+
+    deploy:
+      needs: build
+      runs-on: ubuntu-latest
+      permissions:
+        pages: write
+        id-token: write
+      environment:
+        name: github-pages
+        url: ${{ steps.deployment.outputs.page_url }}
+      steps:
+        - id: deployment
+          uses: actions/deploy-pages@v2
