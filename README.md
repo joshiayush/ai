@@ -9,6 +9,8 @@ To contribute to AI, please read the [style guide](https://www.tensorflow.org/co
 To jump onto the **Artificial Intelligence** roadmap, please click on the
 [Artificial Intelligence Map](https://github.com/joshiayush/ai/tree/master/docs/roadmap.md).
 
+###### ⚠️ This project contains documents that are written on top of [Machine Learning Foundational Course by Google](https://developers.google.com/machine-learning/crash-course/ml-intro), which is free ofcourse, in the beginning the documents were identical to the articles you'll find in the *Machine Learning Foundational Course by Google*; I don't own those documents neither I happen to do anything with Google nor do I intend to change the contents license 🙏.
+
 ## Contents
 
 1. [Resources](https://github.com/joshiayush/ai/tree/master/docs/resource#resources) (Resources required during learning)
