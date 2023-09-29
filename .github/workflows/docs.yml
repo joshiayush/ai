@@ -3,10 +3,11 @@ name: github-pages
 on: [push, pull_request]
 
 permissions:
-  contents: read
+  actions: write
+  contents: write
 
 jobs:
-  build:
+  commit:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -32,6 +33,10 @@ jobs:
 
           branch: master
 
+  build:
+    needs: commit
+    runs-on: ubuntu-latest
+    steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
         with:
