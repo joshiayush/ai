@@ -41,7 +41,7 @@ where:
 
 * $y^\prime$ is a predicted [label](https://developers.google.com/machine-learning/crash-course/framing/ml-terminology#labels) (a desired output).
 * $b$ is the bias (the y-intercept), sometimes referred to as $w_{0}$.
-* $w_{1}$ is the [weight](https://developers.google.com/machine-learning/glossary#weight) of feature 1. Weight is the same concept as the "slope" _$m$_ in the traditional equation of a line.
+* $w_{1}$ is the [weight](https://developers.google.com/machine-learning/glossary#weight) of feature 1. Weight is the same concept as the "slope" $m$ in the traditional equation of a line.
 * $x_{1}$ is a [feature](https://developers.google.com/machine-learning/crash-course/framing/ml-terminology#features) (a known input).
 
 To **infer** (predict) the temprature $y^\prime$ for new chirps-per-minute value $x_{1}$, just substitute the $x_{1}$ value into this model.
@@ -81,7 +81,11 @@ The linear regression models we'll examine here use a loss function called **squ
 
 **Mean square error (MSE)** is the average squared loss per example over the whole dataset. To calculate **MSE**, sum up all the squared losses for individual examples and then divide by the number of examples:
 
+<div class="math-jax-block">
+
 $$\mathrm{MSE}=\dfrac{1}{N}\sum_{(x,y) \in D} (y - \mathrm{prediction}(x))^2$$
+
+</div>
 
 where:
 
@@ -93,8 +97,4 @@ where:
 * $N$ is the number of examples in $D$.
 
 Although MSE is commonly-used in machine learning, it is neither the only practical loss function nor the best loss function for all circumstances.
-
-## Check Your Understanding
-
-* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/descending-into-ml/check-your-understanding)
 

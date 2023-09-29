@@ -2,11 +2,9 @@
 
 Machine learning is a field of inquiry devoted to understanding and building methods that **'learn'**, that is, methods that leverage data to improve performance on some set of tasks. It is seen as a part of artificial intelligence.
 
-## Additional information
+## Key ML Terminology
 
-* *Rules of Machine Learning,* [Rule #1: Don't be afraid to launch a product without machine learning](https://developers.google.com/machine-learning/rules-of-ml/#rule_1_dont_be_afraid_to_launch_a_product_without_machine_learning)
-
-## Framing
+### Framing
 
 What is (supervised) machine learning? Concisely put, it is the following:
 
@@ -14,11 +12,11 @@ What is (supervised) machine learning? Concisely put, it is the following:
 
 Let's explore fundamental machine learning terminology.
 
-## Labels
+### Labels
 
 A **label** is the thing we are predicting - the `y` variable in simple linear regression. The label could be the future price of wheat, the kind of animal shown in the picture, the meaning of an audio clip, or just about anything.
 
-## Features
+### Features
 
 A **feature** is an input variable - the `x` variable in simple linera regression. A simple machine learning project might use a single feature, while a more sophisticated machine learning project could use millions of features, specified as:
 
@@ -31,7 +29,7 @@ In the "spam detector" example, the features could include the following:
 * time of day the email was sent
 * email contains the phrase "one weird trick."
 
-## Examples
+### Examples
 
 An **example** is a particular instance of data, **x**. (We put **x** in boldface to indicate that it is a vector.) We break **examples** into two categories:
 
@@ -72,7 +70,7 @@ Here are 3 unlabeled examples from the same housing dataset, which exclude **`Me
 
 Once we've trained our model with labeled examples, we use that model to predict the label on unlabeled examples. In the spam detector, unlabeled examples are new emails that humans haven't yet labeled.
 
-## Models
+### Models
 
 A model defines the relationship between feature(s) and label. For example, a span detector might associate certain features strongly with "spam". Let's highlight two phases of a model's life:
 
@@ -80,7 +78,7 @@ A model defines the relationship between feature(s) and label. For example, a sp
 
 * **Inference** means applying the trained model to unlabeled examples. That is, you use the trained model to make useful predictions (`y'`). For example, during **inference**, you can predict **MedianHouseValue** for new unlabeled examples.
 
-## Regression vs. classification
+### Regression vs. classification
 
 A **regression** model predicts continuous values. For example, regression models make predictions that answer questions like the following:
 
@@ -91,8 +89,4 @@ A **classification** model predicts discrete values. For example, classification
 
 * Is a given email message spam or not spam?
 * Is this an image of a dog, a cat, or a hamster?
-
-## Check Your Understanding
-
-* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/framing/check-your-understanding)
 

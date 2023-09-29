@@ -6,9 +6,9 @@ A machine learning model can't directly see, hear, or sense input examples. Inst
 
 In traditional programming, the focus is on code. In machine learning projects, the focus shifts to representation. That is, one way developers hone a model is by adding and improving its features.
 
-## Mapping Raw Data to Features
+### Mapping Raw Data to Features
 
-The left side of Figure 1 illustrates raw data from an input data source; the right side illustrates a __feature vector__, which is the set of floating-point values comprising the examples in your data set. __Feature engineering__ means transforming raw data into a feature vector. Expect to spend significant time doing feature engineering.
+The left side of Figure 1 illustrates raw data from an input data source; the right side illustrates a **feature vector**, which is the set of floating-point values comprising the examples in your data set. **Feature engineering** means transforming raw data into a feature vector. Expect to spend significant time doing feature engineering.
 
 Many machine learning models must represent the features as real-numbered vectors since the feature values must be multiplied by the model weights.
 
@@ -72,7 +72,7 @@ This approach effectively creates a Boolean variable for every feature value (e.
 
 Similarly, if a house is at the corner of two streets, then two binary values are set to 1, and the model uses both their respective weights.
 
-## Sparse Representation
+### Sparse Representation
 
 Suppose that you had 1,000,000 different street names in your data set that you wanted to include as values for `street_name`. Explicitly creating a binary vector of 1,000,000 elements where only 1 or 2 elements are true is a very inefficient representation in terms of both storage and computation time when processing these vectors. In this situation, a common approach is to use a [sparse representation](https://developers.google.com/machine-learning/glossary#sparse_representation) in which only nonzero values are stored. In sparse representations, an independent model weight is still learned for each feature value, as described above.
 
@@ -80,7 +80,7 @@ Suppose that you had 1,000,000 different street names in your data set that you 
 
 We've explored ways to map raw data into suitable feature vectors, but that's only part of the work. We must now explore what kinds of values actually make good features within those feature vectors.
 
-## Avoid rarely used discrete feature values
+### Avoid rarely used discrete feature values
 
 Good feature values should appear more than 5 or so times in a data set. Doing so enables a model to learn how this feature value relates to the label. That is, having many examples with the same discrete value gives the model a chance to see the feature in different settings, and in turn, determine when it's a good predictor for the label. For example, a `house_type` feature would likely contain many examples in which its value was `victorian`:
 
@@ -94,7 +94,7 @@ Conversely, if a feature's value appears only once or very rarely, the model can
 unique_house_id: '8SK982ZZ1242Z'
 ```
 
-## Prefer clear and obvious meanings
+### Prefer clear and obvious meanings
 
 Each feature should have a clear and obvious meaning to anyone on the project. For example, the following good feature is clearly named and the value makes sense with respect to the name:
 
@@ -114,7 +114,7 @@ In some cases, noisy data (rather than bad engineering choices) causes unclear v
 user_age_years: 277
 ```
 
-## Don't mix "magic" values with actual data
+### Don't mix "magic" values with actual data
 
 Good floating-point features don't contain peculiar out-of-range discontinuities or "magic" values. For example, suppose a feature holds a floating-point value between 0 and 1. So, values like the following are fine:
 
@@ -136,9 +136,9 @@ In the original feature, replace the magic values as follows:
 * For variables that take a finite set of values (discrete variables), add a new value to the set and use it to signify that the feature value is missing.
 * For continuous variables, ensure missing values do not affect the model by using the mean value of the feature's data.
 
-## Account for upstream instability
+### Account for upstream instability
 
-The definition of a feature shouldn't change over time. For example, the following value is useful because the city name _probably_ won't change. (Note that we'll still need to convert a string like "br/sao_paulo" to a one-hot vector.)
+The definition of a feature shouldn't change over time. For example, the following value is useful because the city name *probably* won't change. (Note that we'll still need to convert a string like "br/sao_paulo" to a one-hot vector.)
 
 ```python
 city_id: 'br/sao_paulo'
@@ -168,7 +168,11 @@ One obvious way to scale numerical data is to linearly map [min value, max value
 
 Another popular scaling tactic is to calculate the Z score of each value. The Z score relates the number of standard deviations away from the mean. In other words:
 
+<div class="math-jax-block">
+
 $$\mathrm{scaled\ value}=(\mathrm{value}−\mathrm{mean})/ \mathrm{stddev}$$
+
+</div>
 
 For example, given:
 

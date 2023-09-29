@@ -1,6 +1,6 @@
 # Training and Test Sets
 
-A __test set__ is a data set used to evaluate the model developed from a training set.
+A **test set** is a data set used to evaluate the model developed from a training set.
 
 ## Splitting Data
 

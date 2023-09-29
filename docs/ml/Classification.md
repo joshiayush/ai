@@ -53,11 +53,19 @@ A **false positive** is an outcome where the model incorrectly predicts the posi
 
 Accuracy is one metric for evaluating classification models. Informally, **accuracy** is the fraction of predictions our model got right. Formally, accuracy has the following definition:
 
+<div class="math-jax-block">
+
 $\mathrm{Accuracy} = \dfrac{\mathrm{Number\ of\ correct\ predictions}}{\mathrm{Total\ number\ of\ predictions}}$
+
+</div>
 
 For binary classification, accuracy can also be calculated in terms of positives and negatives as follows:
 
+<div class="math-jax-block">
+
 $\mathrm{Accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN}$
+
+</div>
 
 Where *TP* = True Positives, *TN* = True Negatives, *FP* = False Positives, and *FN* = False Negatives.
 
@@ -83,7 +91,15 @@ Let's try calculating accuracy for the following model that classified 100 tumor
   * ML model predicted: Benign
   * **Number of TP results**: 8
 
+<div class="math-jax-block">
+
 $\mathrm{Accuracy} = \dfrac{TP + TN}{TP + TN + FP + FN} = \dfrac{1 + 90}{1 + 90 + 1 + 8} = 0.91$
+
+</div>
+
+---
+
+
 
 Accuracy comes out to 0.91, or 91% (91 correct predictions out of 100 total examples). That means our tumor classifier is doing a great job of identifying malignancies, right?
 
@@ -109,7 +125,11 @@ What proportion of positive identifications was actually correct?
 
 Precision is defined as follows:
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FP}$
+
+</div>
 
 Let's calculate precision for our ML model from the previous section that analyzes tumors:
 
@@ -118,7 +138,11 @@ Let's calculate precision for our ML model from the previous section that analyz
 * **False Negatives (FNs): 8**
 * **True Negatives (TNs): 90**
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{1}{1 + 1} = 0.5$
+
+</div>
 
 Our model has a precision of 0.5—in other words, when it predicts a tumor is malignant, it is correct 50% of the time.
 
@@ -141,7 +165,11 @@ Let's calculate recall for our tumor classifier:
 * **False Negatives (FNs): 8**
 * **True Negatives (TNs): 90**
 
+<div class="math-jax-block">
+
 $\mathrm{Recall} = \dfrac{TP}{TP + FN} = \dfrac{1}{1 + 8} = 0.11$
+
+</div>
 
 Our model has a recall of 0.11—in other words, it correctly identifies 11% of all malignant tumors.
 
@@ -166,11 +194,19 @@ Let's calculate precision and recall based on the results shown in Figure 1:
 
 Precision measures the percentage of **emails flagged as spam** that were correctly classified—that is, the percentage of dots to the right of the threshold line that are green in Figure 1:
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{8}{8 + 2} = 0.8$
+
+</div>
 
 Recall measures the percentage of **actual spam emails** that were correctly classified—that is, the percentage of green dots that are to the right of the threshold line in Figure 1:
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FN} = \dfrac{8}{8 + 3} = 0.73$
+
+</div>
 
 Figure 2 illustrates the effect of increasing the classification threshold.
 
@@ -189,9 +225,17 @@ The number of false positives decreases, but false negatives increase. As a resu
 * **False Negatives (FN): 4**
 * **True Negatives (TN): 18**
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{7}{7 + 1} = 0.88$
 
+</div>
+
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FN} = \dfrac{7}{7 + 4} = 0.64$
+
+</div>
 
 Conversely, Figure 3 illustrates the effect of decreasing the classification threshold (from its original position in Figure 1).
 
@@ -210,9 +254,17 @@ False positives increase, and false negatives decrease. As a result, this time, 
 * **False Negatives (FN): 2**
 * **True Negatives (TN): 16**
 
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FP} = \dfrac{9}{9 + 3} = 0.75$
 
+</div>
+
+<div class="math-jax-block">
+
 $\mathrm{Precision} = \dfrac{TP}{TP + FN} = \dfrac{9}{9 + 2} = 0.82$
+
+</div>
 
 Various metrics have been developed that rely on both precision and recall. For example, see [F1 score](https://wikipedia.org/wiki/F1_score).
 
@@ -245,7 +297,7 @@ An ROC curve plots TPR vs. FPR at different classification thresholds. Lowering 
 
 To compute the points in an ROC curve, we could evaluate a logistic regression model many times with different classification thresholds, but this would be inefficient. Fortunately, there's an efficient, sorting-based algorithm that can provide this information for us, called AUC.
 
-## AUC: Area Under the ROC Curve
+### AUC: Area Under the ROC Curve
 
 **AUC** stands for "Area under the ROC Curve." That is, AUC measures the entire two-dimensional area underneath the entire ROC curve (think integral calculus) from (0,0) to (1,1).
 
@@ -292,7 +344,11 @@ Logistic regression predictions should be unbiased. That is:
 
 **Prediction bias** is a quantity that measures how far apart those two averages are. That is:
 
+<div class="math-jax-block">
+
 $\mathrm{prediction\ bias} = \mathrm{average\ of\ predictions} - \mathrm{average\ of\ labels\ in\ data\ set}$
+
+</div>
 
 <small>**Note:** "Prediction bias" is a different quantity than [bias](https://developers.google.com/machine-learning/crash-course/descending-into-ml) (the b in wx + b).</small>
 

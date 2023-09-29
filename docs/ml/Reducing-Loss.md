@@ -34,7 +34,7 @@ The "Compute Loss" part of the diagram is the [loss function](https://developers
 * $y′$: The model's prediction for features $x$
 * $y$: The correct label corresponding to features $x$
 
-At last, we've reached the "Compute parameter updates" part of the diagram. It is here that the machine learning system examines the value of the loss function and generates new values for $b$ and $w_{1}$. For now, just assume that this mysterious box devises new values and then the machine learning system re-evaluates all those features against all those labels, yielding a new value for the loss function, which yields new parameter values. And the learning continues iterating until the algorithm discovers the model parameters with the lowest possible loss. Usually, you iterate until overall loss stops changing or at least changes extremely slowly. When that happens, we say that the model has [__converged__](https://developers.google.com/machine-learning/glossary#convergence).
+At last, we've reached the "Compute parameter updates" part of the diagram. It is here that the machine learning system examines the value of the loss function and generates new values for $b$ and $w_{1}$. For now, just assume that this mysterious box devises new values and then the machine learning system re-evaluates all those features against all those labels, yielding a new value for the loss function, which yields new parameter values. And the learning continues iterating until the algorithm discovers the model parameters with the lowest possible loss. Usually, you iterate until overall loss stops changing or at least changes extremely slowly. When that happens, we say that the model has [**converged**](https://developers.google.com/machine-learning/glossary#convergence).
 
 ## Gradient Descent
 
@@ -112,7 +112,11 @@ $$f(x,y)=e^{2y}\mathrm{sin}(x)$$
 
 then:
 
+<div class="math-jax-block">
+
 $$∇f(x,y)= \left( \dfrac{\partial f}{\partial x}(x,y), \dfrac{\partial f}{\partial y}(x,y) \right)=(e^{2y}\mathrm{cos}(x), 2e^{2y}\mathrm{sin}(x))$$
+
+</div>
 
 Note the following:
 
@@ -121,7 +125,11 @@ Note the following:
 
 The number of dimensions in a vector is equal to the number of variables in the formula for $f$; in other words, the vector falls within the domain space of the function. For instance, the graph of the following function $f(x,y)$:
 
+<div class="math-jax-block">
+
 $$f(x,y)=4+(x−2)^2+2y^2$$
+
+</div>
 
 when viewed in three dimensions with $z=f(x,y)$ looks like a valley with a minimum at $(2,0,4)$:
 
@@ -208,12 +216,4 @@ An example of an application of **SGD** is Linear Regression, where the objectiv
 It should be noted that the optimization speed of **SGD** can be affected by the choice of the learning rate and the shuffling of the data during each iteration. Also it is not guaranteed to find the global minimum because of the randomness but it can be useful in practice.
 
 In summary, **Stochastic Gradient Descent** is an optimization algorithm that is efficient and can help to find the global minimum of a function. It has been widely used in machine learning and deep learning tasks.
-
-## Playground Exercise
-
-* [Playground Exercise](https://developers.google.com/machine-learning/crash-course/reducing-loss/playground-exercise)
-
-## Check Your Understanding
-
-* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/reducing-loss/check-your-understanding)
 

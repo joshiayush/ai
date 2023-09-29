@@ -26,29 +26,38 @@ Our training optimization algorithm is now a function of two terms: the **loss t
 
 There are two commom ways to think of model complexity:
 
-  * Model complexity as a function of the _weights_ of all the features in the model.
-  * Model complexity as a function of the _total number of features_ with nonzero weights.
+  * Model complexity as a function of the *weights* of all the features in the model.
+  * Model complexity as a function of the *total number of features* with nonzero weights.
 
 If model complexity is a function of weights, a feature weight with a high absolute value is more complex that a feature weight with a low absolute value.
 
 We can quantify complexity using the $L_{2}$ **regularization** formula, which defines the regularization term as the sum of the squares of all the feature weights:
 
+<div class="math-jax-block">
+
 $$\mathrm{L_{2}\ regularization\ term} = \mathrm{\lvert \lvert w \rvert \rvert}^2_{2} = w_{1}^2 + w_{2}^2 + ... + w_{n}^2$$
+
+</div>
 
 In this formula, weights close to zero have little effect on model complexity, while outlier weights can have a huge impact.
 
 For example, a linear model with the following weights:
 
+<div class="math-jax-block">
+
 $$\{w_{1} = 0.2, w_{2} = 0.5, w_{3} = 5, w_{4} = 1, w_{5} = 0.25, w_{6} = 0.75\}$$
+
+</div>
 
 Has an $L_{2}$ regularization term of 26.915:
 
-```math
-w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2 + w_{5}^2 + w_{6}^2 \\
-= 0.2^2 + 0.5^2 + 5^2 + 1^2 + 0.25^2 + 0.75^2 \\
-= 0.04 + 0.24 + 25 + 1 + 0.0625 + 0.5625 \\
-= 26.915
-```
+$= w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2 + w_{5}^2 + w_{6}^2$
+
+$= 0.2^2 + 0.5^2 + 5^2 + 1^2 + 0.25^2 + 0.75^2$
+
+$= 0.04 + 0.24 + 25 + 1 + 0.0625 + 0.5625$
+
+$= 26.915$
 
 But $w_{3}$, with a squared value of 25, contributes nearly all the complexity. The sum of the squares of all five other weights adds just 1.915 to the $L_{2}$ regularization term.
 
@@ -56,7 +65,11 @@ But $w_{3}$, with a squared value of 25, contributes nearly all the complexity. 
 
 Model developers tune the overall impact of the regularization term by multiplying its value by a scalar known as **lambda** (also called the **regularization rate**). That is, model devvelopers aim to do the following:
 
+<div class="math-jax-block">
+
 $$\mathrm{minimize(Loss(Data \vert Model) + \lambda \ complexity(Model))}$$
+
+</div>
 
 Performing $L_{2}$ regularization has the following effect on the model:
 

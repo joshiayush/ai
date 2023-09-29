@@ -1,6 +1,6 @@
 # Logistic Regression
 
-Instead of predicting _exactly_ 0 or 1, __logistic regression__ generates a probability—a value between 0 and 1, exclusive. For example, consider a logistic regression model for spam detection. If the model infers a value of 0.932 on a particular email message, it implies a 93.2% probability that the email message is spam. More precisely, it means that in the limit of _infinite_ training examples, the set of examples for which the model predicts 0.932 will actually be spam 93.2% of the time and the remaining 6.8% will not.
+Instead of predicting *exactly* 0 or 1, **logistic regression** generates a probability—a value between 0 and 1, exclusive. For example, consider a logistic regression model for spam detection. If the model infers a value of 0.932 on a particular email message, it implies a 93.2% probability that the email message is spam. More precisely, it means that in the limit of *infinite* training examples, the set of examples for which the model predicts 0.932 will actually be spam 93.2% of the time and the remaining 6.8% will not.
 
 ## Calculating a Probability
 
@@ -44,7 +44,7 @@ where:
   * The $w$ values are the model's learned weights, and $b$ is the bias.
   * The $x$ values are the feature values for a particular example.
 
-Note that $z$ is also referred to as the _log-odds_ because the inverse of the sigmoid states that $z$ can be defined as the log of the probability of the 1 label (eg., "dog barks") divided by the probability of the 0 label (eg., "dog doesn't bark"):
+Note that $z$ is also referred to as the *log-odds* because the inverse of the sigmoid states that $z$ can be defined as the log of the probability of the 1 label (eg., "dog barks") divided by the probability of the 0 label (eg., "dog doesn't bark"):
 
 $$z = \mathrm{log} \left( \dfrac{y}{1- y} \right)$$
 
@@ -60,9 +60,13 @@ Here is the sigmoid function with ML labels:
 
 ### Loss function for Logistic Regression
 
-The loss function for linear regression is squared loss. The loss function for logistic regression is __Log Loss__, which is defined as follows:
+The loss function for linear regression is squared loss. The loss function for logistic regression is **Log Loss**, which is defined as follows:
+
+<div class="math-jax-block">
 
 $$\mathrm{Log\ Loss} = \sum_{(x,y) \in D} -ylog(y^ \prime) - (1 - y)log(1 - y^ \prime)$$
+
+</div>
 
 where:
 

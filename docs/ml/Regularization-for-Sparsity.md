@@ -38,11 +38,3 @@ Note that this description is true for a one-dimensional model.
 
 To compare the results of $L_{1}$ and $L_{2}$ regularization on a network of weights, click the play button on the [playground](https://developers.google.com/machine-learning/crash-course/regularization-for-sparsity/l1-regularization#l1-vs.-l2-regularization.).
 
-## Playground Exercise on Regularization for Sparsity
-
-* [Playground Exercise](https://developers.google.com/machine-learning/crash-course/regularization-for-sparsity/playground-exercise)
-
-## Check Your Understanding
-
-* [Check Your Understanding](https://developers.google.com/machine-learning/crash-course/regularization-for-sparsity/check-your-understanding)
-

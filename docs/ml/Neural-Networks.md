@@ -127,11 +127,3 @@ Now our model has all the standard components of what people usually mean when t
 * A set of weights representing the connections between each neural network layer and the layer beneath it. The layer beneath may be another neural network layer, or some other kind of layer.
 * A set of biases, one for each node.
 * An activation function that transforms the output of each node in a layer. Different layers may have different activation functions.
-
-## Playground Exercise
-
-* [Playground Exercise](https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/playground-exercises)
-
-## Programming Exercise
-
-* [Programming Exercise](https://developers.google.com/machine-learning/crash-course/introduction-to-neural-networks/programming-exercise)

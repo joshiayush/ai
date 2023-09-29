@@ -39,7 +39,11 @@ $$x_{3}=x_{1}x_{2}$$
 
 We treat this newly minted $x_{3}$ feature cross just like any other feature. The linear formula becomes:
 
+<div class="math-jax-block">
+
 $$y=b+w_{1}x_{1}+w_{2}x_{2}+w_{3}x_{3}$$
+
+</div>
 
 A linear algorithm can learn a weight for $w_{3}$ just as it would for $w_{1}$ and $w_{2}$. In other words, although $w_{3}$ encodes nonlinear information, you don’t need to change how the linear model trains to determine the value of $w_{3}$.
 
