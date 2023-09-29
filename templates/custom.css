@@ -1,0 +1,4 @@
+.math-jax-block > mjx-container {
+	display: block;
+	width: 100%;
+}
