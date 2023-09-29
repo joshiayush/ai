@@ -43,7 +43,7 @@ jobs:
           python-version: '3.11'
 
       - run: pip install -r requirements.txt
-      - run: pdoc ai/ --docformat google --search --math -o ./docs
+      - run: pdoc -t templates/ ai/ --docformat google --search --math -o ./docs
 
       - uses: actions/upload-pages-artifact@v2
         with:

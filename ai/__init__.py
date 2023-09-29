@@ -33,20 +33,6 @@ _DOCS_DIR = pathlib.Path(
 _ML_DOCS_DIR = _DOCS_DIR / 'ml'
 
 
-def _ResizeImages(
-  width: Union[int, str] = None, height: Union[int, str] = None
-) -> callable:
-  def resizer(soup: BeautifulSoup) -> BeautifulSoup:
-    for img in soup.find_all('img'):
-      if width is not None:
-        img['width'] = width
-      if height is not None:
-        img['height'] = height
-    return soup
-
-  return resizer
-
-
 def _ConvertImagePath2Base64(soup: BeautifulSoup) -> BeautifulSoup:
   for img in soup.find_all('img'):
     src = img.get('src')
@@ -79,10 +65,7 @@ def _PreprocessReadme(fpath: Union[str, pathlib.Path]) -> str:
 
   soup = BeautifulSoup(readme, 'html.parser')
   soup = _MarkdownPreprocessPipeline(
-    soup, (
-      _ConvertImagePath2Base64, _ResizeImages(width='90%'
-                                              ), _WrapImgStrongWithBlock
-    )
+    soup, (_ConvertImagePath2Base64, _WrapImgStrongWithBlock)
   )
   return str(soup)
 
