@@ -16,11 +16,19 @@ Figure 1 shows a model in which training loss gradually decreases, but validatio
 
 In other words, instead of simply aiming to minimize loss (empirical risk minimization):
 
+<div class="math-jax-block">
+
 $$\mathrm{minimize(Loss(Data \vert Model))}$$
+
+</div>
 
 we'll now minimize loss+complexity, which is called **structural risk minimization**.
 
+<div class="math-jax-block">
+
 $$\mathrm{minimize(Loss(Data \vert Model) + \mathrm{complexity(Model)})}$$
+
+</div>
 
 Our training optimization algorithm is now a function of two terms: the **loss term**, which measures how well the model fits the data, and the **regularization term**, which measures model complexity.
 
@@ -51,13 +59,29 @@ $$\{w_{1} = 0.2, w_{2} = 0.5, w_{3} = 5, w_{4} = 1, w_{5} = 0.25, w_{6} = 0.75\}
 
 Has an $L_{2}$ regularization term of 26.915:
 
+<div class="math-jax-block">
+
 $= w_{1}^2 + w_{2}^2 + w_{3}^2 + w_{4}^2 + w_{5}^2 + w_{6}^2$
+
+</div>
+
+<div class="math-jax-block">
 
 $= 0.2^2 + 0.5^2 + 5^2 + 1^2 + 0.25^2 + 0.75^2$
 
+</div>
+
+<div class="math-jax-block">
+
 $= 0.04 + 0.24 + 25 + 1 + 0.0625 + 0.5625$
 
+</div>
+
+<div class="math-jax-block">
+
 $= 26.915$
+
+</div>
 
 But $w_{3}$, with a squared value of 25, contributes nearly all the complexity. The sum of the squares of all five other weights adds just 1.915 to the $L_{2}$ regularization term.
 

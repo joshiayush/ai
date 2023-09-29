@@ -40,9 +40,14 @@ $$y^ \prime = \dfrac{1}{1 + e^{-z}}$$
 where:
 
 * $y^ \prime$ is the output of the logistic regression model for a particular example.
+
+<div class="math-jax-block">
+
 * $z = b + w_{1}x_{1} + w_{2}x_{2} + ... + w_{N}x_{N}$
   * The $w$ values are the model's learned weights, and $b$ is the bias.
   * The $x$ values are the feature values for a particular example.
+
+</div>
 
 Note that $z$ is also referred to as the *log-odds* because the inverse of the sigmoid states that $z$ can be defined as the log of the probability of the 1 label (eg., "dog barks") divided by the probability of the 0 label (eg., "dog doesn't bark"):
 
