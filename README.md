@@ -46,29 +46,29 @@ print(accuracy_score(y_pred, y_test))
 ## Roadmap
 
 <div align='center'>
-  <img src='docs/__design__/media/Introduction.jpg' />
+  <img src='docs/__design__/media/Introduction.drawio.svg' />
 </div>
 
 ### Fundamentals
 
 <div align='center'>
-  <img src='docs/__design__/media/Fundamentals.jpg' />
+  <img src='docs/__design__/media/Fundamentals.drawio.svg' />
 </div>
 
 ### Data Scientist
 
 <div align='center'>
-  <img src='docs/__design__/media/Data_Science.jpg' />
+  <img src='docs/__design__/media/Data_Science.drawio.svg' />
 </div>
 
 ### Machine Learning
 
 <div align='center'>
-  <img src='docs/__design__/media/Machine_Learning.jpg' />
+  <img src='docs/__design__/media/Machine_Learning.drawio.svg' />
 </div>
 
 ### Deep Learning
 
 <div align='center'>
-  <img src='docs/__design__/media/Deep_Learning.jpg' />
+  <img src='docs/__design__/media/Deep_Learning.drawio.svg' />
 </div>
