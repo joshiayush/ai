@@ -2,3 +2,4 @@ pdoc
 numpy
 pytest
 bs4
+gitpython
