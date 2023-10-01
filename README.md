@@ -7,17 +7,11 @@ The idea is to learn machine learning by implementing the algorithms from ground
 To contribute to AI, please read the [style guide](https://www.tensorflow.org/community/contribute/docs_style).
 
 To jump onto the **Artificial Intelligence** roadmap, please click on the
-[Artificial Intelligence Map](https://github.com/joshiayush/ai/tree/master/docs/roadmap.md).
-
-###### ⚠️ This project contains documents that are written on top of [Machine Learning Foundational Course by Google](https://developers.google.com/machine-learning/crash-course/ml-intro), which is free ofcourse, in the beginning the documents were identical to the articles you'll find in the *Machine Learning Foundational Course by Google*; I don't own those documents neither I happen to do anything with Google nor do I intend to change the contents license 🙏.
+[Artificial Intelligence Map](https://github.com/joshiayush/ai#roadmap).
 
 ## Contents
 
-1. [Resources](https://github.com/joshiayush/ai/tree/master/docs/resource#resources) (Resources required during learning)
-2. [Prework](https://github.com/joshiayush/ai/blob/master/docs/prework#prework) (A bit of prework required before starting machine learning)
-3. [Machine Learning](https://github.com/joshiayush/ai/tree/master/docs/ml#machine-learning) (A deep dive into the concepts of machine learning)
-4. [Algorithms](https://github.com/joshiayush/ai/tree/master/docs/algos#algorithms) (Implementation of common machine learning algorithms)
-5. [Roadmap](https://github.com/joshiayush/ai#roadmap) (Artificial Intelligence Engineer Roadmap)
+Check out [joshiayush.github.io/ai](https://joshiayush.github.io/ai) to learn about machine learning and various machine learning algorithms.
 
 ## API Usage
 
