@@ -7,6 +7,7 @@
 Consider the following **generalization curve**, which shows the loss for both the training set and validation set against the number of training iterations.
 
 <div align='center'>
+
   <img src='https://developers.google.com/static/machine-learning/crash-course/images/RegularizationTwoLossFunctions.svg' />
 
   <strong>Figure 1. Loss on training set and validation set.</strong>

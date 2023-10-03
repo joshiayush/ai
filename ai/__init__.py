@@ -81,6 +81,7 @@ _ML_README_FILES = (
   'Validation-Set.md',
   'Representation.md',
   'Feature-Crosses.md',
+  'Transform-Your-Data.md',
   'Regularization-for-Simplicity.md',
   'Logistic-Regression.md',
   'Classification.md',
