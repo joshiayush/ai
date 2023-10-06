@@ -22,6 +22,7 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 from .stats import corrcoef
+from .mathematical_functions import proportion
 
 from .neighbors import KNeighborsClassifier
 from .naive_bayes import GaussianNaiveBayes
