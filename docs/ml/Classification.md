@@ -10,13 +10,13 @@ A logistic regression model that returns 0.9995 for a particular email message i
 
 In this section, we'll define the primary building blocks of the metrics we'll use to evaluate classification models. But first, a fable:
 
-> **An Aesop's Fable: The Boy Who Cried Wolf (compressed)**
->
-> A shepherd boy gets bored tending the town's flock. To have some fun, he cries out, "Wolf!" even though no wolf is in sight. The villagers run to protect the flock, but then get really mad when they realize the boy was playing a joke on them.
->
-> [Iterate previous paragraph N times.]
->
-> One night, the shepherd boy sees a real wolf approaching the flock and calls out, "Wolf!" The villagers refuse to be fooled again and stay in their houses. The hungry wolf turns the flock into lamb chops. The town goes hungry. Panic ensues.
+**An Aesop's Fable: The Boy Who Cried Wolf (compressed)**
+  
+A shepherd boy gets bored tending the town's flock. To have some fun, he cries out, "Wolf!" even though no wolf is in sight. The villagers run to protect the flock, but then get really mad when they realize the boy was playing a joke on them.
+
+[Iterate previous paragraph N times.]
+
+One night, the shepherd boy sees a real wolf approaching the flock and calls out, "Wolf!" The villagers refuse to be fooled again and stay in their houses. The hungry wolf turns the flock into lamb chops. The town goes hungry. Panic ensues.
 
 Let's make the following definitions:
 

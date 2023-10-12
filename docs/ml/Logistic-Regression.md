@@ -41,13 +41,18 @@ where:
 
 * $y^ \prime$ is the output of the logistic regression model for a particular example.
 
+For $z$:
+
 <div class="math-jax-block">
 
-* $z = b + w_{1}x_{1} + w_{2}x_{2} + ... + w_{N}x_{N}$
-  * The $w$ values are the model's learned weights, and $b$ is the bias.
-  * The $x$ values are the feature values for a particular example.
+$$z = b + w_{1}x_{1} + w_{2}x_{2} + ... + w_{N}x_{N}$$
 
 </div>
+
+where:
+
+  * The $w$ values are the model's learned weights, and $b$ is the bias.
+  * The $x$ values are the feature values for a particular example.
 
 Note that $z$ is also referred to as the *log-odds* because the inverse of the sigmoid states that $z$ can be defined as the log of the probability of the 1 label (eg., "dog barks") divided by the probability of the 0 label (eg., "dog doesn't bark"):
 
