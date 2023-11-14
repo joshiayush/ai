@@ -21,8 +21,11 @@ import base64
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-from .stats import corrcoef
+from .stats import (cov, corrcoef)
 from .mathematical_functions import proportion
+from .boolalg import (
+  Symbol, Not, And, Or, Implication, Biconditional, model_check
+)
 
 from .neighbors import KNeighborsClassifier
 from .naive_bayes import GaussianNaiveBayes
@@ -76,7 +79,6 @@ _ML_README_FILES = (
   'Introduction-to-ML.md',
   'Descending-into-ML.md',
   'Reducing-Loss.md',
-  'Introduction-to-TensorFlow.md',
   'Generalization.md',
   'Training-and-Test-Sets.md',
   'Validation-Set.md',
