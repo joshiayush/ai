@@ -90,6 +90,7 @@ _ML_README_FILES = (
   'Classification.md',
   'Regularization-for-Sparsity.md',
   'Neural-Networks.md',
+  'Training-Neural-Networks.md',
 )
 
 
