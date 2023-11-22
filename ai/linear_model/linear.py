@@ -119,17 +119,18 @@ class LinearRegression:
         `n_features` is the number of features.
       y: Target vector.
     """
+    n_samples, n_features = X.shape
     self._bias = 0
-    self._weights = np.zeros(X.shape[1])
+    self._weights = np.zeros(n_features)
 
     for _ in range(self._n_iters):
       y_pred = np.dot(X, self._weights) + self._bias
 
-      bias_d = 1 / X[0] * np.sum((y_pred - y))
-      weights_d = 1 / X[0] * np.dot(X.T, (y_pred - y))
+      weights_d = (1 / n_samples) * np.dot(X.T, (y_pred - y))
+      bias_d = (1 / n_samples) * np.sum((y_pred - y))
 
-      self._bias = self._bias - (self._alpha * bias_d)
       self._weights = self._weights - (self._alpha * weights_d)
+      self._bias = self._bias - (self._alpha * bias_d)
 
     return self
 
