@@ -54,31 +54,32 @@ def GenerateAIDocs() -> int:
   return error_code
 
 
-_BASE_AI_MODULE_PATH = ('ai/', )
-_BASE_AI_DOCS_PATH = (
-  'docs/',
-  'notebooks/',
-  'templates/',
-)
+_BASE_AI_MODULE_PATH = {'ai': ('ai/', )}
+_BASE_AI_DOCS_PATH = {
+  'docs': (
+    'docs/',
+    'notebooks/',
+    'templates/',
+  )
+}
 
 
 def GenerateAILogs() -> int:
+  """Completes the action of command "--generate-logs" by generating changelog
+  file for the changes made in the "ai" or "docs" submodules.
+
+  Returns:
+    Error code of `PermissionError`.
+  """
   error_code = 0
-
-  logger = ai_logs.AIGitLog(_BASE_AI_REPO)
-  today = date.today()
-  
-  changelog = ''
-  changelog += f'## ai — {today}'
-  changelog += '\n\n'
-  changelog += logger.parse_changelogs_for_all(_BASE_AI_MODULE_PATH)
-
-  changelog += f'## docs — {today}'
-  changelog += '\n\n'
-  changelog += logger.parse_changelogs_for_all(_BASE_AI_DOCS_PATH)
-
+  changelog = ai_logs.Changelog(_BASE_AI_REPO)
   try:
-    logger.write_changelog('CHANGELOG.md', changelog.strip())
+    changelog.write_changelog_md(
+      'CHANGELOG.md', follow=(
+        _BASE_AI_MODULE_PATH,
+        _BASE_AI_DOCS_PATH,
+      )
+    )
   except PermissionError as exc:
     error_code = exc.errno
   return error_code
