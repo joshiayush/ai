@@ -91,7 +91,7 @@ class Symbol(_Sentence):
   symbols used in propositional logic determines whether the logic holds `true`
   or turns out to be `false`.
 
-  #### Examples
+  ##### Example
 
   >>> from logic import (Symbol, And)
   >>> P = Symbol('P')
@@ -116,7 +116,7 @@ class Symbol(_Sentence):
       name: `Symbol` name; can be anything including digits, words, letters, or
         special characters.
 
-    #### Examples
+    ##### Example
 
     >>> P = Symbol('P')
     >>> Q = Symbol('Q')
@@ -156,7 +156,7 @@ class Symbol(_Sentence):
     Returns:
       The evaluated model of the symbol.
 
-    #### Examples
+    ##### Example
 
     >>> from ai import Symbol, Not
     >>> P = Symbol('P')
@@ -181,7 +181,7 @@ class Symbol(_Sentence):
     Returns:
       String representation of the current symbol.
 
-    #### Examples
+    ##### Example
 
     >>> P = Symbol('P')
     >>> P.formula()
@@ -195,27 +195,106 @@ class Symbol(_Sentence):
 
 
 class Not(_Sentence):
-  def __init__(self, operand):
+  """`Not` class implements the properties and behaviour of the `(¬)` symbol.
+
+  In a propositional logic (PL) the `NOT` symbol inverts the value of the
+  symbol it is used with. For example, if the value of the symbol is `true` then
+  it will be evaluated to `false` and vice-versa.
+
+  ##### Example
+
+  >>> from logic import (Not, Symbol)
+  >>> rain = Symbol('Rain')
+  >>> Not(rain).formula()
+  '¬Rain'
+  """
+  def __init__(self, operand: 'Symbol'):
+    """Constructs a `Not` instance.
+
+    A `Symbol` instance is used while constructing a `Not` instance. This symbol
+    will then be evaluated with a `(¬)` operator every time a propositional
+    logic model is evaluated. If the value of the symbol holds `true` then the
+    evaluated value of the entire expression will be `false` and vice-versa.
+
+    Args:
+      operand: An instance of a `Symbol` which is a operand in a propositional
+        logic.
+
+    ##### Example
+
+    >>> from logic import (Not, Symbol)
+    >>> P = Symbol('P')
+    >>> knowledge = Not(P)
+    >>> knowledge.formula()
+    '¬P'
+    """
     _Sentence.validate(operand)
-    self.operand = operand
+    self._operand = operand
 
-  def __eq__(self, other):
-    return isinstance(other, Not) and self.operand == other.operand
+  def __eq__(self, other: 'Not') -> bool:
+    """Compares `self` with the `other`."""
+    return isinstance(other, Not) and self._operand == other._operand
 
-  def __hash__(self):
-    return hash(("not", hash(self.operand)))
+  def __hash__(self) -> int:
+    """Returns the hash of the current `Not` expression."""
+    return hash(("not", hash(self._operand)))
 
-  def __repr__(self):
-    return f"Not({self.operand})"
+  def __repr__(self) -> str:
+    """Returns a string representation of `self`."""
+    return f"Not({self._operand})"
 
-  def evaluate(self, model):
-    return not self.operand.evaluate(model)
+  def evaluate(self, model: dict[str, bool]) -> bool:
+    """Evaluates the value of the current expression i.e., `self` in the
+    propositional logic (PL).
 
-  def formula(self):
-    return "¬" + _Sentence.parenthesize(self.operand.formula())
+    Evaluating a model for `self` means evaluating the value of the current
+    expression. For example, for a symbol :math:`¬P \\implies \\mathrm{True}` in
+    a propositional logic (PL) —
 
-  def symbols(self):
-    return self.operand.symbols()
+    .. math::
+
+      ¬P \\implies \\mathrm{False}
+
+    Args:
+      model: A propositional logic model mapping from the symbol name to its
+        truth or false value.
+
+    Returns:
+      The evaluated model of the current expression.
+
+    ##### Example
+
+    >>> from ai import Symbol, Not
+    >>> P = Symbol('P')
+    >>> knowledge = Not(P)
+    >>> model_true[str(P)] = True
+    >>> knowledge.evaluate(model_true)
+    False
+    """
+    return not self._operand.evaluate(model)
+
+  def formula(self) -> str:
+    """Returns the expression for `self` that is to be used in the formula.
+
+    This function returns a string representation of the `Symbol` with the `(¬)`
+    operator that can later be joined with other operators and operands to
+    complete the propositional logic (PL).
+
+    Returns:
+      String representation of the current symbol.
+
+    ##### Example
+
+    >>> P = Symbol('P')
+    >>> knowledge(Not(P))
+    >>> knowledge.formula()
+    '¬P'
+    """
+    return "¬" + _Sentence.parenthesize(self._operand.formula())
+
+  def symbols(self) -> set:
+    """Returns a set containing the name of the symbols in the expression."""
+    return self._operand.symbols()
 
 
 class And(_Sentence):
