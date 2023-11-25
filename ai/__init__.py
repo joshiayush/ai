@@ -22,7 +22,6 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 from .stats import (cov, corrcoef)
-from .mathematical_functions import proportion
 from .boolalg import (
   Symbol, Not, And, Or, Implication, Biconditional, model_check
 )
