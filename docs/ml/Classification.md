@@ -289,7 +289,7 @@ An ROC curve plots TPR vs. FPR at different classification thresholds. Lowering 
 
 <div align="center">
 
-<img src="https://developers.google.com/static/machine-learning/crash-course/images/ROCCurve.svg" width="400" height="400" />
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/ROCCurve.svg" />
 
 <strong>Figure 4. TP vs. FP rate at different classification thresholds.</strong>
 
@@ -303,7 +303,7 @@ To compute the points in an ROC curve, we could evaluate a logistic regression m
 
 <div align="center">
 
-<img src="https://developers.google.com/static/machine-learning/crash-course/images/AUC.svg" width="400" height="400" />
+<img src="https://developers.google.com/static/machine-learning/crash-course/images/AUC.svg" />
 
 <strong>Figure 5. AUC (Area under the ROC Curve).</strong>
 
