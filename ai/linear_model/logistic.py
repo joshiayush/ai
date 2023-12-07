@@ -131,7 +131,7 @@ class LogisticRegression:
     """
     n_samples, n_features = X.shape
     self._bias = 0
-    self._weights = np.zeros(X.shape[1])
+    self._weights = np.zeros(n_features)
 
     for _ in range(self._n_iters):
       y_pred = self._sigmoid(np.dot(X, self._weights) + self._bias)
@@ -173,4 +173,4 @@ class LogisticRegression:
 
     y_pred = self._sigmoid(np.dot(X, self._weights) + self._bias)
     c_pred = [0 if y <= .5 else 1 for y in y_pred]
-    return c_pred
+    return np.array(c_pred)
