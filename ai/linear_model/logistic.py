@@ -35,12 +35,6 @@ class LogisticRegression:
   .. math::
 
     \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
-
-  Args:
-    alpha: Model's learning rate. High value might over shoot the minimum
-      loss, while low values might make the model to take forever to learn.
-    n_iters: Maximum number of updations to make over the weights and bias in
-      order to reach to a effecient prediction that minimizes the loss.
   """
   def __init__(self, alpha: np.float16 = .01, n_iters: np.int64 = 1000):
     """Initializes model's `learning rate` and number of `iterations`.
@@ -51,11 +45,10 @@ class LogisticRegression:
       n_iters: Maximum number of updations to make over the weights and bias in
         order to reach to a effecient prediction that minimizes the loss.
     """
-    self._alpha = alpha
     self._n_iters = n_iters
-
-    self._bias = None
+    self._alpha = alpha
     self._weights = None
+    self._bias = None
 
   @staticmethod
   def _sigmoid(t: np.ndarray) -> np.ndarray:
@@ -72,21 +65,61 @@ class LogisticRegression:
   def fit(self, X: np.ndarray, y: np.ndarray) -> 'LogisticRegression':
     """Fit Logistic Regression according to X, y.
 
-    The logistic regression model transforms the linear regression function
-    continuous value output into categorical value output using a sigmoid
-    function, which maps any real-valued set of independent variables input into
-    a value between 0 and 1. This function is known as the logistic function.
+    Hypothesis function for our `LogisticRegression` is the same as for the
+    `LinearRegression` :math:`\\hat y = b + wX`, where `b` is the model's
+    intercept and `w` is the coefficient of `X`.
+
+    The cost function or the loss function that we use is the Mean Squared Error
+    (MSE) between the predicted value and the true value. The cost function
+    `(J)` can be written as:
 
     .. math::
 
-      z = w \\cdot X + b
+      J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2
 
-    Now we use the sigmoid function where the input will be z and we find the
-    probability between 0 and 1. i.e predicted y.
+    To achieve the best-fit regression line, the model aims to predict the
+    target value :math:`\\hat Y` such that the error difference between the
+    predicted value :math:`\\hat Y` and the true value :math:`Y` is minimum. So,
+    it is very important to update the `b` and `w` values, to reach the best
+    value that minimizes the error between the predicted `y` value and the true
+    `y` value.
+
+    A logistic regression model can be trained using the optimization algorithm
+    gradient descent by iteratively modifying the model’s parameters to reduce
+    the mean squared error (MSE) of the model on a training dataset. To update
+    `b` and `w` values in order to reduce the Cost function (minimizing RMSE
+    value) and achieve the best-fit line the model uses Gradient Descent. The
+    idea is to start with random `b` and `w` values and then iteratively update
+    the values, reaching minimum cost.
+
+    On differentiating cost function `J` with respect to `b`:
+
+    .. math::
+
+      \\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
+                        \\hat y_{i} - y_{i}
+                        )
+
+    On differentiating cost function `J` with respect to `w`:
+
+    .. math::
+
+      \\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
+                        \\hat y_{i} - y_{i}
+                        ) \\cdot x_{i}
+
+    The above derivative functions are used for updating `weights` and `bias` in
+    each iteration.
+
+    The sigmoid function is then used for mapping the predictions between 0 and
+    1.
 
     .. math::
 
       \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
+
+    where :math:`z` can be replaced with our hypothesis function
+    :math:`\\hat y = b + wX`.
 
     Args:
       X: Training vectors, where `n_samples` is the number of samples and
@@ -96,17 +129,18 @@ class LogisticRegression:
     Returns:
       Returns the instance itself.
     """
+    n_samples, n_features = X.shape
     self._bias = 0
     self._weights = np.zeros(X.shape[1])
 
     for _ in range(self._n_iters):
       y_pred = self._sigmoid(np.dot(X, self._weights) + self._bias)
 
-      bias_d = 1 / X[0] * np.sum((y_pred - y))
-      weights_d = 1 / X[0] * np.dot(X.T, (y_pred - y))
+      weights_d = (1 / n_samples) * np.dot(X.T, (y_pred - y))
+      bias_d = (1 / n_samples) * np.sum((y_pred - y))
 
-      self._bias = self._bias - (self._alpha * bias_d)
       self._weights = self._weights - (self._alpha * weights_d)
+      self._bias = self._bias - (self._alpha * bias_d)
 
     return self
 
