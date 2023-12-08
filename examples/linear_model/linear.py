@@ -70,6 +70,10 @@ plt.yticks(())
 plt.show()
 
 print("Calculating using ai api...")
+print(
+  "Since there's no implementation of the closed-form solution for linear"
+  " regression in ai; sklearn api beats us in terms of speed..."
+)
 
 # Create linear regression object using ai api
 # Since there's no implementation of the closed-form solution for linear
