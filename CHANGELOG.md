@@ -1,5 +1,35 @@
 # Changelog
 
+## ai — 2023-12-09
+
+### Added
+
+- Added tests for `LogisticRegression` ([#6aef58a](https://www.github.com/joshiayush/ai/commit/6aef58a))
+- Added documentation to `Not` class that represents the `¬` (not) symbol in a propositional logic (PL) ([#429f1f1](https://www.github.com/joshiayush/ai/commit/429f1f1))
+- Added examples comparing both `sklearn` and `ai` api's `LinearRegression` estimator over a single feature of `diabetes` dataset ([#098ce8c](https://www.github.com/joshiayush/ai/commit/098ce8c))
+- Added example comparing `ai.linear_model.LogisticRegression` estimator against `sklearn.linear_model.LogisticRegression` ([#e7b8a92](https://www.github.com/joshiayush/ai/commit/e7b8a92))
+
+### Fixed
+
+- Fixed calculation for `weights` and `bias` in logistic regression ([#d156644](https://www.github.com/joshiayush/ai/commit/d156644))
+- Fixed logical error in calculating the derivatives of `weights` and `bias` in linear regression ([#aa46cfe](https://www.github.com/joshiayush/ai/commit/aa46cfe))
+
+### Removed
+
+- Removed mathematical function `proportion` which serves no use for `ai` ([#6fe7d8c](https://www.github.com/joshiayush/ai/commit/6fe7d8c))
+
+## docs — 2023-12-09
+
+### Added
+
+- Added concept of `Linear Unit`, `Layers`, `Stacking Dense Layers`, and `Dropout and Batch Normalization` to `Neural Networks` ([#64337d7](https://www.github.com/joshiayush/ai/commit/64337d7))
+- Added a __Support Vector Machine__ model trained for face recognition ([#912c4c2](https://www.github.com/joshiayush/ai/commit/912c4c2))
+
+### Fixed
+
+- Fixed in-consistent aspect ration problem ([#365509d](https://www.github.com/joshiayush/ai/commit/365509d))
+
+
 ## ai — 2023-11-22
 
 ### Added

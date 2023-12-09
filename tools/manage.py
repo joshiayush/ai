@@ -54,7 +54,12 @@ def GenerateAIDocs() -> int:
   return error_code
 
 
-_BASE_AI_MODULE_PATH = {'ai': ('ai/', )}
+_BASE_AI_MODULE_PATH = {
+  'ai': (
+    'ai/',
+    'examples',
+  )
+}
 _BASE_AI_DOCS_PATH = {
   'docs': (
     'docs/',
