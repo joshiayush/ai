@@ -19,9 +19,9 @@ from typing import Union
 import numpy as np
 
 
-class GaussianNaiveBayes:
+class GaussianNB:
   """Gaussian Naive Bayes (GaussianNB).
-  
+
   Naive Bayes methods are a set of supervised learning algorithms based on
   applying Bayes’ theorem with the “naive” assumption of conditional
   independence between every pair of features given the value of the class
@@ -31,9 +31,9 @@ class GaussianNaiveBayes:
   .. math::
 
       P(y | x_{1}, ..., x_{n}) = \\dfrac{
-                                    P(y) \\cdot P(x_{1} ..., x_{n} | y)
+                                    P(y) \\cdot P(x_{1}, ..., x_{n} | y)
                                   }{
-                                    P(x_{1} ..., x_{n})
+                                    P(x_{1}, ..., x_{n})
                                   }
 
   Using the naive conditional independence assumption that:
@@ -49,7 +49,7 @@ class GaussianNaiveBayes:
       P(y | x_{1}, ..., x_{n}) = \\dfrac{
                                     P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)
                                   }{
-                                    P(x_{1} ..., x_{n})
+                                    P(x_{1}, ..., x_{n})
                                   }
 
   Since :math:`P(x_{1}, ..., x_{n})` is constant given the input, we can use the
@@ -62,6 +62,19 @@ class GaussianNaiveBayes:
   .. math::
 
       ⇒ \\hat y = arg \\max_{y} P(y) \\cdot \\prod_{i=1}^{n} P(x_{i} | y)
+
+  .. note::
+
+    We never multiply probabilities in computer science since, the number can
+    multiply to :math:`0` upto the machine precision. It's better to use the
+    monotonic function :math:`\\mathrm{log}` and add the log of the
+    probabilities.
+
+  .. math::
+      
+      ⇒ \\hat y = arg \\max_{y} \\sum_{i=1}^{n} \\mathrm{log}(
+                    P(x_{i} | y)
+                  ) + \\mathrm{log}(P(y))
 
   and we can use Maximum A Posteriori (MAP) estimation to estimate :math:`P(y)`
   and :math:`P(x_{i} | y)`;  the former is then the relative frequency of class
@@ -92,7 +105,7 @@ class GaussianNaiveBayes:
   @staticmethod
   def _check_if_parameters_comply_to_constraints(**kwargs: dict) -> None:
     """Private static method to ensure the compatibility of the hyperparameters
-    passed to the `GaussianNaiveBayes`.
+    passed to the `GaussianNB`.
 
     Args:
       kwargs: Passed hyperparameters.
@@ -100,9 +113,9 @@ class GaussianNaiveBayes:
     Raises:
       ValueError: If any hyperparameter is not compatible.
     """
-    if kwargs[
+    if kwargs['priors'] is not None and kwargs[
       'priors'
-    ].__class__.__name__ not in GaussianNaiveBayes._parameter_constraints[
+    ].__class__.__name__ not in GaussianNB._parameter_constraints[
       'priors']:
       raise ValueError(
         (
@@ -119,11 +132,12 @@ class GaussianNaiveBayes:
         not adjusted according to the data.
     """
     self._priors = priors
-    self._is_fitted = False
+    self._mean = None
+    self._var = None
 
     self._check_if_parameters_comply_to_constraints(priors=self._priors)
 
-  def fit(self, X: np.ndarray, y: np.ndarray) -> 'GaussianNaiveBayes':
+  def fit(self, X: np.ndarray, y: np.ndarray) -> 'GaussianNB':
     """Fit Gaussian Naive Bayes according to X, y.
 
     Args:
@@ -136,7 +150,7 @@ class GaussianNaiveBayes:
     """
     self._classes = np.unique(y)
 
-    n_features = X.shape[1]
+    n_samples, n_features = X.shape
     n_classes = len(self._classes)
     self._var = np.zeros((n_classes, n_features))
     self._mean = np.zeros((n_classes, n_features))
@@ -164,14 +178,13 @@ class GaussianNaiveBayes:
 
       # Update if only no priors is provided
       if self._priors is None:
-        self._class_priors[idx] = X_c.shape[0] / float(X.shape[0])
+        self._class_priors[idx] = X_c.shape[0] / float(n_samples)
 
-    self._is_fitted = True
     return self
 
   def predict(self, X: np.ndarray) -> np.ndarray:
     """Predict for `X` using the previously calculated priors.
-    
+
     Args:
       X: Testing vectors, where `n_samples` is the number of samples and
         `n_features` is the number of features.
@@ -179,7 +192,7 @@ class GaussianNaiveBayes:
     Returns:
       Predictions made for the given testing vector `X`.
     """
-    if self._is_fitted is False:
+    if self._mean is None or self._var is None:
       raise RuntimeError(
         f'{self.__class__.__name__}: predict called before fitting data'
       )
@@ -202,9 +215,9 @@ class GaussianNaiveBayes:
         # `y` and also add the prior rather multiplying it
         posterior = np.sum(np.log(self._pdf(idx, x))
                            ) + np.log(self._class_priors[idx])
-        posteriors = [*posteriors, posterior]
+        posteriors.append(posterior)
       # Only add classes with the highest posterior
-      preds = [*preds, self._classes[np.argsort(posteriors)]]
+      preds.append(self._classes[np.argsort(posteriors)])
     return np.array(preds)
 
   def _pdf(self, c_idx: int, x: np.ndarray) -> np.float64:
