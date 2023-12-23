@@ -1,5 +1,12 @@
 # Changelog
 
+## ai — 2023-12-23
+
+### Added
+
+- Added `statistic` calculating functions to `ai.stats` module (#20) ([#6c8e592](https://www.github.com/joshiayush/ai/commit/6c8e592))
+
+
 ## ai — 2023-12-09
 
 ### Added

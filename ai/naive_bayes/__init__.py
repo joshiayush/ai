@@ -19,7 +19,7 @@ variable.
 
 `ai.naive_bayes` implements the following `naive bayes` algorithms:
 
-  * `ai.naive_bayes.naive_bayes.GaussianNaiveBayes`
+  * `ai.naive_bayes.naive_bayes.GaussianNB`
 """
 
-from .naive_bayes import GaussianNaiveBayes
+from .naive_bayes import GaussianNB
