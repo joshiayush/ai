@@ -21,14 +21,11 @@ import base64
 from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
-from .stats import (cov, corrcoef)
-from .boolalg import (
-  Symbol, Not, And, Or, Implication, Biconditional, model_check
-)
-
-from .neighbors import KNeighborsClassifier
-from .naive_bayes import GaussianNaiveBayes
-from .linear_model import (LinearRegression, LogisticRegression)
+from . import stats
+from . import boolalg
+from . import neighbors
+from . import naive_bayes
+from . import linear_model
 
 _DOCS_DIR = pathlib.Path(
   os.fspath(os.path.normpath(__file__))

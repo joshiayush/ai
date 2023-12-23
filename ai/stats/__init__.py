@@ -17,8 +17,17 @@
 `ai.stats` implements variety of statistical methods for computing stats of
 `numpy` arrays:
 
+#### Correlating
+
   * `ai.stats.correlation.cov`
   * `ai.stats.correlation.corrcoef`
 """
+
+from .stats import mean
+from .stats import median
+from .stats import std
+from .stats import var
+from .stats import zscore
+from .stats import varcoef
 
 from .correlation import cov, corrcoef
