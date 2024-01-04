@@ -1,11 +1,11 @@
 # Changelog
 
-## ai — 2023-12-23
+## ai — 2024-01-04
 
 ### Added
 
+- Added documentation to `AND` and `OR` connectives ([#e7e575f](https://www.github.com/joshiayush/ai/commit/e7e575f))
 - Added `statistic` calculating functions to `ai.stats` module (#20) ([#6c8e592](https://www.github.com/joshiayush/ai/commit/6c8e592))
-
 
 ## ai — 2023-12-09
 
@@ -30,12 +30,11 @@
 ### Added
 
 - Added concept of `Linear Unit`, `Layers`, `Stacking Dense Layers`, and `Dropout and Batch Normalization` to `Neural Networks` ([#64337d7](https://www.github.com/joshiayush/ai/commit/64337d7))
-- Added a __Support Vector Machine__ model trained for face recognition ([#912c4c2](https://www.github.com/joshiayush/ai/commit/912c4c2))
+- Added a **Support Vector Machine** model trained for face recognition ([#912c4c2](https://www.github.com/joshiayush/ai/commit/912c4c2))
 
 ### Fixed
 
 - Fixed in-consistent aspect ration problem ([#365509d](https://www.github.com/joshiayush/ai/commit/365509d))
-
 
 ## ai — 2023-11-22
 
@@ -64,7 +63,6 @@
 
 - Removed "Introduction to Tensorflow" to keep the document focused only on the theoretical part ([#feafdee](https://www.github.com/joshiayush/ai/commit/feafdee))
 
-
 ## ai — 2023-09-30
 
 ### Added
@@ -80,12 +78,10 @@
 - Added `ROC (receiver operating characteristic curve) Curve and AUC (area under curve)` section ([#9148452](https://www.github.com/joshiayush/ai/commit/9148452))
 - Added light weight implementation of `LinearRegression` using the `Gradient Descent` optimization function ([#7567f14](https://www.github.com/joshiayush/ai/commit/7567f14))
 
-
 ### Fixed
 
 - Fixed docstring syntax errors ([#28aa72d](https://www.github.com/joshiayush/ai/commit/28aa72d))
 - Fixed the roadmap image un-responsive problem ([#bc27fb2](https://www.github.com/joshiayush/ai/commit/bc27fb2))
-
 
 ## docs — 2023-09-30
 
@@ -93,7 +89,6 @@
 
 - Added detailed explaination of `Machine Learning` methods and concepts into the main `ai` documentation ([#2936fb9](https://www.github.com/joshiayush/ai/commit/2936fb9))
 - Added `README` to every sub-module level for better doc navigation ([#f14d8f3](https://www.github.com/joshiayush/ai/commit/f14d8f3))
-
 
 ### Fixed
 
