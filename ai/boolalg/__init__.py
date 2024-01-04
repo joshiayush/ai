@@ -41,6 +41,10 @@ print(model_check(knowledge, rain))
 ```
 """
 
-from .logic import (
-  Symbol, Not, And, Or, Implication, Biconditional, model_check
-)
+from .logic import Symbol
+from .logic import Not
+from .logic import And
+from .logic import Or
+from .logic import Implication
+from .logic import Biconditional
+from .logic import model_check

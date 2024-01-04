@@ -14,6 +14,8 @@
 # pylint: disable=too-many-function-args, invalid-name, missing-module-docstring
 # pylint: disable=missing-class-docstring
 
+from typing import Tuple, Dict
+
 import itertools
 
 
@@ -99,6 +101,7 @@ class Symbol(_Sentence):
   >>> knowledge = And(P, Q)
   >>> knowledge.formula()
   'P ∧ Q'
+
   """
   def __init__(self, name: str):
     """Constructs a `Symbol` instance.
@@ -121,6 +124,7 @@ class Symbol(_Sentence):
     >>> P = Symbol('P')
     >>> Q = Symbol('Q')
     >>> R = Symbol('R')
+
     """
     self._name = name
 
@@ -136,7 +140,7 @@ class Symbol(_Sentence):
     """Returns the name of the symbol."""
     return self._name
 
-  def evaluate(self, model: dict[str, bool]) -> bool:
+  def evaluate(self, model: Dict[str, bool]) -> bool:
     """Evaluates the value of a symbol in a propositional logic (PL).
 
     Evaluating a model means evaluating the value of each symbol in the
@@ -164,6 +168,7 @@ class Symbol(_Sentence):
     >>> model_true[str(P)] = True
     >>> knowledge.evaluate(model_true)
     False
+
     """
     try:
       return bool(model[self._name])
@@ -186,6 +191,7 @@ class Symbol(_Sentence):
     >>> P = Symbol('P')
     >>> P.formula()
     'P'
+
     """
     return self._name
 
@@ -207,6 +213,7 @@ class Not(_Sentence):
   >>> rain = Symbol('Rain')
   >>> Not(rain).formula()
   '¬Rain'
+
   """
   def __init__(self, operand: 'Symbol'):
     """Constructs a `Not` instance.
@@ -227,6 +234,7 @@ class Not(_Sentence):
     >>> knowledge = Not(P)
     >>> knowledge.formula()
     '¬P'
+
     """
     _Sentence.validate(operand)
     self._operand = operand
@@ -243,7 +251,7 @@ class Not(_Sentence):
     """Returns a string representation of `self`."""
     return f"Not({self._operand})"
 
-  def evaluate(self, model: dict[str, bool]) -> bool:
+  def evaluate(self, model: Dict[str, bool]) -> bool:
     """Evaluates the value of the current expression i.e., `self` in the
     propositional logic (PL).
 
@@ -267,9 +275,11 @@ class Not(_Sentence):
     >>> from ai import Symbol, Not
     >>> P = Symbol('P')
     >>> knowledge = Not(P)
+    >>> model_true = dict()
     >>> model_true[str(P)] = True
     >>> knowledge.evaluate(model_true)
     False
+
     """
     return not self._operand.evaluate(model)
 
@@ -289,6 +299,7 @@ class Not(_Sentence):
     >>> knowledge(Not(P))
     >>> knowledge.formula()
     '¬P'
+
     """
     return "¬" + _Sentence.parenthesize(self._operand.formula())
 
@@ -298,29 +309,149 @@ class Not(_Sentence):
 
 
 class And(_Sentence):
-  def __init__(self, *conjuncts):
+  """`And` class implements the properties and behaviour of the `(∧)` symbol.
+
+  In a propositional logic (PL) the `AND` symbol works similar to the (*)
+  multiplication operator in algebra that multiplies multiple experssions into
+  one single value. For example, if we have two symbols with value `true` and
+  `false` (where `true` is equals to `1` and `false` is equals to `0`) then the
+  `AND` operator between these two symbols will result in a new value `0`.
+
+  ##### Example
+
+  >>> from logic import (And, Symbol)
+  >>> rain = Symbol('Rain')
+  >>> run = Symbol('Run')
+  >>> knowledge = And(rain, run)
+  >>> knowledge.formula()
+  'Rain ∧ Run'
+
+  """
+  def __init__(self, *conjuncts: Tuple['Symbol', ...]):
+    """Constructs a `And` instance.
+
+    A `Symbol` instance is used while constructing a `And` instance as
+    conjunctions. These symbol will then be evaluated with a `(∧)` operator
+    every time a propositional logic model is evaluated. If the value of all the
+    symbols holds `true` then the evaluated value of the entire expression will
+    be `true` and if the value of any one symbol holds `false` in the
+    conjunctions then the entire propositional logic expression evaluates to
+    `false`.
+
+    Args:
+      conjunct: A tuple of conjunctions constructing a `And` expression in a
+        propositional logic.
+
+    ##### Example
+
+    >>> from logic import (And, Symbol)
+    >>> rain = Symbol('Rain')
+    >>> run = Symbol('Run')
+    >>> knowledge = And(rain, run)
+    >>> knowledge.formula()
+    'Rain ∧ Run'
+
+    """
     for conjunct in conjuncts:
       _Sentence.validate(conjunct)
     self.conjuncts = list(conjuncts)
 
-  def __eq__(self, other):
+  def __eq__(self, other: 'And') -> bool:
+    """Compares `self` with the `other`."""
     return isinstance(other, And) and self.conjuncts == other.conjuncts
 
-  def __hash__(self):
+  def __hash__(self) -> int:
+    """Returns the hash of the current `Not` expression."""
     return hash(("and", tuple(hash(conjunct) for conjunct in self.conjuncts)))
 
-  def __repr__(self):
+  def __repr__(self) -> str:
+    """Returns a string representation of `self`."""
     conjunctions = ", ".join([str(conjunct) for conjunct in self.conjuncts])
     return f"And({conjunctions})"
 
-  def add(self, conjunct):
+  def add(self, conjunct: 'Symbol') -> None:
+    """Appends a conjuction to the current experssion for `And`.
+
+    Args:
+      conjunct: A conjunction that constructs a `And` expression in a
+        propositional logic.
+
+    ##### Example
+
+    >>> from ai.boolalg import (Symbol, And)
+    >>> rain = Symbol('rain')
+    >>> run = Symbol('run')
+    >>> knowledge = And(rain, run)
+    >>> knowledge.formula()
+    'rain ∧ run'
+    >>> umbrella = Symbol('umbrella')
+    >>> knowledge.add(umbrella)
+    >>> knowledge.formula()
+    'rain ∧ run ∧ umbrella'
+
+    """
     _Sentence.validate(conjunct)
     self.conjuncts.append(conjunct)
 
-  def evaluate(self, model):
+  def evaluate(self, model: Dict[str, bool]) -> bool:
+    """Evaluates the value of the current expression i.e., `self` in the
+    propositional logic (PL).
+
+    Evaluating a model for `self` means evaluating the values of the
+    conjunctions the current expression holds. For example if,
+    :math:`P \\implies \\mathrm{True}` and :math:`Q \\implies \\mathrm{false}`
+    in a propositional logic (PL) —
+
+    .. math::
+
+      P ∧ Q \\implies \\mathrm{false}
+
+    Args:
+      mode: A propositional logic model mapping from the symbol name to its
+        truth or false value.
+
+    Returns:
+      The evaluated model of the current expression.
+
+    ##### Example
+
+    >>> from ai.boolalg import (Symbol, And)
+    >>> rain = Symbol('rain')
+    >>> run = Symbol('run')
+    >>> umbrella = Symbol('umbrella')
+    >>> knowledge = And(rain, run, umbrella)
+    >>> knowledge.formula()
+    'rain ∧ run ∧ umbrella'
+    >>> model = dict()
+    >>> model[str(rain)] = True
+    >>> model[str(umbrella)] = True
+    >>> model[str(run)] = False
+    >>> knowledge.evaluate(model)
+    False
+
+    """
     return all(conjunct.evaluate(model) for conjunct in self.conjuncts)
 
-  def formula(self):
+  def formula(self) -> str:
+    """Returns the expression for `self` that is to be used in the formula.
+
+    This function returns a string representation of the conjunctions with the
+    `(∧)` operator that can later be joined with other operators and operands
+    to complete the propositional logic (PL).
+
+    Returns:
+      String representation of the current symbol.
+
+    ##### Example
+
+    >>> from ai.boolalg import Symbol, And
+    >>> rain = Symbol('rain')
+    >>> run = Symbol('run')
+    >>> knowledge = And(rain, run)
+    >>> knowledge.formula()
+    'rain ∧ run'
+
+    """
     if len(self.conjuncts) == 1:
       return self.conjuncts[0].formula()
     return " ∧ ".join(
@@ -330,30 +461,137 @@ class And(_Sentence):
       ]
     )
 
-  def symbols(self):
+  def symbols(self) -> set:
+    """Returns a set containing the name of the symbols in the expression."""
     return set.union(*[conjunct.symbols() for conjunct in self.conjuncts])
 
 
 class Or(_Sentence):
-  def __init__(self, *disjuncts):
+  """`Or` class implements the properties and behaviour of the `(∨)` symbol.
+
+  In a propositional logic (PL) the `OR` symbol works similar to the (+)
+  addition operator in algebra that adds multiple experssions into one single
+  value. For example, if we have two symbols with value `true` and `false`
+  (where `true` is equals to `1` and `false` is equals to `0`) then the `OR`
+  operator between these two symbols will result in a new value `1`.
+
+  .. note::
+
+    Unlike algebra, boolean algebra adds multiple `true` values into one single
+    `true` value which is equals to `1`;
+    :math:`\\mathrm{true} + \\mathrm{true} \\implies 1`
+
+  ##### Example
+
+  >>> from logic import (Or, Symbol)
+  >>> rain = Symbol('Rain')
+  >>> run = Symbol('Run')
+  >>> knowledge = Or(rain, run)
+  >>> knowledge.formula()
+  'Rain ∨ Run'
+
+  """
+  def __init__(self, *disjuncts: 'Symbol'):
+    """Constructs a `Or` instance.
+
+    A `Symbol` instance is used while constructing a `Or` instance as
+    disjunctions. These symbol will then be evaluated with a `(∨)` operator
+    every time a propositional logic model is evaluated. If the value of all the
+    symbols holds `true` then the evaluated value of the entire expression will
+    be `true` and if the value of any all the symbols holds `false` in the
+    disjunctions then the entire propositional logic expression evaluates to
+    `false`, unless a `true` symbol sneaks its way into the `Or` expression.
+
+    Args:
+      disjuncts: A tuple of disjunctions constructing a `Or` expression in a
+        propositional logic.
+
+    ##### Example
+
+    >>> from logic import (And, Symbol)
+    >>> rain = Symbol('Rain')
+    >>> run = Symbol('Run')
+    >>> knowledge = And(rain, run)
+    >>> knowledge.formula()
+    'Rain ∨ Run'
+
+    """
     for disjunct in disjuncts:
       _Sentence.validate(disjunct)
     self.disjuncts = list(disjuncts)
 
   def __eq__(self, other):
+    """Compares `self` with the `other`."""
     return isinstance(other, Or) and self.disjuncts == other.disjuncts
 
   def __hash__(self):
+    """Returns the hash of the current `Not` expression."""
     return hash(("or", tuple(hash(disjunct) for disjunct in self.disjuncts)))
 
   def __repr__(self):
+    """Returns a string representation of `self`."""
     disjuncts = ", ".join([str(disjunct) for disjunct in self.disjuncts])
     return f"Or({disjuncts})"
 
   def evaluate(self, model):
+    """Evaluates the value of the current expression i.e., `self` in the
+    propositional logic (PL).
+
+    Evaluating a model for `self` means evaluating the values of the
+    disjunctions the current expression holds. For example if,
+    :math:`P \\implies \\mathrm{True}` and :math:`Q \\implies \\mathrm{false}`
+    in a propositional logic (PL) —
+
+    .. math::
+
+      P ∨ Q \\implies \\mathrm{true}
+
+    Args:
+      mode: A propositional logic model mapping from the symbol name to its
+        truth or false value.
+
+    Returns:
+      The evaluated model of the current expression.
+
+    ##### Example
+
+    >>> from ai.boolalg import (Symbol, Or)
+    >>> rain = Symbol('rain')
+    >>> run = Symbol('run')
+    >>> umbrella = Symbol('umbrella')
+    >>> knowledge = Or(rain, run, umbrella)
+    >>> knowledge.formula()
+    'rain ∨ run ∨ umbrella'
+    >>> model = dict()
+    >>> model[str(rain)] = True
+    >>> model[str(umbrella)] = True
+    >>> model[str(run)] = False
+    >>> knowledge.evaluate(model)
+    True
+
+    """
     return any(disjunct.evaluate(model) for disjunct in self.disjuncts)
 
   def formula(self):
+    """Returns the expression for `self` that is to be used in the formula.
+
+    This function returns a string representation of the disjunctions with the
+    `(∨)` operator that can later be joined with other operators and operands
+    to complete the propositional logic (PL).
+
+    Returns:
+      String representation of the current symbol.
+
+    ##### Example
+
+    >>> from ai.boolalg import Symbol, Or
+    >>> rain = Symbol('rain')
+    >>> run = Symbol('run')
+    >>> knowledge = Or(rain, run)
+    >>> knowledge.formula()
+    'rain ∨ run'
+
+    """
     if len(self.disjuncts) == 1:
       return self.disjuncts[0].formula()
     return " ∨ ".join(
@@ -364,6 +602,7 @@ class Or(_Sentence):
     )
 
   def symbols(self):
+    """Returns a set containing the name of the symbols in the expression."""
     return set.union(*[disjunct.symbols() for disjunct in self.disjuncts])
 
 
@@ -375,6 +614,7 @@ class Implication(_Sentence):
     self.consequent = consequent
 
   def __eq__(self, other):
+    """Compares `self` with the `other`."""
     return (
       isinstance(other, Implication) and
       self.antecedent == other.antecedent and
@@ -382,9 +622,11 @@ class Implication(_Sentence):
     )
 
   def __hash__(self):
+    """Returns the hash of the current `Not` expression."""
     return hash(("implies", hash(self.antecedent), hash(self.consequent)))
 
   def __repr__(self):
+    """Returns a string representation of `self`."""
     return f"Implication({self.antecedent}, {self.consequent})"
 
   def evaluate(self, model):
@@ -398,6 +640,7 @@ class Implication(_Sentence):
     return f"{antecedent} => {consequent}"
 
   def symbols(self):
+    """Returns a set containing the name of the symbols in the expression."""
     return set.union(self.antecedent.symbols(), self.consequent.symbols())
 
 
@@ -409,15 +652,18 @@ class Biconditional(_Sentence):
     self.right = right
 
   def __eq__(self, other):
+    """Compares `self` with the `other`."""
     return (
       isinstance(other, Biconditional) and self.left == other.left and
       self.right == other.right
     )
 
   def __hash__(self):
+    """Returns the hash of the current `Not` expression."""
     return hash(("biconditional", hash(self.left), hash(self.right)))
 
   def __repr__(self):
+    """Returns a string representation of `self`."""
     return f"Biconditional({self.left}, {self.right})"
 
   def evaluate(self, model):
@@ -432,6 +678,7 @@ class Biconditional(_Sentence):
     return f"{left} <=> {right}"
 
   def symbols(self):
+    """Returns a set containing the name of the symbols in the expression."""
     return set.union(self.left.symbols(), self.right.symbols())
 
 
