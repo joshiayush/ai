@@ -1,5 +1,20 @@
 # Changelog
 
+## ai — 2024-12-28
+
+### Added
+
+- Added examples on "Perceptron" - single layer neural network ([#659fd15](https://www.github.com/joshiayush/ai/commit/659fd15))
+- Added implementation of "Perceptron" - single layer neural network ([#c6afcc5](https://www.github.com/joshiayush/ai/commit/c6afcc5))
+- Added `statistic` calculating functions to `ai.stats` module (#20) ([#ae05cf1](https://www.github.com/joshiayush/ai/commit/ae05cf1))
+
+## docs — 2024-12-28
+
+### Added
+
+- Added a __Support Vector Machine__ model trained for face recognition ([#912c4c2](https://www.github.com/joshiayush/ai/commit/912c4c2))
+
+
 ## ai — 2024-01-04
 
 ### Added
