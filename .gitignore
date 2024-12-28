@@ -9,6 +9,7 @@ bin
 pyvenv.cfg
 share/
 ai_dev/
+.venv/
 
 # visual studio code
 .vscode
