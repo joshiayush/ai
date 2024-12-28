@@ -48,7 +48,7 @@ class Perceptron:
         order to reach to a effecient prediction that minimizes the loss.
       random_state: Seed to generate random weights and bias.
     """
-    self.aplha = alpha
+    self.alpha = alpha
     self.n_iters = n_iters
     self.random_state = random_state
 
@@ -65,16 +65,16 @@ class Perceptron:
     """
     rgen = np.random.RandomState(self.random_state)
     self.weights = rgen.normal(loc=0.0, scale=0.01, size=X.shape[1])
-    self.b = np.float(0.)
-    self.errors = []
+    self.b_ = np.float64(0.)
+    self.errors_ = []
     for _ in range(self.n_iters):
       errors = 0
       for xi, target in zip(X, y):
         update = self.alpha * (target - self.predict(xi))
         self.weights += update * xi
-        self.b += update
+        self.b_ += update
         errors += int(update != 0.0)
-      self.errors.append(errors)
+      self.errors_.append(errors)
     return self
 
   def net_input(self, X):
@@ -87,7 +87,7 @@ class Perceptron:
     Returns:
       The dot product of `X` and `weights` plus `b`.
     """
-    return np.dot(X, self.weights) + self.b
+    return np.dot(X, self.weights) + self.b_
 
   def predict(self, X):
     """Return class label after unit step.

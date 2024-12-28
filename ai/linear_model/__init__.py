@@ -21,7 +21,9 @@ target value.
 
   * `ai.linear_model.linear.LinearRegression`
   * `ai.linear_model.logistic.LogisticRegression`
+  * `ai.linear_model.perceptron.Perceptron`
 """
 
 from .linear import LinearRegression
 from .logistic import LogisticRegression
+from .perceptron import Perceptron
