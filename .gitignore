@@ -20,3 +20,7 @@ ai_dev/
 
 # IPython
 .ipynb_*
+
+# uv
+.python-version
+uv.lock
