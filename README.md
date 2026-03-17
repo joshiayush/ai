@@ -6,8 +6,6 @@ The idea is to learn machine learning by implementing the algorithms from ground
 
 To contribute to AI, please read the [style guide](https://www.tensorflow.org/community/contribute/docs_style).
 
-To jump onto the **Artificial Intelligence** roadmap, please click on the
-[Artificial Intelligence Map](https://github.com/joshiayush/ai#roadmap).
 
 ## Contents
 
@@ -42,29 +40,6 @@ print(accuracy_score(y_pred, y_test))
 ## Roadmap
 
 <div align='center'>
-  <img src='docs/__design__/media/Introduction.drawio.svg' />
-</div>
-
-### Fundamentals
-
-<div align='center'>
-  <img src='docs/__design__/media/Fundamentals.drawio.svg' />
-</div>
-
-### Data Scientist
-
-<div align='center'>
-  <img src='docs/__design__/media/Data_Science.drawio.svg' />
-</div>
-
-### Machine Learning
-
-<div align='center'>
-  <img src='docs/__design__/media/Machine_Learning.drawio.svg' />
-</div>
-
-### Deep Learning
-
-<div align='center'>
-  <img src='docs/__design__/media/Deep_Learning.drawio.svg' />
+  <a href='docs/__design__/media/Deep_Learning_Roadmap.svg'>Open interactive roadmap →</a>
+  &nbsp;(click nodes to open articles &amp; videos)
 </div>
