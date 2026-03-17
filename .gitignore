@@ -26,3 +26,6 @@ ai_dev/
 
 # Jupyter
 .jupyter
+
+# Mkdocs
+site/
