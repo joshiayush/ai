@@ -18,12 +18,13 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install -r requirements.txt
-      - run: pdoc -t templates/ ai/ --docformat google --search --math -o ./docs
+      - run: pip install mkdocs mkdocs-material mkdocstrings[python]
+      - run: python tools/generate_dl_roadmap.py
+      - run: mkdocs build
 
       - uses: actions/upload-pages-artifact@v2
         with:
-          path: docs/
+          path: site/
 
   deploy:
     needs: build

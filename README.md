@@ -6,7 +6,6 @@ The idea is to learn machine learning by implementing the algorithms from ground
 
 To contribute to AI, please read the [style guide](https://www.tensorflow.org/community/contribute/docs_style).
 
-
 ## Contents
 
 Check out [joshiayush.github.io/ai](https://joshiayush.github.io/ai) to learn about machine learning and various machine learning algorithms.
@@ -39,7 +38,4 @@ print(accuracy_score(y_pred, y_test))
 
 ## Roadmap
 
-<div align='center'>
-  <a href='docs/__design__/media/Deep_Learning_Roadmap.svg'>Open interactive roadmap →</a>
-  &nbsp;(click nodes to open articles &amp; videos)
-</div>
+[Open Deep Learning Roadmap →](https://joshiayush.github.io/ai/deep-learning-roadmap/)

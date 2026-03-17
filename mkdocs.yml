@@ -1,0 +1,106 @@
+site_name: joshiayush.ai
+site_url: https://joshiayush.github.io/ai
+repo_url: https://github.com/joshiayush/ai
+repo_name: joshiayush/ai
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.top
+    - search.highlight
+    - search.suggest
+    - content.code.copy
+  font:
+    text: Roboto
+    code: Roboto Mono
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_source: true
+            show_root_heading: true
+
+nav:
+  - Home: index.md
+  - Deep Learning Roadmap: deep-learning-roadmap.md
+  - Machine Learning:
+    - Overview: ml/README.md
+    - Introduction to ML: ml/Introduction-to-ML.md
+    - Descending into ML: ml/Descending-into-ML.md
+    - Reducing Loss: ml/Reducing-Loss.md
+    - Generalization: ml/Generalization.md
+    - Training and Test Sets: ml/Training-and-Test-Sets.md
+    - Validation Set: ml/Validation-Set.md
+    - Representation: ml/Representation.md
+    - Feature Crosses: ml/Feature-Crosses.md
+    - Transform Your Data: ml/Transform-Your-Data.md
+    - Regularization for Simplicity: ml/Regularization-for-Simplicity.md
+    - Logistic Regression: ml/Logistic-Regression.md
+    - Classification: ml/Classification.md
+    - Regularization for Sparsity: ml/Regularization-for-Sparsity.md
+    - Neural Networks: ml/Neural-Networks.md
+    - Training Neural Networks: ml/Training-Neural-Networks.md
+    - Linear Regression with a Real Dataset: ml/Linear-Regression-with-a-Real-Dataset.md
+  - Prework:
+    - Overview: prework/README.md
+    - NumPy: prework/NumPy.md
+    - Pandas DataFrame: prework/Pandas-DataFrame.md
+    - Framing an ML Problem: prework/Framing-an-ML-problem.md
+    - Introduction to ML Problem Framing: prework/Introduction-to-Machine-Learning-Problem-Framing.md
+  - Algorithms:
+    - Overview: algos/README.md
+    - Pearson Correlation: algos/correlation/pearson_correlation/Pearson-correlation-coefficient.md
+  - Projects:
+    - Machine Learning:
+      - K-Nearest Neighbors: projects/machine-learning/algorithms/K-Nearest-Neighbors-Algorithm.md
+      - Naive Bayes: projects/machine-learning/algorithms/Naive-Bayes.md
+    - Data Science:
+      - Face Recognition — SVMs: projects/data-science/face-recognition/ipynb/Support-Vector-Machines.md
+  - API Reference:
+    - linear_model: api/linear_model.md
+    - naive_bayes: api/naive_bayes.md
+    - neighbors: api/neighbors.md
+    - stats: api/stats.md
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - attr_list
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - css/extra.css
