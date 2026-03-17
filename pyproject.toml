@@ -1,0 +1,40 @@
+[project]
+name = "ai"
+version = "0.1.0"
+description = "Deep Learning"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "jupyterlab>=4.5.6",
+    "matplotlib>=3.10.8",
+    "numpy>=2.4.3",
+    "pandas>=3.0.1",
+    "scikit-learn>=1.8.0",
+    "torch>=2.10.0",
+]
+
+[dependency-groups]
+dev = [
+    "isort>=8.0.1",
+    "jupyterlab-code-formatter>=3.0.3",
+    "pylance>=3.0.0",
+    "yapf>=0.43.0",
+]
+
+[tool.isort]
+profile = "google"
+line_length = 80
+indent = 2
+multi_line_output = 4
+
+[tool.yapf]
+based_on_style = "google"
+indent_width = 2
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv]
+index-strategy = "unsafe-best-match"

@@ -35,8 +35,8 @@ class Perceptron:
 
   def __init__(self,
                *,
-               alpha: np.float16 = .01,
-               n_iters: np.int64 = 1000,
+               alpha: np.float16 = np.float16(.01),
+               n_iters: np.int64 = np.int64(1000),
                random_state: int = 1):
     """Initializes model's `learning rate` and number of `iterations`.
 

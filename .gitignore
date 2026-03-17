@@ -20,3 +20,9 @@ ai_dev/
 
 # IPython
 .ipynb_*
+
+# Claude
+.claude
+
+# Jupyter
+.jupyter
