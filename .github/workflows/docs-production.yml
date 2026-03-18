@@ -1,0 +1,34 @@
+name: docs-production
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install mkdocs mkdocs-material 'mkdocstrings[python]'
+
+      - name: Generate deep learning roadmap
+        run: python tools/generate_dl_roadmap.py
+
+      - name: Build docs
+        run: mkdocs build
+
+      - name: Deploy to GitHub Pages (production)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          keep_files: false

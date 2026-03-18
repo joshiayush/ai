@@ -1,7 +1,7 @@
 site_name: joshiayush.ai
-site_url: https://joshiayush.github.io/ai
-repo_url: https://github.com/joshiayush/ai
-repo_name: joshiayush/ai
+site_url: https://joshiayush.github.io/nuro
+repo_url: https://github.com/joshiayush/nuro
+repo_name: joshiayush/nuro
 
 theme:
   name: material

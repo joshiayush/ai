@@ -8,51 +8,6 @@ resolution-markers = [
 ]
 
 [[package]]
-name = "ai"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "jupyterlab" },
-    { name = "matplotlib" },
-    { name = "numpy" },
-    { name = "pandas" },
-    { name = "scikit-learn" },
-    { name = "torch" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "isort" },
-    { name = "jupyterlab-code-formatter" },
-    { name = "mkdocs" },
-    { name = "mkdocs-material" },
-    { name = "mkdocstrings", extra = ["python"] },
-    { name = "pylance" },
-    { name = "yapf" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "jupyterlab", specifier = ">=4.5.6" },
-    { name = "matplotlib", specifier = ">=3.10.8" },
-    { name = "numpy", specifier = ">=2.4.3" },
-    { name = "pandas", specifier = ">=3.0.1" },
-    { name = "scikit-learn", specifier = ">=1.8.0" },
-    { name = "torch", specifier = ">=2.10.0" },
-]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "isort", specifier = ">=8.0.1" },
-    { name = "jupyterlab-code-formatter", specifier = ">=3.0.3" },
-    { name = "mkdocs", specifier = ">=1.6.1" },
-    { name = "mkdocs-material", specifier = ">=9.7.5" },
-    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.3" },
-    { name = "pylance", specifier = ">=3.0.0" },
-    { name = "yapf", specifier = ">=0.43.0" },
-]
-
-[[package]]
 name = "annotated-types"
 version = "0.7.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1311,6 +1266,51 @@ wheels = [
     { url = "https://files.pythonhosted.org/packages/07/12/8160bea39da3335737b10308df4f484235fd297f556745f13092aa039d3b/numpy-2.4.3-cp314-cp314t-win32.whl", hash = "sha256:5e10da9e93247e554bb1d22f8edc51847ddd7dde52d85ce31024c1b4312bfba0", size = 6154547, upload-time = "2026-03-09T07:58:28.289Z" },
     { url = "https://files.pythonhosted.org/packages/42/f3/76534f61f80d74cc9cdf2e570d3d4eeb92c2280a27c39b0aaf471eda7b48/numpy-2.4.3-cp314-cp314t-win_amd64.whl", hash = "sha256:45f003dbdffb997a03da2d1d0cb41fbd24a87507fb41605c0420a3db5bd4667b", size = 12633645, upload-time = "2026-03-09T07:58:30.384Z" },
     { url = "https://files.pythonhosted.org/packages/1f/b6/7c0d4334c15983cec7f92a69e8ce9b1e6f31857e5ee3a413ac424e6bd63d/numpy-2.4.3-cp314-cp314t-win_arm64.whl", hash = "sha256:4d382735cecd7bcf090172489a525cd7d4087bc331f7df9f60ddc9a296cf208e", size = 10565454, upload-time = "2026-03-09T07:58:33.031Z" },
+]
+
+[[package]]
+name = "nuro"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "jupyterlab" },
+    { name = "matplotlib" },
+    { name = "numpy" },
+    { name = "pandas" },
+    { name = "scikit-learn" },
+    { name = "torch" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "isort" },
+    { name = "jupyterlab-code-formatter" },
+    { name = "mkdocs" },
+    { name = "mkdocs-material" },
+    { name = "mkdocstrings", extra = ["python"] },
+    { name = "pylance" },
+    { name = "yapf" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "jupyterlab", specifier = ">=4.5.6" },
+    { name = "matplotlib", specifier = ">=3.10.8" },
+    { name = "numpy", specifier = ">=2.4.3" },
+    { name = "pandas", specifier = ">=3.0.1" },
+    { name = "scikit-learn", specifier = ">=1.8.0" },
+    { name = "torch", specifier = ">=2.10.0" },
+]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "isort", specifier = ">=8.0.1" },
+    { name = "jupyterlab-code-formatter", specifier = ">=3.0.3" },
+    { name = "mkdocs", specifier = ">=1.6.1" },
+    { name = "mkdocs-material", specifier = ">=9.7.5" },
+    { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.3" },
+    { name = "pylance", specifier = ">=3.0.0" },
+    { name = "yapf", specifier = ">=0.43.0" },
 ]
 
 [[package]]

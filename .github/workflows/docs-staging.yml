@@ -1,0 +1,68 @@
+name: docs-staging
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    env:
+      SHORT_SHA: ""
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set short SHA
+        run: echo "SHORT_SHA=$(echo ${{ github.sha }} | cut -c1-7)" >> $GITHUB_ENV
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - run: pip install mkdocs mkdocs-material 'mkdocstrings[python]'
+
+      - name: Generate deep learning roadmap
+        run: python tools/generate_dl_roadmap.py
+
+      - name: Build docs with staging site URL
+        run: |
+          sed -i "s|site_url:.*|site_url: https://joshiayush.github.io/nuro/previews/${SHORT_SHA}/|" mkdocs.yml
+          mkdocs build
+
+      - name: Deploy to GitHub Pages (staging preview)
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./site
+          destination_dir: previews/${{ env.SHORT_SHA }}
+          keep_files: true
+
+      - name: Cleanup old staging previews
+        run: |
+          git fetch origin gh-pages
+          git worktree add gh-pages-tmp origin/gh-pages
+
+          cd gh-pages-tmp/previews
+
+          # List preview dirs sorted by commit date (oldest first), keep last 5
+          PREVIEW_COUNT=$(ls -d */ 2>/dev/null | wc -l)
+          if [ "$PREVIEW_COUNT" -gt 5 ]; then
+            ls -dt */ | tail -n +6 | xargs rm -rf
+            cd ..
+            git add -A
+            git commit -m "chore: cleanup old staging previews, keep latest 5"
+            git push origin gh-pages
+          fi
+
+          cd ${{ github.workspace }}
+          git worktree remove gh-pages-tmp
+
+      - name: Output preview URL
+        run: |
+          echo "### Staging Preview" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "https://joshiayush.github.io/nuro/previews/${SHORT_SHA}/" >> $GITHUB_STEP_SUMMARY
