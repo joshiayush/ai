@@ -25,16 +25,12 @@ class LogisticRegression:
   function, which maps any real-valued set of independent variables input into
   a value between 0 and 1. This function is known as the logistic function.
 
-  .. math::
-
-    z = w \\cdot X + b
+  $$z = w \\cdot X + b$$
 
   Now we use the sigmoid function where the input will be z and we find the
   probability between 0 and 1. i.e predicted y.
 
-  .. math::
-
-    \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
+  $$\\sigma (z) = \\dfrac{1}{1 - e^{-z}}$$
   """
   def __init__(self, alpha: np.float16 = .01, n_iters: np.int64 = 1000):
     """Initializes model's `learning rate` and number of `iterations`.
@@ -66,20 +62,18 @@ class LogisticRegression:
     """Fit Logistic Regression according to X, y.
 
     Hypothesis function for our `LogisticRegression` is the same as for the
-    `LinearRegression` :math:`\\hat y = b + wX`, where `b` is the model's
+    `LinearRegression` $\\hat y = b + wX$, where `b` is the model's
     intercept and `w` is the coefficient of `X`.
 
     The cost function or the loss function that we use is the Mean Squared Error
     (MSE) between the predicted value and the true value. The cost function
     `(J)` can be written as:
 
-    .. math::
-
-      J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2
+    $$J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2$$
 
     To achieve the best-fit regression line, the model aims to predict the
-    target value :math:`\\hat Y` such that the error difference between the
-    predicted value :math:`\\hat Y` and the true value :math:`Y` is minimum. So,
+    target value $\\hat Y$ such that the error difference between the
+    predicted value $\\hat Y$ and the true value $Y$ is minimum. So,
     it is very important to update the `b` and `w` values, to reach the best
     value that minimizes the error between the predicted `y` value and the true
     `y` value.
@@ -94,19 +88,11 @@ class LogisticRegression:
 
     On differentiating cost function `J` with respect to `b`:
 
-    .. math::
-
-      \\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
-                        \\hat y_{i} - y_{i}
-                        )
+    $$\\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i})$$
 
     On differentiating cost function `J` with respect to `w`:
 
-    .. math::
-
-      \\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
-                        \\hat y_{i} - y_{i}
-                        ) \\cdot x_{i}
+    $$\\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i}) \\cdot x_{i}$$
 
     The above derivative functions are used for updating `weights` and `bias` in
     each iteration.
@@ -114,12 +100,10 @@ class LogisticRegression:
     The sigmoid function is then used for mapping the predictions between 0 and
     1.
 
-    .. math::
+    $$\\sigma (z) = \\dfrac{1}{1 - e^{-z}}$$
 
-      \\sigma (z) = \\dfrac{1}{1 - e^{-z}}
-
-    where :math:`z` can be replaced with our hypothesis function
-    :math:`\\hat y = b + wX`.
+    where $z$ can be replaced with our hypothesis function
+    $\\hat y = b + wX$.
 
     Args:
       X: Training vectors, where `n_samples` is the number of samples and

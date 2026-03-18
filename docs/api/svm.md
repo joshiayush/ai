@@ -1,6 +1,6 @@
-# stats
+# svm
 
-::: ai.stats
+::: ai.svm
     options:
       members: true
       show_submodules: true

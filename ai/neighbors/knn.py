@@ -54,10 +54,7 @@ class DistanceMetric:
     real-valued vectors. Using the below formula, it measures a straight line
     between the query point and the other point being measured.
 
-    .. math::
-      \\mathrm{Euclidean\\ Distance} = \\sqrt{
-                                        \\sum_{i=1}^{n}(y_{i} - x_{i})^2
-                                        }
+    $$\\mathrm{Euclidean\\ Distance} = \\sqrt{\\sum_{i=1}^{n}(y_{i} - x_{i})^2}$$
 
     Args:
       x1: Query point vector.
@@ -79,11 +76,7 @@ class DistanceMetric:
     this formula when p is equal to two, and Manhattan distance is denoted with
     p equal to one.
 
-    .. math::
-      \\mathrm{Minkowski\\ Distance} = (
-                                        (\\sum_{i=1}^{n}|x_{i} - y_{i}|)
-                                        ^ \\dfrac{1}{p}
-                                       )
+    $$\\mathrm{Minkowski\\ Distance} = ((\\sum_{i=1}^{n}|x_{i} - y_{i}|) ^ \\dfrac{1}{p})$$
 
     Args:
       x1: Query point vector.
@@ -104,8 +97,7 @@ class DistanceMetric:
     block distance as it is commonly visualized with a grid, illustrating how
     one might navigate from one address to another via city streets.
 
-    .. math::
-      \\mathrm{Manhattan\\ Distance} = \\sum_{i=1}^{m}|x_{i} - y_{i}|
+    $$\\mathrm{Manhattan\\ Distance} = \\sum_{i=1}^{m}|x_{i} - y_{i}|$$
 
     Args:
       x1: Query point vector.
@@ -126,8 +118,7 @@ class DistanceMetric:
     referred to as the overlap metric. This can be represented with the
     following formula:
 
-    .. math::
-      \\mathrm{Hamming\\ Distance} = \\sum_{i=1}^{k}|x_{i} - y_{i}|
+    $$\\mathrm{Hamming\\ Distance} = \\sum_{i=1}^{k}|x_{i} - y_{i}|$$
 
     Args:
       x1: Query point vector.

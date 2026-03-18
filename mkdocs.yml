@@ -44,6 +44,8 @@ plugins:
             docstring_style: google
             show_source: true
             show_root_heading: true
+            members: true
+            show_submodules: true
 
 nav:
   - Home: index.md
@@ -87,10 +89,13 @@ nav:
     - Data Science:
       - Face Recognition — SVMs: projects/data-science/face-recognition/ipynb/Support-Vector-Machines.md
   - API Reference:
+    - boolalg: api/boolalg.md
     - linear_model: api/linear_model.md
     - naive_bayes: api/naive_bayes.md
     - neighbors: api/neighbors.md
+    - search: api/search.md
     - stats: api/stats.md
+    - svm: api/svm.md
 
 markdown_extensions:
   - pymdownx.arithmatex:

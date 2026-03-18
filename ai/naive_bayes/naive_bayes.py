@@ -26,76 +26,44 @@ class GaussianNB:
   applying Bayes’ theorem with the “naive” assumption of conditional
   independence between every pair of features given the value of the class
   variable. Bayes theorem states the following relationship, given class
-  variable `y` and dependent feature vector :math:`x_{1}` through :math:`x_{n}`:
+  variable `y` and dependent feature vector $x_{1}$ through $x_{n}$:
 
-  .. math::
-
-      P(y | x_{1}, ..., x_{n}) = \\dfrac{
-                                    P(y) \\cdot P(x_{1}, ..., x_{n} | y)
-                                  }{
-                                    P(x_{1}, ..., x_{n})
-                                  }
+  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot P(x_{1}, ..., x_{n} | y)}{P(x_{1}, ..., x_{n})}$$
 
   Using the naive conditional independence assumption that:
 
-  .. math::
+  $$P(x_{i} | y, x_{1}, ..., x_{i-1}, x_{i+1}, ..., x_{n}) = P(x_{i} | y)$$
 
-      P(x_{i} | y, x_{1}, ..., x_{i-1}, x_{i+1}, ..., x_{n}) = P(x_{i} | y)
+  for all $i$, this relationship is simplified to:
 
-  for all :math:`i`, this relationship is simplified to:
+  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)}{P(x_{1}, ..., x_{n})}$$
 
-  .. math::
-
-      P(y | x_{1}, ..., x_{n}) = \\dfrac{
-                                    P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)
-                                  }{
-                                    P(x_{1}, ..., x_{n})
-                                  }
-
-  Since :math:`P(x_{1}, ..., x_{n})` is constant given the input, we can use the
+  Since $P(x_{1}, ..., x_{n})$ is constant given the input, we can use the
   following classification rule:
 
-  .. math::
+  $$P(y | x_{1}, ..., x_{n}) \\propto P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)$$
 
-      P(y | x_{1}, ..., x_{n}) \\propto P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)
+  $$⇒ \\hat y = arg \\max_{y} P(y) \\cdot \\prod_{i=1}^{n} P(x_{i} | y)$$
 
-  .. math::
-
-      ⇒ \\hat y = arg \\max_{y} P(y) \\cdot \\prod_{i=1}^{n} P(x_{i} | y)
-
-  .. note::
+  Note:
 
     We never multiply probabilities in computer science since, the number can
-    multiply to :math:`0` upto the machine precision. It's better to use the
-    monotonic function :math:`\\mathrm{log}` and add the log of the
+    multiply to $0$ upto the machine precision. It's better to use the
+    monotonic function $\\mathrm{log}$ and add the log of the
     probabilities.
 
-  .. math::
-      
-      ⇒ \\hat y = arg \\max_{y} \\sum_{i=1}^{n} \\mathrm{log}(
-                    P(x_{i} | y)
-                  ) + \\mathrm{log}(P(y))
+  $$⇒ \\hat y = arg \\max_{y} \\sum_{i=1}^{n} \\mathrm{log}(P(x_{i} | y)) + \\mathrm{log}(P(y))$$
 
-  and we can use Maximum A Posteriori (MAP) estimation to estimate :math:`P(y)`
-  and :math:`P(x_{i} | y)`;  the former is then the relative frequency of class
-  :math:`y` in the training set.
+  and we can use Maximum A Posteriori (MAP) estimation to estimate $P(y)$
+  and $P(x_{i} | y)$;  the former is then the relative frequency of class
+  $y$ in the training set.
 
   `GaussianNB` implements the Gaussian Naive Bayes algorithm for classification.
   The likelihood of the features is assumed to be Gaussian:
 
-  .. math::
+  $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}} \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{2 \\sigma_{y}^2} \\right)$$
 
-      P(x_{i} | y) = \\dfrac{
-                        1
-                      }{
-                        \\sqrt{2 \\pi \\sigma_{y}^{2}}
-                      } \\exp \\left( -\\dfrac{
-                                          (x_{i} - \\mu_{y})^2
-                                        }{
-                                          2 \\sigma_{y}^2
-                                        } \\right)
-
-  The parameters :math:`\\sigma_{y}` and :math:`\\mu_{y}` are estimated using
+  The parameters $\\sigma_{y}$ and $\\mu_{y}$ are estimated using
   maximum likelihood.
   """
   _parameter_constraints: dict = {
@@ -224,17 +192,7 @@ class GaussianNB:
     """Probability density function to compute the following for the given `x`
     given the class i.e., the `c_idx`:
 
-    .. math::
-
-        P(x_{i} | y) = \\dfrac{
-                          1
-                        }{
-                          \\sqrt{2 \\pi \\sigma_{y}^{2}}
-                        } \\exp \\left( -\\dfrac{
-                                            (x_{i} - \\mu_{y})^2
-                                          }{
-                                            2 \\sigma_{y}^2
-                                          } \\right)
+    $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}} \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{2 \\sigma_{y}^2} \\right)$$
 
     Args:
       c_idx: Index of the class for which the Probability density function is

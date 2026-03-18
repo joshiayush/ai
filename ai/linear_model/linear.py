@@ -15,31 +15,31 @@
 # pylint: disable=missing-class-docstring
 """A numpy-compatible linear regression implementation.
 
-#### Example
+Example:
 
-```python
-import numpy as np
+    ```python
+    import numpy as np
 
-from sklearn import datasets
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import train_test_split
+    from sklearn import datasets
+    from sklearn.metrics import accuracy_score
+    from sklearn.model_selection import train_test_split
 
-from ai.linear_model import LinearRegression
+    from ai.linear_model import LinearRegression
 
-X, y = datasets.make_regression(
+    X, y = datasets.make_regression(
     n_samples=100, n_features=1, noise=20, random_state=4
-)
-X_train, X_test, y_train, y_test = train_test_split(
+    )
+    X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42
-)
+    )
 
-model = LinearRegression()
-model.fit(X_train, y_train)
+    model = LinearRegression()
+    model.fit(X_train, y_train)
 
-y_pred = model.predict(X_test)
+    y_pred = model.predict(X_test)
 
-print(accuracy_score(y_pred, y_test))
-```
+    print(accuracy_score(y_pred, y_test))
+    ```
 """
 
 from typing import Union
@@ -69,20 +69,18 @@ class LinearRegression:
   def fit(self, X: np.ndarray, y: np.ndarray) -> 'LinearRegression':
     """Fit the linear model on `X` given `y`.
 
-    Hypothesis function for our `LinearRegression` :math:`\\hat y = b + wX`,
+    Hypothesis function for our `LinearRegression` $\\hat y = b + wX$,
     where `b` is the model's intercept and `w` is the coefficient of `X`.
 
     The cost function or the loss function that we use is the Mean Squared Error
     (MSE) between the predicted value and the true value. The cost function
     `(J)` can be written as:
 
-    .. math::
-
-      J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2
+    $$J = \\dfrac{1}{m}\\sum_{i=1}^{n}(\\hat y_{i} - y_{i})^2$$
 
     To achieve the best-fit regression line, the model aims to predict the
-    target value :math:`\\hat Y` such that the error difference between the
-    predicted value :math:`\\hat Y` and the true value :math:`Y` is minimum. So,
+    target value $\\hat Y$ such that the error difference between the
+    predicted value $\\hat Y$ and the true value $Y$ is minimum. So,
     it is very important to update the `b` and `w` values, to reach the best
     value that minimizes the error between the predicted `y` value and the true
     `y` value.
@@ -97,19 +95,11 @@ class LinearRegression:
 
     On differentiating cost function `J` with respect to `b`:
 
-    .. math::
-
-      \\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
-                        \\hat y_{i} - y_{i}
-                        )
+    $$\\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i})$$
 
     On differentiating cost function `J` with respect to `w`:
 
-    .. math::
-
-      \\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(
-                        \\hat y_{i} - y_{i}
-                        ) \\cdot x_{i}
+    $$\\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i}) \\cdot x_{i}$$
 
     The above derivative functions are used for updating `weights` and `bias` in
     each iteration.

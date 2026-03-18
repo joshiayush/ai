@@ -35,9 +35,9 @@ def cov(
   """Estimate a covariance matrix, given data and weights.
 
   Covariance indicates the level to which two variables vary together.
-  If we examine N-dimensional samples, :math:`X = [x_1, x_2, ... x_N]^T`, then
-  the covariance matrix element :math:`C_{ij}` is the covariance of :math:`x_i`
-  and :math:`x_j`. The element :math:`C_{ii}` is the variance of :math:`x_i`.
+  If we examine N-dimensional samples, $X = [x_1, x_2, ... x_N]^T$, then
+  the covariance matrix element $C_{ij}$ is the covariance of $x_i$
+  and $x_j$. The element $C_{ii}$ is the variance of $x_i$.
 
   Args:
     m: A 1-D or 2-D array containing multiple variables and observations. Each
@@ -68,7 +68,7 @@ def cov(
   Returns:
     The covariance matrix of the variables.
 
-  .. note::
+  Note:
 
       Assume that the observations are in the columns of the observation array
       `m` and let ``f=fweights`` and ``a=aweights`` for brevity. The steps to
@@ -193,9 +193,7 @@ def corrcoef(
   The relationship between the correlation coefficient matrix, `R`, and the
   covariance matrix, `C`, is
 
-  .. math::
-
-    R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} C_{jj} } }
+  $$R_{ij} = \\frac{ C_{ij} } { \\sqrt{ C_{ii} C_{jj} } }$$
 
   The values of `R` are between -1 and 1, inclusive.
 

@@ -23,7 +23,7 @@ class _Sentence():
   """An abstract model used for implementing symbols and logical connectives
   used in Propositional Logic.
 
-  .. note::
+  Note:
 
     See `Symbol` for more details.
   """
@@ -93,14 +93,14 @@ class Symbol(_Sentence):
   symbols used in propositional logic determines whether the logic holds `true`
   or turns out to be `false`.
 
-  ##### Example
+  Example:
 
-  >>> from logic import (Symbol, And)
-  >>> P = Symbol('P')
-  >>> Q = Symbol('Q')
-  >>> knowledge = And(P, Q)
-  >>> knowledge.formula()
-  'P ∧ Q'
+      >>> from logic import (Symbol, And)
+      >>> P = Symbol('P')
+      >>> Q = Symbol('Q')
+      >>> knowledge = And(P, Q)
+      >>> knowledge.formula()
+      'P ∧ Q'
 
   """
   def __init__(self, name: str):
@@ -110,7 +110,7 @@ class Symbol(_Sentence):
     value, based on the combination of logical operations these values are then
     transformed to a result.
 
-    .. note::
+    Note:
 
       You can use letters, words, digits, or even special characters to contruct
       symbols as long as they hold some meaning for the viewer.
@@ -119,11 +119,11 @@ class Symbol(_Sentence):
       name: `Symbol` name; can be anything including digits, words, letters, or
         special characters.
 
-    ##### Example
+    Example:
 
-    >>> P = Symbol('P')
-    >>> Q = Symbol('Q')
-    >>> R = Symbol('R')
+        >>> P = Symbol('P')
+        >>> Q = Symbol('Q')
+        >>> R = Symbol('R')
 
     """
     self._name = name
@@ -146,12 +146,10 @@ class Symbol(_Sentence):
     Evaluating a model means evaluating the value of each symbol in the
     propositional logic (PL) which either holds `True` or `False`.
 
-    For example, for a symbol :math:`P \\implies \\mathrm{True}` in a
+    For example, for a symbol $P \\implies \\mathrm{True}$ in a
     propositional logic (PL) —
 
-    .. math::
-
-      ¬P \\implies \\mathrm{False}
+    $$¬P \\implies \\mathrm{False}$$
 
     Args:
       model: A propositional logic model mapping from the symbol name to its
@@ -160,14 +158,14 @@ class Symbol(_Sentence):
     Returns:
       The evaluated model of the symbol.
 
-    ##### Example
+    Example:
 
-    >>> from ai import Symbol, Not
-    >>> P = Symbol('P')
-    >>> knowledge = Not(P)
-    >>> model_true[str(P)] = True
-    >>> knowledge.evaluate(model_true)
-    False
+        >>> from ai import Symbol, Not
+        >>> P = Symbol('P')
+        >>> knowledge = Not(P)
+        >>> model_true[str(P)] = True
+        >>> knowledge.evaluate(model_true)
+        False
 
     """
     try:
@@ -186,11 +184,11 @@ class Symbol(_Sentence):
     Returns:
       String representation of the current symbol.
 
-    ##### Example
+    Example:
 
-    >>> P = Symbol('P')
-    >>> P.formula()
-    'P'
+        >>> P = Symbol('P')
+        >>> P.formula()
+        'P'
 
     """
     return self._name
@@ -207,12 +205,12 @@ class Not(_Sentence):
   symbol it is used with. For example, if the value of the symbol is `true` then
   it will be evaluated to `false` and vice-versa.
 
-  ##### Example
+  Example:
 
-  >>> from logic import (Not, Symbol)
-  >>> rain = Symbol('Rain')
-  >>> Not(rain).formula()
-  '¬Rain'
+      >>> from logic import (Not, Symbol)
+      >>> rain = Symbol('Rain')
+      >>> Not(rain).formula()
+      '¬Rain'
 
   """
   def __init__(self, operand: 'Symbol'):
@@ -227,13 +225,13 @@ class Not(_Sentence):
       operand: An instance of a `Symbol` which is a operand in a propositional
         logic.
 
-    ##### Example
+    Example:
 
-    >>> from logic import (Not, Symbol)
-    >>> P = Symbol('P')
-    >>> knowledge = Not(P)
-    >>> knowledge.formula()
-    '¬P'
+        >>> from logic import (Not, Symbol)
+        >>> P = Symbol('P')
+        >>> knowledge = Not(P)
+        >>> knowledge.formula()
+        '¬P'
 
     """
     _Sentence.validate(operand)
@@ -256,12 +254,10 @@ class Not(_Sentence):
     propositional logic (PL).
 
     Evaluating a model for `self` means evaluating the value of the current
-    expression. For example, for a symbol :math:`¬P \\implies \\mathrm{True}` in
+    expression. For example, for a symbol $¬P \\implies \\mathrm{True}$ in
     a propositional logic (PL) —
 
-    .. math::
-
-      ¬P \\implies \\mathrm{False}
+    $$¬P \\implies \\mathrm{False}$$
 
     Args:
       model: A propositional logic model mapping from the symbol name to its
@@ -270,15 +266,15 @@ class Not(_Sentence):
     Returns:
       The evaluated model of the current expression.
 
-    ##### Example
+    Example:
 
-    >>> from ai import Symbol, Not
-    >>> P = Symbol('P')
-    >>> knowledge = Not(P)
-    >>> model_true = dict()
-    >>> model_true[str(P)] = True
-    >>> knowledge.evaluate(model_true)
-    False
+        >>> from ai import Symbol, Not
+        >>> P = Symbol('P')
+        >>> knowledge = Not(P)
+        >>> model_true = dict()
+        >>> model_true[str(P)] = True
+        >>> knowledge.evaluate(model_true)
+        False
 
     """
     return not self._operand.evaluate(model)
@@ -293,12 +289,12 @@ class Not(_Sentence):
     Returns:
       String representation of the current symbol.
 
-    ##### Example
+    Example:
 
-    >>> P = Symbol('P')
-    >>> knowledge(Not(P))
-    >>> knowledge.formula()
-    '¬P'
+        >>> P = Symbol('P')
+        >>> knowledge(Not(P))
+        >>> knowledge.formula()
+        '¬P'
 
     """
     return "¬" + _Sentence.parenthesize(self._operand.formula())
@@ -317,14 +313,14 @@ class And(_Sentence):
   `false` (where `true` is equals to `1` and `false` is equals to `0`) then the
   `AND` operator between these two symbols will result in a new value `0`.
 
-  ##### Example
+  Example:
 
-  >>> from logic import (And, Symbol)
-  >>> rain = Symbol('Rain')
-  >>> run = Symbol('Run')
-  >>> knowledge = And(rain, run)
-  >>> knowledge.formula()
-  'Rain ∧ Run'
+      >>> from logic import (And, Symbol)
+      >>> rain = Symbol('Rain')
+      >>> run = Symbol('Run')
+      >>> knowledge = And(rain, run)
+      >>> knowledge.formula()
+      'Rain ∧ Run'
 
   """
   def __init__(self, *conjuncts: Tuple['Symbol', ...]):
@@ -342,14 +338,14 @@ class And(_Sentence):
       conjunct: A tuple of conjunctions constructing a `And` expression in a
         propositional logic.
 
-    ##### Example
+    Example:
 
-    >>> from logic import (And, Symbol)
-    >>> rain = Symbol('Rain')
-    >>> run = Symbol('Run')
-    >>> knowledge = And(rain, run)
-    >>> knowledge.formula()
-    'Rain ∧ Run'
+        >>> from logic import (And, Symbol)
+        >>> rain = Symbol('Rain')
+        >>> run = Symbol('Run')
+        >>> knowledge = And(rain, run)
+        >>> knowledge.formula()
+        'Rain ∧ Run'
 
     """
     for conjunct in conjuncts:
@@ -376,18 +372,18 @@ class And(_Sentence):
       conjunct: A conjunction that constructs a `And` expression in a
         propositional logic.
 
-    ##### Example
+    Example:
 
-    >>> from ai.boolalg import (Symbol, And)
-    >>> rain = Symbol('rain')
-    >>> run = Symbol('run')
-    >>> knowledge = And(rain, run)
-    >>> knowledge.formula()
-    'rain ∧ run'
-    >>> umbrella = Symbol('umbrella')
-    >>> knowledge.add(umbrella)
-    >>> knowledge.formula()
-    'rain ∧ run ∧ umbrella'
+        >>> from ai.boolalg import (Symbol, And)
+        >>> rain = Symbol('rain')
+        >>> run = Symbol('run')
+        >>> knowledge = And(rain, run)
+        >>> knowledge.formula()
+        'rain ∧ run'
+        >>> umbrella = Symbol('umbrella')
+        >>> knowledge.add(umbrella)
+        >>> knowledge.formula()
+        'rain ∧ run ∧ umbrella'
 
     """
     _Sentence.validate(conjunct)
@@ -399,12 +395,10 @@ class And(_Sentence):
 
     Evaluating a model for `self` means evaluating the values of the
     conjunctions the current expression holds. For example if,
-    :math:`P \\implies \\mathrm{True}` and :math:`Q \\implies \\mathrm{false}`
+    $P \\implies \\mathrm{True}$ and $Q \\implies \\mathrm{false}$
     in a propositional logic (PL) —
 
-    .. math::
-
-      P ∧ Q \\implies \\mathrm{false}
+    $$P ∧ Q \\implies \\mathrm{false}$$
 
     Args:
       mode: A propositional logic model mapping from the symbol name to its
@@ -413,21 +407,21 @@ class And(_Sentence):
     Returns:
       The evaluated model of the current expression.
 
-    ##### Example
+    Example:
 
-    >>> from ai.boolalg import (Symbol, And)
-    >>> rain = Symbol('rain')
-    >>> run = Symbol('run')
-    >>> umbrella = Symbol('umbrella')
-    >>> knowledge = And(rain, run, umbrella)
-    >>> knowledge.formula()
-    'rain ∧ run ∧ umbrella'
-    >>> model = dict()
-    >>> model[str(rain)] = True
-    >>> model[str(umbrella)] = True
-    >>> model[str(run)] = False
-    >>> knowledge.evaluate(model)
-    False
+        >>> from ai.boolalg import (Symbol, And)
+        >>> rain = Symbol('rain')
+        >>> run = Symbol('run')
+        >>> umbrella = Symbol('umbrella')
+        >>> knowledge = And(rain, run, umbrella)
+        >>> knowledge.formula()
+        'rain ∧ run ∧ umbrella'
+        >>> model = dict()
+        >>> model[str(rain)] = True
+        >>> model[str(umbrella)] = True
+        >>> model[str(run)] = False
+        >>> knowledge.evaluate(model)
+        False
 
     """
     return all(conjunct.evaluate(model) for conjunct in self.conjuncts)
@@ -442,14 +436,14 @@ class And(_Sentence):
     Returns:
       String representation of the current symbol.
 
-    ##### Example
+    Example:
 
-    >>> from ai.boolalg import Symbol, And
-    >>> rain = Symbol('rain')
-    >>> run = Symbol('run')
-    >>> knowledge = And(rain, run)
-    >>> knowledge.formula()
-    'rain ∧ run'
+        >>> from ai.boolalg import Symbol, And
+        >>> rain = Symbol('rain')
+        >>> run = Symbol('run')
+        >>> knowledge = And(rain, run)
+        >>> knowledge.formula()
+        'rain ∧ run'
 
     """
     if len(self.conjuncts) == 1:
@@ -475,20 +469,20 @@ class Or(_Sentence):
   (where `true` is equals to `1` and `false` is equals to `0`) then the `OR`
   operator between these two symbols will result in a new value `1`.
 
-  .. note::
+  Note:
 
     Unlike algebra, boolean algebra adds multiple `true` values into one single
     `true` value which is equals to `1`;
-    :math:`\\mathrm{true} + \\mathrm{true} \\implies 1`
+    $\\mathrm{true} + \\mathrm{true} \\implies 1$
 
-  ##### Example
+  Example:
 
-  >>> from logic import (Or, Symbol)
-  >>> rain = Symbol('Rain')
-  >>> run = Symbol('Run')
-  >>> knowledge = Or(rain, run)
-  >>> knowledge.formula()
-  'Rain ∨ Run'
+      >>> from logic import (Or, Symbol)
+      >>> rain = Symbol('Rain')
+      >>> run = Symbol('Run')
+      >>> knowledge = Or(rain, run)
+      >>> knowledge.formula()
+      'Rain ∨ Run'
 
   """
   def __init__(self, *disjuncts: 'Symbol'):
@@ -506,14 +500,14 @@ class Or(_Sentence):
       disjuncts: A tuple of disjunctions constructing a `Or` expression in a
         propositional logic.
 
-    ##### Example
+    Example:
 
-    >>> from logic import (And, Symbol)
-    >>> rain = Symbol('Rain')
-    >>> run = Symbol('Run')
-    >>> knowledge = And(rain, run)
-    >>> knowledge.formula()
-    'Rain ∨ Run'
+        >>> from logic import (And, Symbol)
+        >>> rain = Symbol('Rain')
+        >>> run = Symbol('Run')
+        >>> knowledge = And(rain, run)
+        >>> knowledge.formula()
+        'Rain ∨ Run'
 
     """
     for disjunct in disjuncts:
@@ -539,12 +533,10 @@ class Or(_Sentence):
 
     Evaluating a model for `self` means evaluating the values of the
     disjunctions the current expression holds. For example if,
-    :math:`P \\implies \\mathrm{True}` and :math:`Q \\implies \\mathrm{false}`
+    $P \\implies \\mathrm{True}$ and $Q \\implies \\mathrm{false}$
     in a propositional logic (PL) —
 
-    .. math::
-
-      P ∨ Q \\implies \\mathrm{true}
+    $$P ∨ Q \\implies \\mathrm{true}$$
 
     Args:
       mode: A propositional logic model mapping from the symbol name to its
@@ -553,21 +545,21 @@ class Or(_Sentence):
     Returns:
       The evaluated model of the current expression.
 
-    ##### Example
+    Example:
 
-    >>> from ai.boolalg import (Symbol, Or)
-    >>> rain = Symbol('rain')
-    >>> run = Symbol('run')
-    >>> umbrella = Symbol('umbrella')
-    >>> knowledge = Or(rain, run, umbrella)
-    >>> knowledge.formula()
-    'rain ∨ run ∨ umbrella'
-    >>> model = dict()
-    >>> model[str(rain)] = True
-    >>> model[str(umbrella)] = True
-    >>> model[str(run)] = False
-    >>> knowledge.evaluate(model)
-    True
+        >>> from ai.boolalg import (Symbol, Or)
+        >>> rain = Symbol('rain')
+        >>> run = Symbol('run')
+        >>> umbrella = Symbol('umbrella')
+        >>> knowledge = Or(rain, run, umbrella)
+        >>> knowledge.formula()
+        'rain ∨ run ∨ umbrella'
+        >>> model = dict()
+        >>> model[str(rain)] = True
+        >>> model[str(umbrella)] = True
+        >>> model[str(run)] = False
+        >>> knowledge.evaluate(model)
+        True
 
     """
     return any(disjunct.evaluate(model) for disjunct in self.disjuncts)
@@ -582,14 +574,14 @@ class Or(_Sentence):
     Returns:
       String representation of the current symbol.
 
-    ##### Example
+    Example:
 
-    >>> from ai.boolalg import Symbol, Or
-    >>> rain = Symbol('rain')
-    >>> run = Symbol('run')
-    >>> knowledge = Or(rain, run)
-    >>> knowledge.formula()
-    'rain ∨ run'
+        >>> from ai.boolalg import Symbol, Or
+        >>> rain = Symbol('rain')
+        >>> run = Symbol('run')
+        >>> knowledge = Or(rain, run)
+        >>> knowledge.formula()
+        'rain ∨ run'
 
     """
     if len(self.disjuncts) == 1:

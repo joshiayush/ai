@@ -22,55 +22,41 @@ def grbf(x: np.ndarray, x_prime: np.ndarray, sigma: np.float32) -> np.ndarray:
   The Gaussian RBF is a commonly used kernel function in Support Vector Machines
   and other machine learning algorithms. It's defined as:
 
-  .. math::
-
-    K(x, x') = e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}}
+  $$K(x, x') = e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}}$$
 
   Here's the derivation:
 
-  * The Gaussian RBF is defined as a function of two data points, :math:`x` and
-  :math:`x'`, with a parameter :math:`\\sigma` that controls the width of the
+  * The Gaussian RBF is defined as a function of two data points, $x$ and
+  $x'$, with a parameter $\\sigma$ that controls the width of the
   kernel.
   * We start by computing the euclidean distance between the two data points
-  :math:`x` and :math:`x'`:
+  $x$ and $x'$:
 
-  .. math::
-
-    ||x - x'||^{2} = \\sum_{i=1}^{n}(x_{i} - x'_{i})^2
+  $$||x - x'||^{2} = \\sum_{i=1}^{n}(x_{i} - x'_{i})^2$$
 
   Now, let's insert this distance into the Gaussian RBF formula:
 
-  .. math::
-
-    K(x, x') = e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}}
+  $$K(x, x') = e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}}$$
 
   We have an exponential term, and we can simplify it further:
 
-  .. math::
-
-    e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}} = e^{
-      -\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2
-    }
+  $$e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}} = e^{-\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2}$$
 
   We can further generalize it using the property
-  :math:`e^{a + b}` = :math:`e^a * e ^b`, we can separate the exponential
+  $e^{a + b}$ = $e^a * e ^b$, we can separate the exponential
   factors:
 
-  .. math::
-
-    K(x, x') = e^{
-      -\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2
-    } = \\prod_{i=1}^{n}e^{-\\dfrac{1}{2\\sigma^{2}}(x - x')^{2}}
+  $$K(x, x') = e^{-\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2} = \\prod_{i=1}^{n}e^{-\\dfrac{1}{2\\sigma^{2}}(x - x')^{2}}$$
 
   This is the mathematical implementation of the Gaussian RBF. It measures the
-  similarity between two data points :math:`x` and :math:`x'` based on the
-  Euclidean distance between them, with the parameter :math:`\\sigma`
+  similarity between two data points $x$ and $x'$ based on the
+  Euclidean distance between them, with the parameter $\\sigma$
   controlling the width of the kernel.
 
   Args:
-    x: The numpy vector :math:`x`.
-    x_prime: The numpy vector :math:`x'`.
-    sigma: The paramter :math:`\\sigma` to control the width of the kernel.
+    x: The numpy vector $x$.
+    x_prime: The numpy vector $x'$.
+    sigma: The paramter $\\sigma$ to control the width of the kernel.
 
   Returns:
     RBF value.

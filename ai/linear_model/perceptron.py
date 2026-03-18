@@ -25,12 +25,7 @@ class Perceptron:
   classification algorithm that makes its predictions based on a linear
   predictor function combining a set of weights with the feature vector.
 
-  .. math::
-
-    y = \\begin{cases}
-      1 & \\text{if } w \\cdot x + b > 0 \\\\
-      0 & \\text{otherwise}
-    \\end{cases}
+  $$y = \\begin{cases} 1 & \\text{if } w \\cdot x + b > 0 \\\\ 0 & \\text{otherwise} \\end{cases}$$
   """
 
   def __init__(self,

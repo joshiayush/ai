@@ -21,24 +21,24 @@ are made by propositions. A proposition is a declarative statement which is
 either true or false. It is a technique of knowledge representation in logical
 and mathematical form.
 
-##### Example
+Example:
 
-```python
-from ai import (Symbol, And, Or, Not, Implication)
+    ```python
+    from ai import (Symbol, And, Or, Not, Implication)
 
-rain = Symbol("rain")
-hagrid = Symbol("hagrid")
-dumbledore = Symbol("dumbledore")
+    rain = Symbol("rain")
+    hagrid = Symbol("hagrid")
+    dumbledore = Symbol("dumbledore")
 
-knowledge = And(
+    knowledge = And(
     Implication(Not(rain), hagrid),
     Or(hagrid, dumbledore),
     Not(And(hagrid, dumbledore)),
     dumbledore
-)
+    )
 
-print(model_check(knowledge, rain))
-```
+    print(model_check(knowledge, rain))
+    ```
 """
 
 from .logic import Symbol

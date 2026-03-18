@@ -28,40 +28,28 @@ class LinearSVC:
   classes is the decision boundary.
 
   The objective of training a `LinearSVC` is to minimize the norm of the weight
-  vector :math:`||w||`, which is the slope of the decision function.
+  vector $||w||$, which is the slope of the decision function.
 
-  .. math::
+  $$\\min_{{w, b}} \\dfrac{1}{2} w^{T}w = \\dfrac{1}{2} ||w||^{2}$$
 
-    \\min_{{w, b}} \\dfrac{1}{2} w^{T}w = \\dfrac{1}{2} ||w||^{2} 
+  $$\\mathrm{subject\\ to}\\ t^{i} (w^{T}x^{i} + b) \\ge 1$$
 
+  Note:
 
-  .. math::
-
-    \\mathrm{subject\\ to}\\ t^{i} (w^{T}x^{i} + b) \\ge 1
-
-  .. note::
-
-    We are minimizing :math:`\\dfrac{1}{2}w^{T}w`, which is equal to
-    :math:`\\dfrac{1}{2}||w||^{2}`, rather than minimizing :math:`||w||`.
-    Indeed, :math:`\\dfrac{1}{2}||w||^{2}` has a nice and simple derivative
-    (just :math:`w`) while :math:`||w||` is not differentiable at :math:`w = 0`.
+    We are minimizing $\\dfrac{1}{2}w^{T}w$, which is equal to
+    $\\dfrac{1}{2}||w||^{2}$, rather than minimizing $||w||$.
+    Indeed, $\\dfrac{1}{2}||w||^{2}$ has a nice and simple derivative
+    (just $w$) while $||w||$ is not differentiable at $w = 0$.
     Optimization algorithms work much better on differentiable functions.
 
   The cost function used by **Linear SVM classifier** is the following:
 
-  .. math::
-
-    J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(
-      0,
-      1 - t^{i}(w^{T}x^{i} + b)
-    )
+  $$J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
 
   The loss function used is the **Hinge Loss** function that clips the value at
-  :math:`0`:
+  $0$:
 
-  .. math::
-
-    \\max(0, 1 - t^{i}(w^{T}x^{i} + b))
+  $$\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
   """
 
   def __init__(
@@ -92,41 +80,29 @@ class LinearSVC:
     """Fit `LinearSVC` according to X, y.
 
     The objective of training a `LinearSVC` is to minimize the norm of the
-    weight vector :math:`||w||`, which is the slope of the decision function.
+    weight vector $||w||$, which is the slope of the decision function.
 
-    .. math::
+    $$\\min_{{w, b}} \\dfrac{1}{2} w^{T}w = \\dfrac{1}{2} ||w||^{2}$$
 
-      \\min_{{w, b}} \\dfrac{1}{2} w^{T}w = \\dfrac{1}{2} ||w||^{2} 
+    $$\\mathrm{subject\\ to}\\ t^{i} (w^{T}x^{i} + b) \\ge 1$$
 
+    Note:
 
-    .. math::
-
-      \\mathrm{subject\\ to}\\ t^{i} (w^{T}x^{i} + b) \\ge 1
-
-    .. note::
-
-      We are minimizing :math:`\\dfrac{1}{2}w^{T}w`, which is equal to
-      :math:`\\dfrac{1}{2}||w||^{2}`, rather than minimizing :math:`||w||`.
-      Indeed, :math:`\\dfrac{1}{2}||w||^{2}` has a nice and simple derivative
-      (just :math:`w`) while :math:`||w||` is not differentiable at
-      :math:`w = 0`. Optimization algorithms work much better on differentiable
+      We are minimizing $\\dfrac{1}{2}w^{T}w$, which is equal to
+      $\\dfrac{1}{2}||w||^{2}$, rather than minimizing $||w||$.
+      Indeed, $\\dfrac{1}{2}||w||^{2}$ has a nice and simple derivative
+      (just $w$) while $||w||$ is not differentiable at
+      $w = 0$. Optimization algorithms work much better on differentiable
       functions.
 
     The cost function used by **Linear SVM classifier** is the following:
 
-    .. math::
-
-      J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(
-        0,
-        1 - t^{i}(w^{T}x^{i} + b)
-      )
+    $$J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
 
     The loss function used is the **Hinge Loss** function that clips the value
-    at :math:`0`:
+    at $0$:
 
-    .. math::
-
-      \\max(0, 1 - t^{i}(w^{T}x^{i} + b))
+    $$\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
 
     Args:
       X: Training vectors, where `n_samples` is the number of samples and
