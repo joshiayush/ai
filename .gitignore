@@ -29,3 +29,9 @@ ai_dev/
 
 # Mkdocs
 site/
+
+# Resources
+.resources
+
+# Datasets
+datasets
