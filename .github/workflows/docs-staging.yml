@@ -23,7 +23,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - run: pip install mkdocs mkdocs-material 'mkdocstrings[python]'
+      - run: pip install mkdocs mkdocs-material 'mkdocstrings[python]' mkdocs-jupyter
 
       - name: Generate deep learning roadmap
         run: python tools/generate_dl_roadmap.py

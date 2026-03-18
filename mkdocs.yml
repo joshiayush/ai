@@ -3,6 +3,9 @@ site_url: https://joshiayush.github.io/nuro
 repo_url: https://github.com/joshiayush/nuro
 repo_name: joshiayush/nuro
 
+hooks:
+  - hooks/notebooks.py
+
 theme:
   name: material
   palette:
@@ -31,6 +34,9 @@ theme:
 
 plugins:
   - search
+  - mkdocs-jupyter:
+      include_source: true
+      execute: false
   - mkdocstrings:
       handlers:
         python:
@@ -42,8 +48,9 @@ plugins:
 nav:
   - Home: index.md
   - Deep Learning Roadmap: deep-learning-roadmap.md
+  - Deep Learning:
+    - Neural Networks: dl/Neural_Networks.ipynb
   - Machine Learning:
-    - Overview: ml/README.md
     - Introduction to ML: ml/Introduction-to-ML.md
     - Descending into ML: ml/Descending-into-ML.md
     - Reducing Loss: ml/Reducing-Loss.md
@@ -62,6 +69,10 @@ nav:
     - Linear Regression with a Real Dataset: ml/Linear-Regression-with-a-Real-Dataset.md
   - Prework:
     - Overview: prework/README.md
+    - Linear Algebra: prework/linear-algebra/Linear_Algebra.ipynb
+    - Calculus: prework/calculus/Calculus.ipynb
+    - Probability: prework/statistics/Probability.ipynb
+    - Statistics: prework/statistics/Statistics.ipynb
     - NumPy: prework/NumPy.md
     - Pandas DataFrame: prework/Pandas-DataFrame.md
     - Framing an ML Problem: prework/Framing-an-ML-problem.md
@@ -100,6 +111,7 @@ markdown_extensions:
       permalink: true
 
 extra_javascript:
+  - js/mathjax.js
   - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
 extra_css:
