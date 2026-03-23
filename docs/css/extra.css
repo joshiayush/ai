@@ -190,3 +190,68 @@
 [data-md-color-scheme="slate"] .roadmap-node .links a.video {
   color: #ff6b6b;
 }
+
+/* ============================================================
+   Jupyter notebook cell overrides
+   ============================================================ */
+
+/* Hide the In[]: prompt labels and collapsers — they eat space */
+.jp-InputPrompt,
+.jp-OutputPrompt,
+.jp-Collapser {
+  display: none !important;
+}
+
+/* Code cells: full width, clean TF-style box */
+.jp-Cell-inputWrapper {
+  margin: 0;
+}
+
+.jp-InputArea {
+  margin: 0;
+}
+
+.jp-CodeCell .jp-Cell-inputWrapper {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 0.5rem 0;
+}
+
+.jp-CodeMirrorEditor {
+  padding: 0;
+}
+
+.jp-CodeMirrorEditor pre {
+  padding: 1rem 1.2rem;
+  margin: 0;
+  background: var(--md-code-bg-color);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Output cells */
+.jp-OutputArea-output pre {
+  padding: 1rem 1.2rem;
+  margin: 0;
+  background: var(--md-default-bg-color);
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+/* Markdown cells in notebooks */
+.jp-RenderedHTMLCommon {
+  font-family: Roboto, sans-serif;
+  padding: 0 !important;
+}
+
+/* Remove excessive cell spacing */
+.jp-Cell {
+  margin-bottom: 0.5rem;
+}
+
+.jp-Notebook {
+  padding: 0;
+}
