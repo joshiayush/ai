@@ -38,4 +38,4 @@ print(accuracy_score(y_pred, y_test))
 
 ## Roadmap
 
-[Open Deep Learning Roadmap →](https://joshiayush.github.io/ai/deep-learning-roadmap/)
+[Open Deep Learning Roadmap →](https://joshiayush.github.io/nuro/deep-learning-roadmap/)
