@@ -1,5 +1,14 @@
 # Changelog
 
+## nuro@v0.6.1 — 2026-03-24
+
+### Docs
+
+- docs: add types hints to example function of `Partial Derivatives - Functions with Multiple Inputs` by **Ayush Joshi** in [#123a1b4](https://github.com/joshiayush/nuro/commit/123a1b48e0a43d173958926b9e3b3efe8165e147)
+- docs: release `nuro@v0.6.0` by **Ayush Joshi** in [#c7877aa](https://github.com/joshiayush/nuro/commit/c7877aa85429fcfdc5b0026fb6b46b8f85d1af4b)
+- docs: type annotate gradient calculating functions by **Ayush Joshi** in [#977e196](https://github.com/joshiayush/nuro/commit/977e196e12d790587fb600caa0dd78d194b1a1a2)
+
+
 ## nuro@v0.6.0 — 2026-03-23
 
 ### Feat
