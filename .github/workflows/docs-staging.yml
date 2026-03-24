@@ -55,6 +55,7 @@ jobs:
             cd ..
             git add -A
             git commit -m "chore: cleanup old staging previews, keep latest 5"
+            git pull --rebase origin gh-pages
             git push origin gh-pages
           fi
 
