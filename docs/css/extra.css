@@ -192,53 +192,96 @@
 }
 
 /* ============================================================
-   Jupyter notebook cell overrides
+   Jupyter notebook cell overrides — Google Docs style
    ============================================================ */
 
-/* Hide the In[]: prompt labels and collapsers — they eat space */
+/* Hide In[]: prompts and collapser gutters */
 .jp-InputPrompt,
 .jp-OutputPrompt,
 .jp-Collapser {
   display: none !important;
 }
 
-/* Code cells: full width, clean TF-style box */
-.jp-Cell-inputWrapper {
-  margin: 0;
-}
-
+/* Reset wrappers to zero margin */
+.jp-Cell-inputWrapper,
 .jp-InputArea {
   margin: 0;
 }
 
+/* Code cell input box — flat Google style */
 .jp-CodeCell .jp-Cell-inputWrapper {
-  border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
+  background: var(--md-code-bg-color);
+  border-radius: 4px;
+  margin: 0.75rem 0;
+  max-width: 100%;
   overflow: hidden;
-  margin: 0.5rem 0;
 }
 
 .jp-CodeMirrorEditor {
   padding: 0;
+  max-width: 100%;
+  overflow: hidden;
 }
 
+/* The highlight wrapper that contains the <pre> */
+.highlight-ipynb {
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* The actual code <pre> — matches Google code blocks */
 .jp-CodeMirrorEditor pre {
-  padding: 1rem 1.2rem;
+  padding: 12px 16px;
   margin: 0;
   background: var(--md-code-bg-color);
-  font-size: 0.82rem;
-  line-height: 1.6;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 20px;
+  white-space: pre;
 }
 
 /* Output cells */
+.jp-OutputArea-output {
+  max-width: 100%;
+  overflow-x: auto;
+}
+
 .jp-OutputArea-output pre {
-  padding: 1rem 1.2rem;
-  margin: 0;
+  padding: 12px 16px;
+  margin: 0.75rem 0;
   background: var(--md-default-bg-color);
   border: 1px solid var(--md-default-fg-color--lightest);
-  border-radius: 8px;
-  font-size: 0.82rem;
-  line-height: 1.6;
+  border-radius: 4px;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 13px;
+  line-height: 20px;
+  white-space: pre;
+}
+
+/* Matplotlib / image outputs — display and constrain width */
+.jp-OutputArea-output img,
+.jp-OutputArea-output svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.5rem auto;
+}
+
+/* Ensure output wrappers are visible */
+.jp-OutputArea,
+.jp-OutputArea-child,
+.jp-OutputArea-output {
+  overflow: visible;
+}
+
+/* Rich output (HTML tables, DataFrames, plots) */
+.jp-RenderedHTMLCommon table {
+  margin: 0.5rem 0;
+}
+
+.jp-RenderedImage {
+  text-align: center;
 }
 
 /* Markdown cells in notebooks */
@@ -247,11 +290,122 @@
   padding: 0 !important;
 }
 
-/* Remove excessive cell spacing */
+/* Cell spacing */
 .jp-Cell {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0;
 }
 
 .jp-Notebook {
   padding: 0;
 }
+
+/* ============================================================
+   Syntax highlighting — Google Docs palette
+   ============================================================ */
+
+/* Base text color */
+.highlight-ipynb { color: #37474F; }
+
+/* Keywords: import, from, def, return, if, for, class, etc. */
+.highlight-ipynb .k,
+.highlight-ipynb .kn,
+.highlight-ipynb .kd,
+.highlight-ipynb .kc,
+.highlight-ipynb .kr,
+.highlight-ipynb .ow { color: #0D47A1; font-weight: 600; }
+
+/* Built-in names: print, len, range, dict, list, type, etc. */
+.highlight-ipynb .nb,
+.highlight-ipynb .bp { color: #0D47A1; }
+
+/* Function/class definitions */
+.highlight-ipynb .nf,
+.highlight-ipynb .nc { color: #6A1B9A; }
+
+/* Strings */
+.highlight-ipynb .s,
+.highlight-ipynb .s1,
+.highlight-ipynb .s2,
+.highlight-ipynb .sa,
+.highlight-ipynb .sb,
+.highlight-ipynb .sd,
+.highlight-ipynb .se,
+.highlight-ipynb .sh,
+.highlight-ipynb .si,
+.highlight-ipynb .sx { color: #1B5E20; }
+
+/* Numbers */
+.highlight-ipynb .mi,
+.highlight-ipynb .mf,
+.highlight-ipynb .mh,
+.highlight-ipynb .mo,
+.highlight-ipynb .mb,
+.highlight-ipynb .il { color: #B71C1C; }
+
+/* Comments */
+.highlight-ipynb .c,
+.highlight-ipynb .c1,
+.highlight-ipynb .ch,
+.highlight-ipynb .cm,
+.highlight-ipynb .cs,
+.highlight-ipynb .cp,
+.highlight-ipynb .cpf { color: #9E9E9E; font-style: italic; }
+
+/* Operators: +, -, *, =, == */
+.highlight-ipynb .o { color: #37474F; }
+
+/* Decorators */
+.highlight-ipynb .nd { color: #6A1B9A; }
+
+/* Module/package names (import numpy) */
+.highlight-ipynb .nn { color: #006064; }
+
+/* Variables, plain names */
+.highlight-ipynb .n { color: #37474F; }
+
+/* Punctuation */
+.highlight-ipynb .p { color: #37474F; }
+
+/* Whitespace */
+.highlight-ipynb .w { color: transparent; }
+
+/* --- Dark mode syntax overrides --- */
+[data-md-color-scheme="slate"] .highlight-ipynb { color: #CDD6F4; }
+[data-md-color-scheme="slate"] .highlight-ipynb .k,
+[data-md-color-scheme="slate"] .highlight-ipynb .kn,
+[data-md-color-scheme="slate"] .highlight-ipynb .kd,
+[data-md-color-scheme="slate"] .highlight-ipynb .kc,
+[data-md-color-scheme="slate"] .highlight-ipynb .kr,
+[data-md-color-scheme="slate"] .highlight-ipynb .ow { color: #89B4FA; }
+[data-md-color-scheme="slate"] .highlight-ipynb .nb,
+[data-md-color-scheme="slate"] .highlight-ipynb .bp { color: #89B4FA; }
+[data-md-color-scheme="slate"] .highlight-ipynb .nf,
+[data-md-color-scheme="slate"] .highlight-ipynb .nc { color: #CBA6F7; }
+[data-md-color-scheme="slate"] .highlight-ipynb .s,
+[data-md-color-scheme="slate"] .highlight-ipynb .s1,
+[data-md-color-scheme="slate"] .highlight-ipynb .s2,
+[data-md-color-scheme="slate"] .highlight-ipynb .sa,
+[data-md-color-scheme="slate"] .highlight-ipynb .sb,
+[data-md-color-scheme="slate"] .highlight-ipynb .sd,
+[data-md-color-scheme="slate"] .highlight-ipynb .se,
+[data-md-color-scheme="slate"] .highlight-ipynb .sh,
+[data-md-color-scheme="slate"] .highlight-ipynb .si,
+[data-md-color-scheme="slate"] .highlight-ipynb .sx { color: #A6E3A1; }
+[data-md-color-scheme="slate"] .highlight-ipynb .mi,
+[data-md-color-scheme="slate"] .highlight-ipynb .mf,
+[data-md-color-scheme="slate"] .highlight-ipynb .mh,
+[data-md-color-scheme="slate"] .highlight-ipynb .mo,
+[data-md-color-scheme="slate"] .highlight-ipynb .mb,
+[data-md-color-scheme="slate"] .highlight-ipynb .il { color: #F38BA8; }
+[data-md-color-scheme="slate"] .highlight-ipynb .c,
+[data-md-color-scheme="slate"] .highlight-ipynb .c1,
+[data-md-color-scheme="slate"] .highlight-ipynb .ch,
+[data-md-color-scheme="slate"] .highlight-ipynb .cm,
+[data-md-color-scheme="slate"] .highlight-ipynb .cs,
+[data-md-color-scheme="slate"] .highlight-ipynb .cp,
+[data-md-color-scheme="slate"] .highlight-ipynb .cpf { color: #6C7086; }
+[data-md-color-scheme="slate"] .highlight-ipynb .o { color: #CDD6F4; }
+[data-md-color-scheme="slate"] .highlight-ipynb .nd { color: #CBA6F7; }
+[data-md-color-scheme="slate"] .highlight-ipynb .nn { color: #94E2D5; }
+[data-md-color-scheme="slate"] .highlight-ipynb .n { color: #CDD6F4; }
+[data-md-color-scheme="slate"] .highlight-ipynb .p { color: #CDD6F4; }
