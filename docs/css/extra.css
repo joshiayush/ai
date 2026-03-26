@@ -192,6 +192,42 @@
 }
 
 /* ============================================================
+   Google Cloud Docs-style full-width layout
+   ============================================================ */
+
+/* Remove the max-width cap — let content fill the viewport */
+.md-grid {
+  max-width: 100%;
+}
+
+/* Left sidebar: flush left, wider for readability */
+.md-sidebar--primary {
+  width: 15rem;
+}
+
+/* Right TOC sidebar: flush right */
+.md-sidebar--secondary {
+  width: 13rem;
+}
+
+/* Content area: readable width, centered in remaining space */
+.md-content__inner {
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 0.6rem 1.5rem 1.2rem;
+}
+
+/* Header spans full width */
+.md-header .md-header__inner {
+  max-width: 100%;
+}
+
+/* Tabs bar spans full width */
+.md-tabs {
+  max-width: 100%;
+}
+
+/* ============================================================
    Jupyter notebook cell overrides — Google Docs style
    ============================================================ */
 
