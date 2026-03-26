@@ -1,5 +1,20 @@
 # Changelog
 
+## nuro@v0.7.0 — 2026-03-26
+
+### Add
+
+- add: add updated document on "Gradient Descent" by **Ayush Joshi** in [#dcccfa4](https://github.com/joshiayush/nuro/commit/dcccfa4a223ac968b638be666d6f877e421d4b5c)
+
+### Fix
+
+- fix: match Google Cloud docs layout with full-width sidebars by **Ayush Joshi** in [#bd579a7](https://github.com/joshiayush/nuro/commit/bd579a739e58178bb33154297e618f8fcf1abb73)
+
+### Docs
+
+- docs: release `nuro@v0.6.2` by **Ayush Joshi** in [#0b9305d](https://github.com/joshiayush/nuro/commit/0b9305dd3805f096fc51383e066c6ecddf276055)
+
+
 ## nuro@v0.6.2 — 2026-03-26
 
 ### Fix
