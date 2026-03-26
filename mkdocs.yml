@@ -55,7 +55,7 @@ nav:
   - Machine Learning:
     - Introduction to ML: ml/Introduction-to-ML.md
     - Descending into ML: ml/Descending-into-ML.md
-    - Reducing Loss: ml/Reducing-Loss.md
+    - Gradient Descent: ml/Gradient_Descent.ipynb
     - Generalization: ml/Generalization.md
     - Training and Test Sets: ml/Training-and-Test-Sets.md
     - Validation Set: ml/Validation-Set.md
