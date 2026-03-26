@@ -1,5 +1,19 @@
 # Changelog
 
+## nuro@v0.6.2 — 2026-03-26
+
+### Fix
+
+- fix: use a smaller font size on code cells to prevent code overflow on reading by **Ayush Joshi** in [#f9ac3c5](https://github.com/joshiayush/nuro/commit/f9ac3c53046e5aad6b56b665ba85473a3ba7e370)
+
+### Docs
+
+- docs: fix typo in `deep-learning-roadmap` url by **Ayush Joshi** in [#d36439a](https://github.com/joshiayush/nuro/commit/d36439aaafd5ce47765cd3505253799c1a7fc1b1)
+- docs: format "Gradient Descent - How Models Learn" section by **Ayush Joshi** in [#7576165](https://github.com/joshiayush/nuro/commit/75761657a9f4525d0b3c7ea15235963d65ddbd64)
+- docs: reformat document with spaces as tabs by **Ayush Joshi** in [#624561a](https://github.com/joshiayush/nuro/commit/624561af0eee4f499e04847818c0eb5a92345062)
+- docs: release changelogs for `nuro@v0.6.1` by **Ayush Joshi** in [#ede2250](https://github.com/joshiayush/nuro/commit/ede2250533ef58bc46970cc595d8a1b4051414b1)
+
+
 ## nuro@v0.6.1 — 2026-03-24
 
 ### Docs
