@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - main
+    tags-ignore:
+      - 'v*'
 
 permissions:
   contents: write
@@ -43,6 +45,8 @@ jobs:
 
       - name: Cleanup old staging previews
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git fetch origin gh-pages
           git worktree add gh-pages-tmp origin/gh-pages
 
