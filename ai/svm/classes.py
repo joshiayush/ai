@@ -11,6 +11,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+"""Linear Support Vector Classification."""
 
 from typing import Optional
 
@@ -44,7 +45,8 @@ class LinearSVC:
 
   The cost function used by **Linear SVM classifier** is the following:
 
-  $$J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
+  $$J(w, b) = \\dfrac{1}{2}w^{T}w +
+  C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
 
   The loss function used is the **Hinge Loss** function that clips the value at
   $0$:
@@ -76,7 +78,7 @@ class LinearSVC:
     self._bias = None
     self._weights = None
 
-  def fit(self, X: np.ndarray, y: np.ndarray) -> 'LinearSVC':
+  def fit(self, X: np.ndarray, y: np.ndarray) -> 'LinearSVC':  # pylint: disable=invalid-name
     """Fit `LinearSVC` according to X, y.
 
     The objective of training a `LinearSVC` is to minimize the norm of the
@@ -97,7 +99,8 @@ class LinearSVC:
 
     The cost function used by **Linear SVM classifier** is the following:
 
-    $$J(w, b) = \\dfrac{1}{2}w^{T}w + C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
+    $$J(w, b) = \\dfrac{1}{2}w^{T}w +
+    C\\sum_{i=1}^{m}\\max(0, 1 - t^{i}(w^{T}x^{i} + b))$$
 
     The loss function used is the **Hinge Loss** function that clips the value
     at $0$:
@@ -133,7 +136,7 @@ class LinearSVC:
           self._bias -= self._alpha * t[idx]
     return self
 
-  def predict(self, X: np.ndarray) -> np.ndarray:
+  def predict(self, X: np.ndarray) -> np.ndarray:  # pylint: disable=invalid-name
     """Predict for `X` using the previously calculated `weights` and `bias`.
 
     Args:

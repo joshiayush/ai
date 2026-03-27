@@ -54,7 +54,8 @@ class DistanceMetric:
     real-valued vectors. Using the below formula, it measures a straight line
     between the query point and the other point being measured.
 
-    $$\\mathrm{Euclidean\\ Distance} = \\sqrt{\\sum_{i=1}^{n}(y_{i} - x_{i})^2}$$
+    $$\\mathrm{Euclidean\\ Distance} =
+    \\sqrt{\\sum_{i=1}^{n}(y_{i} - x_{i})^2}$$
 
     Args:
       x1: Query point vector.
@@ -76,7 +77,8 @@ class DistanceMetric:
     this formula when p is equal to two, and Manhattan distance is denoted with
     p equal to one.
 
-    $$\\mathrm{Minkowski\\ Distance} = ((\\sum_{i=1}^{n}|x_{i} - y_{i}|) ^ \\dfrac{1}{p})$$
+    $$\\mathrm{Minkowski\\ Distance} =
+    ((\\sum_{i=1}^{n}|x_{i} - y_{i}|) ^ \\dfrac{1}{p})$$
 
     Args:
       x1: Query point vector.
@@ -156,8 +158,8 @@ class DistanceMetric:
     else:
       raise RuntimeError(
         (
-          f'{self.__class__.__name__}: {self._metric} is not one of ["euclidean",'
-          ' "minkowski", "manhattan", "hamming"]'
+          f'{self.__class__.__name__}: {self._metric} is not one of '
+          '["euclidean", "minkowski", "manhattan", "hamming"]'
         )
       )
     return self._distance_func_cache(x1, x2)
@@ -178,8 +180,9 @@ class KNeighborsClassifier(DistanceMetric):
 
   Args:
     n_neighbors: Number of neighbors to use. By default `3`.
-    p: Power parameter for the Minkowski metric. When `p = 1`, this is equivalent
-      to using `manhattan_distance (l1)`, and `euclidean_distance (l2)` for
+    p: Power parameter for the Minkowski metric. When `p = 1`, this is
+      equivalent to using `manhattan_distance (l1)`, and
+      `euclidean_distance (l2)` for
       `p = 2`. For arbitrary `p`, `minkowski_distance (l_p)` is used.
     metric: Metric to use for distance computation. Default is `euclidean`.
   """
@@ -201,7 +204,6 @@ class KNeighborsClassifier(DistanceMetric):
     Raises:
       ValueError: If any hyperparameter is not compatible.
     """
-    is_distance_metric_present = False
     for (metric_name, metric_status
          ) in KNeighborsClassifier._parameter_constraints['metric']:
       if kwargs['metric'] == metric_name:

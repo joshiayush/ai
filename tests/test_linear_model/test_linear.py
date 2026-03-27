@@ -1,3 +1,4 @@
+"""Tests for linear regression model."""
 # Copyright 2023 The AI Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,8 +13,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-import pytest
-
 import numpy as np
 
 from numpy.testing import (
@@ -25,7 +24,7 @@ from ai.linear_model import LinearRegression
 
 def test_linear_regression():
   # Test LinearRegression on a simple dataset; a simple dataset
-  X = np.array([[1], [2]])
+  X = np.array([[1], [2]])  # pylint: disable=invalid-name
   y = np.array([1, 2])
 
   model = LinearRegression()
@@ -35,7 +34,7 @@ def test_linear_regression():
   assert_array_almost_equal(model.predict(X), [1.0, 2.0], decimal=1)
 
   # also testing for degenerate input
-  X = np.array([[1]])
+  X = np.array([[1]])  # pylint: disable=invalid-name
   y = [0]
 
   model = LinearRegression()

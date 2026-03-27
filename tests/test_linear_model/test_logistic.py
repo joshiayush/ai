@@ -13,6 +13,7 @@
 # limitations under the License.
 # pylint: disable=too-many-function-args, invalid-name, missing-module-docstring
 # pylint: disable=missing-class-docstring
+# pylint: disable=protected-access
 
 import pytest
 import numpy as np

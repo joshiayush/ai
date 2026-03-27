@@ -22,8 +22,6 @@ import sys
 import pathlib
 import argparse
 
-from datetime import date
-
 import ai_logs
 import ai_docs
 import ai_utils

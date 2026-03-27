@@ -76,7 +76,8 @@ ROADMAP = [
       ),
       (
         'Transformer',
-        'https://d2l.ai/chapter_attention-mechanisms-and-transformers/transformer.html',
+        'https://d2l.ai/chapter_attention-mechanisms-and-transformers'
+        '/transformer.html',
         'https://www.youtube.com/watch?v=wjZofJX0v4M',
       ),
       (
@@ -232,7 +233,8 @@ ROADMAP = [
       ),
       (
         'Neural Architecture Search',
-        'https://paperswithcode.com/methods/category/neural-architecture-search',
+        'https://paperswithcode.com/methods/category'
+        '/neural-architecture-search',
         'https://www.youtube.com/watch?v=sROrvtXnT7Q',
       ),
     ],
@@ -246,7 +248,8 @@ ROADMAP = [
       ),
       (
         'TensorBoard',
-        'https://docs.pytorch.org/tutorials/intermediate/tensorboard_tutorial.html',
+        'https://docs.pytorch.org/tutorials/intermediate'
+        '/tensorboard_tutorial.html',
         'https://www.youtube.com/watch?v=RLqsxWaQdHE',
       ),
       (
@@ -271,8 +274,10 @@ def _cards(concepts: list, color: str) -> str:
       f'<div class="roadmap-node" style="--node-color:{color}">'
       f'<span class="name">{name}</span>'
       f'<div class="links">'
-      f'<a href="{article}" class="article" target="_blank" rel="noopener">article</a>'
-      f'<a href="{video}" class="video" target="_blank" rel="noopener">&#9654; video</a>'
+      f'<a href="{article}" class="article"'
+      f' target="_blank" rel="noopener">article</a>'
+      f'<a href="{video}" class="video"'
+      f' target="_blank" rel="noopener">&#9654; video</a>'
       f'</div></div>'
     )
   return '\n'.join(parts)
@@ -421,7 +426,8 @@ def _legacy_generate() -> str:
 </head>
 <body>
   <h1>Deep Learning Roadmap</h1>
-  <p class="subtitle">PyTorch-focused &mdash; click any node to open the article or video</p>
+  <p class="subtitle">PyTorch-focused &mdash; click any node to open the article
+  or video</p>
   <div class="roadmap">
     {_sections()}
   </div>

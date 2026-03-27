@@ -88,11 +88,13 @@ class LogisticRegression:
 
     On differentiating cost function `J` with respect to `b`:
 
-    $$\\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i})$$
+    $$\\dfrac{dJ}{db} = \\dfrac{2}{n} \\cdot
+    \\sum_{i=1}^{n}(\\hat y_{i} - y_{i})$$
 
     On differentiating cost function `J` with respect to `w`:
 
-    $$\\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot \\sum_{i=1}^{n}(\\hat y_{i} - y_{i}) \\cdot x_{i}$$
+    $$\\dfrac{dJ}{dw} = \\dfrac{2}{n} \\cdot
+    \\sum_{i=1}^{n}(\\hat y_{i} - y_{i}) \\cdot x_{i}$$
 
     The above derivative functions are used for updating `weights` and `bias` in
     each iteration.

@@ -34,7 +34,7 @@ X += 0.3 * np.random.normal(size=n_samples)
 
 X = X[:, np.newaxis]
 
-print('Estimation using sklearn api...')
+print("Estimation using sklearn api...")
 
 # Fit the classifier
 clf = LogisticRegression(C=1e5)
@@ -78,7 +78,7 @@ plt.legend(
 plt.tight_layout()
 plt.show()
 
-print('Estimation using ai api...')
+print("Estimation using ai api...")
 print(
   "Since there's no implementation of the closed-form solution for linear"
   " regression in ai; sklearn api beats us in terms of speed..."
@@ -96,7 +96,7 @@ plt.clf()
 plt.scatter(X.ravel(), y, label="example data", color="black", zorder=20)
 X_test = np.linspace(-5, 10, 300)
 
-loss = expit(X_test * clf._weights + clf._bias).ravel()
+loss = expit(X_test * clf._weights + clf._bias).ravel()  # pylint: disable=protected-access
 plt.plot(
   X_test,
   loss,

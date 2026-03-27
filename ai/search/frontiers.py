@@ -29,7 +29,7 @@ class Frontier():
 class StackFrontier(Frontier):
   def remove(self):
     if self.empty():
-      raise Exception("empty frontier")
+      raise RuntimeError("empty frontier")
     else:
       node = self.frontier[-1]
       self.frontier = self.frontier[:-1]
@@ -39,7 +39,7 @@ class StackFrontier(Frontier):
 class QueueFrontier(Frontier):
   def remove(self):
     if self.empty():
-      raise Exception("empty frontier")
+      raise RuntimeError("empty frontier")
     else:
       node = self.frontier[0]
       self.frontier = self.frontier[1:]

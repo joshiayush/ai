@@ -40,13 +40,16 @@ def grbf(x: np.ndarray, x_prime: np.ndarray, sigma: np.float32) -> np.ndarray:
 
   We have an exponential term, and we can simplify it further:
 
-  $$e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}} = e^{-\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2}$$
+  $$e^{-\\dfrac{||x - x'||^{2}}{2\\sigma^{2}}} =
+  e^{-\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2}$$
 
   We can further generalize it using the property
   $e^{a + b}$ = $e^a * e ^b$, we can separate the exponential
   factors:
 
-  $$K(x, x') = e^{-\\dfrac{1}{2\\sigma^{2}} \\sum_{i=1}^{n}(x_{i} - x'_{i})^2} = \\prod_{i=1}^{n}e^{-\\dfrac{1}{2\\sigma^{2}}(x - x')^{2}}$$
+  $$K(x, x') = e^{-\\dfrac{1}{2\\sigma^{2}}
+  \\sum_{i=1}^{n}(x_{i} - x'_{i})^2} =
+  \\prod_{i=1}^{n}e^{-\\dfrac{1}{2\\sigma^{2}}(x - x')^{2}}$$
 
   This is the mathematical implementation of the Gaussian RBF. It measures the
   similarity between two data points $x$ and $x'$ based on the

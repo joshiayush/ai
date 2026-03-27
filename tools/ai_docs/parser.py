@@ -21,7 +21,6 @@ from __future__ import annotations
 import re
 import os
 import json
-import codecs
 import pathlib
 
 
@@ -122,7 +121,7 @@ def ReadIPythonNotebookToMarkdown(file_path: str | pathlib.Path) -> str:
   Returns:
     Markdown generated from IPython Notebooks.
   """
-  with codecs.open(os.fspath(file_path), 'r') as file:
+  with open(os.fspath(file_path), 'r', encoding='utf-8') as file:
     source = file.read()
 
   markdown = ''

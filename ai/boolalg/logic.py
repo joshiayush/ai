@@ -16,8 +16,6 @@
 
 from typing import Tuple, Dict
 
-import itertools
-
 
 class _Sentence():
   """An abstract model used for implementing symbols and logical connectives
@@ -40,7 +38,7 @@ class _Sentence():
     return set()
 
   @classmethod
-  def validate(cls, sentence: 'Sentence'):
+  def validate(cls, sentence: "_Sentence"):
     """Validates if the given sentence is actually a `Sentence` instance.
 
     Raises:
@@ -79,7 +77,7 @@ class _Sentence():
       return count == 0
 
     # Empty or alpha strings are always considered to be balanced.
-    if not len(s) or s.isalpha(
+    if not s or s.isalpha(
     ) or (s[0] == "(" and s[-1] == ")" and balanced(s[1:-1])):
       return s
     else:
@@ -128,7 +126,7 @@ class Symbol(_Sentence):
     """
     self._name = name
 
-  def __eq__(self, other: 'Symbol') -> bool:
+  def __eq__(self, other: "Symbol") -> bool:
     """Compares `self` with the other."""
     return isinstance(other, Symbol) and self._name == other._name
 
@@ -170,8 +168,8 @@ class Symbol(_Sentence):
     """
     try:
       return bool(model[self._name])
-    except KeyError:
-      raise EvaluationException(f"variable {self._name} not in model")
+    except KeyError as exc:
+      raise ValueError(f"variable {self._name} not in model") from exc
 
   def formula(self) -> str:
     """Returns the name of the symbol to be used in the formula.
@@ -213,7 +211,7 @@ class Not(_Sentence):
       '¬Rain'
 
   """
-  def __init__(self, operand: 'Symbol'):
+  def __init__(self, operand: "_Sentence"):
     """Constructs a `Not` instance.
 
     A `Symbol` instance is used while constructing a `Not` instance. This symbol
@@ -237,7 +235,7 @@ class Not(_Sentence):
     _Sentence.validate(operand)
     self._operand = operand
 
-  def __eq__(self, other: 'Not') -> bool:
+  def __eq__(self, other: "Not") -> bool:
     """Compares `self` with the `other`."""
     return isinstance(other, Not) and self._operand == other._operand
 
@@ -323,7 +321,7 @@ class And(_Sentence):
       'Rain ∧ Run'
 
   """
-  def __init__(self, *conjuncts: Tuple['Symbol', ...]):
+  def __init__(self, *conjuncts: Tuple["_Sentence", ...]):
     """Constructs a `And` instance.
 
     A `Symbol` instance is used while constructing a `And` instance as
@@ -352,7 +350,7 @@ class And(_Sentence):
       _Sentence.validate(conjunct)
     self.conjuncts = list(conjuncts)
 
-  def __eq__(self, other: 'And') -> bool:
+  def __eq__(self, other: "And") -> bool:
     """Compares `self` with the `other`."""
     return isinstance(other, And) and self.conjuncts == other.conjuncts
 
@@ -365,7 +363,7 @@ class And(_Sentence):
     conjunctions = ", ".join([str(conjunct) for conjunct in self.conjuncts])
     return f"And({conjunctions})"
 
-  def add(self, conjunct: 'Symbol') -> None:
+  def add(self, conjunct: "_Sentence") -> None:
     """Appends a conjuction to the current experssion for `And`.
 
     Args:
@@ -485,7 +483,7 @@ class Or(_Sentence):
       'Rain ∨ Run'
 
   """
-  def __init__(self, *disjuncts: 'Symbol'):
+  def __init__(self, *disjuncts: "_Sentence"):
     """Constructs a `Or` instance.
 
     A `Symbol` instance is used while constructing a `Or` instance as
@@ -710,4 +708,4 @@ def model_check(knowledge, query):
   symbols = set.union(knowledge.symbols(), query.symbols())
 
   # Check that knowledge entails query
-  return check_all(knowledge, query, symbols, dict())
+  return check_all(knowledge, query, symbols, {})

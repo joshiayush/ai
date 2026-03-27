@@ -32,7 +32,7 @@ def _symlink(src, dst):
   _created_links.append(dst)
 
 
-def on_pre_build(config, **kwargs):
+def on_pre_build(config, **_kwargs):
   """Discover and symlink all notebooks and assets into docs/ before build."""
   root = Path(config["config_file_path"]).parent
   notebooks_root = root / NOTEBOOKS_DIR
@@ -45,7 +45,7 @@ def on_pre_build(config, **kwargs):
     rel = src.relative_to(notebooks_root)
     dst = docs_root / rel
     _symlink(src, dst)
-    log.info(f"Linked {DOCS_DIR}/{rel} -> {NOTEBOOKS_DIR}/{rel}")
+    log.info("Linked %s/%s -> %s/%s", DOCS_DIR, rel, NOTEBOOKS_DIR, rel)
 
   # Symlink asset directories so relative image paths resolve
   for asset_dir in ASSET_DIRS:
@@ -53,10 +53,10 @@ def on_pre_build(config, **kwargs):
     if src.is_dir():
       dst = docs_root / asset_dir
       _symlink(src, dst)
-      log.info(f"Linked {DOCS_DIR}/{asset_dir} -> {asset_dir}")
+      log.info("Linked %s/%s -> %s", DOCS_DIR, asset_dir, asset_dir)
 
 
-def on_post_build(config, **kwargs):
+def on_post_build(config, **_kwargs):
   """Clean up symlinks after build."""
   for link in _created_links:
     if link.is_symlink():

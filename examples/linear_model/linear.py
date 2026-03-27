@@ -50,15 +50,11 @@ print("Calculating using sklearn api...")
 # The coefficients
 print("(sklearn) Coefficients: \n", model.coef_)
 # The mean squared error
-print(
-  "(sklearn) Mean squared error: %.2f" %
-  mean_squared_error(diabetes_y_test, diabetes_y_pred)
-)
+mse = mean_squared_error(diabetes_y_test, diabetes_y_pred)
+print(f"(sklearn) Mean squared error: {mse:.2f}")
 # The coefficient of determination: 1 is perfect prediction
-print(
-  "(sklearn) Coefficient of determination: %.2f" %
-  r2_score(diabetes_y_test, diabetes_y_pred)
-)
+r2 = r2_score(diabetes_y_test, diabetes_y_pred)
+print(f"(sklearn) Coefficient of determination: {r2:.2f}")
 
 # Plot outputs
 plt.scatter(diabetes_X_test, diabetes_y_test, color="black")
@@ -87,17 +83,13 @@ model.fit(diabetes_X_train, diabetes_y_train)
 diabetes_y_pred = model.predict(diabetes_X_test)
 
 # The coefficients
-print("(ai) Coefficients: \n", model._weights)
+print("(ai) Coefficients: \n", model._weights)  # pylint: disable=protected-access
 # The mean squared error
-print(
-  "(ai) Mean squared error: %.2f" %
-  mean_squared_error(diabetes_y_test, diabetes_y_pred)
-)
+mse = mean_squared_error(diabetes_y_test, diabetes_y_pred)
+print(f"(ai) Mean squared error: {mse:.2f}")
 # The coefficient of determination: 1 is perfect prediction
-print(
-  "(ai) Coefficient of determination: %.2f" %
-  r2_score(diabetes_y_test, diabetes_y_pred)
-)
+r2 = r2_score(diabetes_y_test, diabetes_y_pred)
+print(f"(ai) Coefficient of determination: {r2:.2f}")
 
 # Plot outputs
 plt.scatter(diabetes_X_test, diabetes_y_test, color="black")

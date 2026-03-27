@@ -59,13 +59,13 @@ def _mean(x: np.ndarray) -> np.float64:
 @_validate_array_dims
 @_transpose_vector_if_required
 def mean(a: np.ndarray, /, *, axis: Optional[int] = None) -> np.ndarray:
-  mean = []
+  mean_val = []
   if axis is None:
-    mean.append(_mean(a))
+    mean_val.append(_mean(a))
   else:
     for x in a:
-      mean.append(_mean(x))
-  return np.array(mean)
+      mean_val.append(_mean(x))
+  return np.array(mean_val)
 
 
 def _median(x: np.ndarray) -> np.float64:
@@ -83,20 +83,20 @@ def _median(x: np.ndarray) -> np.float64:
 @_validate_array_dims
 @_transpose_vector_if_required
 def median(a: np.ndarray, /, *, axis: Optional[int] = None) -> np.ndarray:
-  median = []
+  median_val = []
   if axis is None:
-    median.append(_median(a))
+    median_val.append(_median(a))
   else:
     for x in a:
-      median.append(_median(x))
-  return np.array(median)
+      median_val.append(_median(x))
+  return np.array(median_val)
 
 
 def _std(x: np.ndarray, /, *, ddof: Optional[int] = 1) -> np.float64:
-  n = x.size
+  _n = x.size
   return np.sqrt(
     np.divide(
-      n * np.sum(np.power(x, 2)) - np.power(np.sum(x), 2), n * (n - ddof)
+      _n * np.sum(np.power(x, 2)) - np.power(np.sum(x), 2), _n * (_n - ddof)
     )
   )
 
@@ -110,18 +110,18 @@ def std(
   ddof: Optional[int] = 1,
   axis: Optional[int] = None
 ) -> np.ndarray:
-  std = []
+  std_val = []
   if ddof not in (
     0,
     1,
   ):
     raise ValueError(f'ddof must be in (0, 1), you gave ddof={ddof}')
   if axis is None:
-    std.append(_std(a, ddof=ddof))
+    std_val.append(_std(a, ddof=ddof))
   else:
     for x in a:
-      std.append(_std(x, ddof=ddof))
-  return np.array(std)
+      std_val.append(_std(x, ddof=ddof))
+  return np.array(std_val)
 
 
 @_validate_array_dims
@@ -141,9 +141,9 @@ def var(
 
 
 def _zscore(
-  x: np.ndarray, /, *, mean: np.float64, std: np.float64
+  x: np.ndarray, /, *, mean_val: np.float64, std_val: np.float64
 ) -> np.float64:
-  return np.divide(x - mean, std)
+  return np.divide(x - mean_val, std_val)
 
 
 @_validate_array_dims
@@ -159,15 +159,15 @@ def zscore(
     # if array is already transposed we prevent it from further transpose in the
     # next call since (X_T)_T = X
     axis = 0
-  zscore = []
+  zscore_val = []
   a_mean = mean(a, axis=axis)
   a_std = std(a, ddof=ddof, axis=axis)
   if axis is None:
-    zscore.append(_zscore(a, mean=a_mean, std=a_std))
+    zscore_val.append(_zscore(a, mean_val=a_mean, std_val=a_std))
   else:
     for idx, x in enumerate(a):
-      zscore.append(_zscore(x, mean=a_mean[idx], std=a_std[idx]))
-  return np.array(zscore)
+      zscore_val.append(_zscore(x, mean_val=a_mean[idx], std_val=a_std[idx]))
+  return np.array(zscore_val)
 
 
 @_validate_array_dims
@@ -195,8 +195,8 @@ def _cov(
   y_mean: np.float64,
   ddof: Optional[int] = 1
 ) -> np.float64:
-  n = x.size
-  return np.sum(np.multiply((x - x_mean), (y - y_mean))) / n - ddof
+  _n = x.size
+  return np.sum(np.multiply((x - x_mean), (y - y_mean))) / _n - ddof
 
 
 @_validate_array_dims
@@ -213,29 +213,30 @@ def cov(
     raise ValueError(
       f"given vectors aren't of equal length a.size={a.size} != b.size={b.size}"
     )
-  n = a.size
   if axis == 1:
     # if array is already transposed we prevent it from further transpose in the
     # next call since (X_T)_T = X
     axis = 0
-  cov = []
+  cov_val = []
   a_mean = mean(a, axis=axis)
   b_mean = mean(b, axis=axis)
   if axis is None:
-    cov.append(_cov(a, b, x_mean=a_mean, y_mean=b_mean, ddof=ddof))
+    cov_val.append(_cov(a, b, x_mean=a_mean, y_mean=b_mean, ddof=ddof))
   else:
-    for idx, (x, y) in enumerate(zip(a, b)):
-      cov.append(_cov(x, y, x_mean=a_mean[idx], y_mean=b_mean[idx], ddof=ddof))
-  return np.array(cov)
+    for idx, (ai, bi) in enumerate(zip(a, b)):
+      cov_val.append(
+        _cov(ai, bi, x_mean=a_mean[idx], y_mean=b_mean[idx], ddof=ddof)
+      )
+  return np.array(cov_val)
 
 
-cov._require_2d = True
+cov._require_2d = True  # pylint: disable=protected-access
 
 
 def _corrcoef(
-  *, cov: np.float64, a_std: np.float64, b_std: np.float64
+  *, cov_val: np.float64, a_std: np.float64, b_std: np.float64
 ) -> np.float64:
-  return cov / a_std * b_std
+  return cov_val / a_std * b_std
 
 
 @_validate_array_dims
@@ -252,20 +253,21 @@ def corrcoef(
     raise ValueError(
       f"given vectors aren't of equal length a.size={a.size} != b.size={b.size}"
     )
-  n = a.size
   if axis == 1:
     # if array is already transposed we prevent it from further transpose in the
     # next call since (X_T)_T = X
     axis = 0
-  corrcoef = []
+  corrcoef_val = []
   a_std = std(a, ddof=ddof, axis=axis)
   b_std = std(b, ddof=ddof, axis=axis)
-  cov = cov(a, b, ddof=ddof, axis=axis)
+  cov_val = cov(a, b, ddof=ddof, axis=axis)
   if axis is None:
-    corrcoef.append(_corrcoef(cov=cov, a_std=a_std, b_std=b_std))
+    corrcoef_val.append(
+      _corrcoef(cov_val=cov_val, a_std=a_std, b_std=b_std)
+    )
   else:
-    for idx, (x, y) in enumerate(zip(a, b)):
-      corrcoef.append(
-        _corrcoef(cov=cov[idx], a_std=a_std[idx], b_std=b_std[idx])
+    for idx in range(len(a)):
+      corrcoef_val.append(
+        _corrcoef(cov_val=cov_val[idx], a_std=a_std[idx], b_std=b_std[idx])
       )
-  return np.array(corrcoef)
+  return np.array(corrcoef_val)

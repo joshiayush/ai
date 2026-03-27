@@ -45,6 +45,5 @@ def GetFileByExtensionUnderDirectory(
   """
 
   # @TODO: Implement a non-recursive routine.
-  for file in pathlib.Path(dir).glob(
-      f'{_GLOB_EVERY_FILE_AND_DIR_REGEX}/*.{file_ext}'):
-    yield file
+  yield from pathlib.Path(dir).glob(
+      f'{_GLOB_EVERY_FILE_AND_DIR_REGEX}/*.{file_ext}')

@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 # pylint: disable=too-many-function-args, invalid-name, missing-module-docstring
-# pylint: disable=missing-class-docstring
+# pylint: disable=missing-class-docstring, inconsistent-quotes
 
 from typing import Union
 
@@ -28,7 +28,8 @@ class GaussianNB:
   variable. Bayes theorem states the following relationship, given class
   variable `y` and dependent feature vector $x_{1}$ through $x_{n}$:
 
-  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot P(x_{1}, ..., x_{n} | y)}{P(x_{1}, ..., x_{n})}$$
+  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot
+  P(x_{1}, ..., x_{n} | y)}{P(x_{1}, ..., x_{n})}$$
 
   Using the naive conditional independence assumption that:
 
@@ -36,7 +37,8 @@ class GaussianNB:
 
   for all $i$, this relationship is simplified to:
 
-  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot \\prod_{i=1}^{n}P(x_{i} | y)}{P(x_{1}, ..., x_{n})}$$
+  $$P(y | x_{1}, ..., x_{n}) = \\dfrac{P(y) \\cdot
+  \\prod_{i=1}^{n}P(x_{i} | y)}{P(x_{1}, ..., x_{n})}$$
 
   Since $P(x_{1}, ..., x_{n})$ is constant given the input, we can use the
   following classification rule:
@@ -52,7 +54,8 @@ class GaussianNB:
     monotonic function $\\mathrm{log}$ and add the log of the
     probabilities.
 
-  $$⇒ \\hat y = arg \\max_{y} \\sum_{i=1}^{n} \\mathrm{log}(P(x_{i} | y)) + \\mathrm{log}(P(y))$$
+  $$⇒ \\hat y = arg \\max_{y} \\sum_{i=1}^{n}
+  \\mathrm{log}(P(x_{i} | y)) + \\mathrm{log}(P(y))$$
 
   and we can use Maximum A Posteriori (MAP) estimation to estimate $P(y)$
   and $P(x_{i} | y)$;  the former is then the relative frequency of class
@@ -61,7 +64,9 @@ class GaussianNB:
   `GaussianNB` implements the Gaussian Naive Bayes algorithm for classification.
   The likelihood of the features is assumed to be Gaussian:
 
-  $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}} \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{2 \\sigma_{y}^2} \\right)$$
+  $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}}
+  \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{
+  2 \\sigma_{y}^2} \\right)$$
 
   The parameters $\\sigma_{y}$ and $\\mu_{y}$ are estimated using
   maximum likelihood.
@@ -86,10 +91,8 @@ class GaussianNB:
     ].__class__.__name__ not in GaussianNB._parameter_constraints[
       'priors']:
       raise ValueError(
-        (
-          f'"{kwargs["priors"].__class__.__name__}" type prior is'
-          ' not supported'
-        )
+        f'"{kwargs["priors"].__class__.__name__}" type prior is'
+        ' not supported'
       )
 
   def __init__(self, *, priors: Union[list, np.ndarray] = None):
@@ -192,7 +195,9 @@ class GaussianNB:
     """Probability density function to compute the following for the given `x`
     given the class i.e., the `c_idx`:
 
-    $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}} \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{2 \\sigma_{y}^2} \\right)$$
+    $$P(x_{i} | y) = \\dfrac{1}{\\sqrt{2 \\pi \\sigma_{y}^{2}}}
+    \\exp \\left( -\\dfrac{(x_{i} - \\mu_{y})^2}{
+    2 \\sigma_{y}^2} \\right)$$
 
     Args:
       c_idx: Index of the class for which the Probability density function is

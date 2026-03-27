@@ -1,3 +1,4 @@
+# pylint: disable=empty-docstring
 # Copyright 2023 The AI Authors. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -90,7 +91,7 @@ _ML_README_FILES = (
 )
 
 
-def _MakeDocs(docs_dir: pathlib.Path) -> str:
+def _MakeDocs(docs_dir: pathlib.Path) -> str:  # pylint: disable=unused-argument
   doc = ''
   for readme in _ML_README_FILES:
     doc += _PreprocessReadme(_ML_DOCS_DIR / readme)

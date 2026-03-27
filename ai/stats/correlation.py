@@ -21,7 +21,7 @@ import warnings
 import numpy as np
 
 
-def cov(
+def cov(  # pylint: disable=too-many-positional-arguments
   m: np.ndarray,
   y: np.ndarray = None,
   rowvar: bool = True,

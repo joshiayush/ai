@@ -18,7 +18,6 @@ from __future__ import annotations
 from typing import Union
 
 import re
-import os
 import git
 import copy
 import pathlib
@@ -32,28 +31,28 @@ class Changelog(git.Git):
 
   def __init__(self, working_dir: Union[str, pathlib.Path]):
     super().__init__(working_dir)
-    self.changelog = dict()
+    self.changelog = {}
     self.date = date.today()
 
   def _format_git_logs(self) -> str:
     """Formats git logs for writing into the changelog file."""
     changelog = '# Changelog'
     changelog += '\n' * 2
-    for key in self.changelog:
+    for key, value in self.changelog.items():
 
       # Keys at the first level were the follow paths given during log
       # generation
       changelog += f'## {key} — {self.date}'
       changelog += '\n' * 2
 
-      for git_log_t in self.changelog[key]:
-        if len(self.changelog[key][git_log_t]) == 0:
+      for git_log_t, logs in value.items():
+        if len(logs) == 0:
           continue
 
         changelog += f'### {git_log_t.capitalize()}'
         changelog += '\n' * 2
         changelog += '\n'.join(
-          map(lambda log: f'- {log}', self.changelog[key][git_log_t])
+          map(lambda log: f'- {log}', logs)
         )
         changelog += '\n' * 2
     return changelog
@@ -79,7 +78,7 @@ class Changelog(git.Git):
       git_logs = self.log(f'--pretty={pretty}')
     git_logs = git_logs.split('\n')
 
-    git_logs_dict = dict()
+    git_logs_dict = {}
     for git_log_t in (
       'added',
       'changed',
@@ -96,8 +95,8 @@ class Changelog(git.Git):
             filter(
               lambda changelog: changelog is not None,
               filter(
-                lambda changelog: changelog.capitalize()
-                if git_log_t == changelog.split()[0].lower() else None,
+                lambda changelog, _t=git_log_t: changelog.capitalize()
+                if _t == changelog.split()[0].lower() else None,
                 git_logs
               )
             )
@@ -147,30 +146,30 @@ class Changelog(git.Git):
           if key not in self.changelog:
             self.changelog[key] = git_logs
           else:
-            for git_log_t in git_logs:
-              self.changelog[key][git_log_t].update(git_logs[git_log_t])
+            for git_log_t, logs in git_logs.items():
+              self.changelog[key][git_log_t].update(logs)
 
     old_changelog = self.read_changelog_md(fpath)
     old_changelog = self.parse_changelog_md(old_changelog)
-    tmp_changelog = dict()
-    for k in old_changelog:
-      tmp_changelog[k] = dict()
-      for date in old_changelog[k]:
-        for git_log_t in old_changelog[k][date]:
+    tmp_changelog = {}
+    for k, versions in old_changelog.items():
+      tmp_changelog[k] = {}
+      for dt in versions:
+        for git_log_t in old_changelog[k][dt]:
           if git_log_t not in tmp_changelog[k]:
-            tmp_changelog[k][git_log_t] = old_changelog[k][date][git_log_t]
+            tmp_changelog[k][git_log_t] = old_changelog[k][dt][git_log_t]
           else:
             tmp_changelog[k][git_log_t].update(
-              old_changelog[k][date][git_log_t]
+              old_changelog[k][dt][git_log_t]
             )
     old_changelog = copy.deepcopy(tmp_changelog)
     del tmp_changelog
 
     if old_changelog:
-      for k in self.changelog:
-        for git_log_t in self.changelog[k]:
-          if git_log_t in self.changelog[k] and git_log_t in old_changelog[k]:
-            self.changelog[k][git_log_t].difference_update(
+      for k, log_types in self.changelog.items():
+        for git_log_t in log_types:
+          if git_log_t in log_types and git_log_t in old_changelog[k]:
+            log_types[git_log_t].difference_update(
               old_changelog[k][git_log_t]
             )
 
@@ -197,7 +196,7 @@ class Changelog(git.Git):
       The changelog dictionary containing the follow path mapped to each version
       of their changelogs.
     """
-    changelog_dict = dict()
+    changelog_dict = {}
     cur_follow = None
     cur_date = None
     cur_section = None
@@ -215,8 +214,8 @@ class Changelog(git.Git):
         cur_date = date_match.group(2)
         cur_follow = date_match.group(1)
         if cur_follow not in changelog_dict:
-          changelog_dict[cur_follow] = dict()
-        changelog_dict[cur_follow][cur_date] = dict()
+          changelog_dict[cur_follow] = {}
+        changelog_dict[cur_follow][cur_date] = {}
         cur_section = None
       elif section_match:
         cur_section = section_match.group(1)
