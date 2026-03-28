@@ -1,5 +1,21 @@
 # Changelog
 
+## nuro@v0.8.0 — 2026-03-28
+
+### Add
+
+- add: add network implementation to neural networks document by **Ayush Joshi** in [#872c088](https://github.com/joshiayush/nuro/commit/872c088ecbd6477c742c99d4a3b1e4674a4941dd)
+
+### Fix
+
+- fix: resolve all pylint warnings to reach 10.00/10 by **Ayush Joshi** in [#a8ec8cc](https://github.com/joshiayush/nuro/commit/a8ec8cc3712b2780e2a5af1c156b6b64acd77655)
+
+### Docs
+
+- docs: release `nuro@v0.7.0` by **Ayush Joshi** in [#61282c0](https://github.com/joshiayush/nuro/commit/61282c0280be1a2893b7886118114f3f3bc1d5d6)
+- docs: update "Gradient Descent" introduction to match "Machine Learning" theme by **Ayush Joshi** in [#6065665](https://github.com/joshiayush/nuro/commit/6065665ea78349b67f2c83f83e5013b537eba433)
+
+
 ## nuro@v0.7.0 — 2026-03-26
 
 ### Add
