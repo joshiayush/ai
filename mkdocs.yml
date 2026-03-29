@@ -83,11 +83,9 @@ nav:
     - Overview: algos/README.md
     - Pearson Correlation: algos/correlation/pearson_correlation/Pearson-correlation-coefficient.md
   - Projects:
-    - Machine Learning:
-      - K-Nearest Neighbors: projects/machine-learning/algorithms/K-Nearest-Neighbors-Algorithm.md
-      - Naive Bayes: projects/machine-learning/algorithms/Naive-Bayes.md
-    - Data Science:
-      - Face Recognition — SVMs: projects/data-science/face-recognition/ipynb/Support-Vector-Machines.md
+    - Digits Classifier: projects/digits-classifier/digits_classification.ipynb
+    - Salary Predictor: projects/salary-predictor/ds_salaries_analysis.ipynb
+    - Face Recognition: projects/face-recognition/face_recognition.ipynb
   - API Reference:
     - boolalg: api/boolalg.md
     - linear_model: api/linear_model.md

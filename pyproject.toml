@@ -10,6 +10,7 @@ dependencies = [
     "numpy>=2.4.3",
     "pandas>=3.0.1",
     "scikit-learn>=1.8.0",
+    "seaborn>=0.13.2",
     "torch>=2.10.0",
 ]
 
@@ -34,6 +35,10 @@ multi_line_output = 4
 [tool.yapf]
 based_on_style = "google"
 indent_width = 2
+column_limit = 80
+dedent_closing_brackets = false
+split_before_first_argument = false
+allow_split_before_dict_value = false
 
 [[tool.uv.index]]
 name = "pytorch-cpu"
