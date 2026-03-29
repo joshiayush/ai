@@ -1,5 +1,16 @@
 # Changelog
 
+## nuro@v0.8.1 — 2026-03-29
+
+### Refactor
+
+- refactor: refactor projects tab by **Ayush Joshi** in [#becadfc](https://github.com/joshiayush/nuro/commit/becadfcfbe56531eaab377ceea4d322817555354)
+
+### Docs
+
+- docs: release `nuro@v0.8.0` by **Ayush Joshi** in [#aff3ab7](https://github.com/joshiayush/nuro/commit/aff3ab788b4a2395e6502a698f02698fa06875a1)
+
+
 ## nuro@v0.8.0 — 2026-03-28
 
 ### Add
