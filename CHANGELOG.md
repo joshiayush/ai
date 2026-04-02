@@ -1,5 +1,16 @@
 # Changelog
 
+## nuro@v0.8.2 — 2026-04-02
+
+### Refactor
+
+- refactor: updated brief explanation on the network architecture for `N` number of layers by **Ayush Joshi** in [#9a13e6c](https://github.com/joshiayush/nuro/commit/9a13e6cda32cbcd1a7a6726d2ba0d54b86cc200c)
+
+### Docs
+
+- docs: release `nuro@v0.8.1` by **Ayush Joshi** in [#f73b12b](https://github.com/joshiayush/nuro/commit/f73b12b1f255ac8856118362e91585360a6b3b83)
+
+
 ## nuro@v0.8.1 — 2026-03-29
 
 ### Refactor
